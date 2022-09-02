@@ -1,0 +1,35 @@
+<div class="workout-bloc-view">
+    <div class="workout-bar">
+        <div class="{{workout.level}}">difficulté : {{ workout.level }}</div>
+        <div class="workout-title">
+            <h4>{{ workout.name}}</h4>
+        </div>
+        <div class="workout-detail">
+            <p> description : {{ workout.content}}</p>
+            <p> rounds : {{ workout.rounds}}</p>
+        </div>
+    </div>
+    {% for exercices in workout.exercicePersos %}
+    <div class="exercice-bloc-view">
+        <div class="exercice-img-view">
+            <img src="{{ asset('exercice/' ~ exercices.exercice.imageSystem.name)}}" alt="">
+        </div>
+        <div class="exercice-detail">
+            <p>{{ exercices.exercice.name }}</p>
+            {% if exercices.quantity is empty %}
+                {% else %}
+            <p>{{ exercices.quantity }} {{ exercices.effortType}}</p>
+            <p>{{ exercices.rest }}</p>
+            {% endif %}
+            {% if exercices.content is empty %}
+            {% else %}
+            <div class="exercice-hover">
+                <div class="exercice-content">
+                    <p>{{ exercices.content }}</p>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>

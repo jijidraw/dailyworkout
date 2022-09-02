@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Messagerie{% endblock %}
+
+{% block body %}
+<div id="help" class="help-background hidden">
+    <div class="help-content">
+        <div id="close-help" class="help-close">{{ include('svg/deletecross.html.twig') }}</div>
+        <h1 class="help-title">Bienvenue sur Daily Workout</h1>
+        <p>Pour commencer nous vous conseillons d'aller sur l'onglet de votre profil</p>
+        <p>Dans le menu déroulant sous votre profil vous trouverez les accès à différentes partie.</p>
+        <ul>
+            <li>L'accés à votre profil</li>
+            <li>Votre espace programme</li>
+            <li>L'accés à l'espace Challenge ainsi que l'espace Team</li>
+            <li>Le portail des sports</li>
+        </ul>
+    </div>
+</div>
+<div class="bloc-full">
+    <aside class="bloc-column-abs">
+        <h2 class="bloc-title">Mes contacts</h2>
+        {% for conversation in userconv.conversation %}
+        <a href="{{ path('app_conversation_get', {conv: conversation.id})}}" class="contact" data-id="{{ app.user.id }}" data-conv="{{ conversation.id }}">
+        {% for user in conversation.users %}
+            {% if app.user.id != user.id %}
+                <div class="contact-user">
+                    <img class="profil" src="{{ asset('profil/' ~ user.imgName )}}" alt="">
+                    <h3>{{ user.name }}</h3>
+                </div>
+            {% endif %}
+        {% endfor %}
+                </a>
+        {% endfor %}
+    </aside>
+    <div class="bloc-large-abs">
+        {# <section id="message" class="contact-message">
+            <h3 class="bloc-title">Nom du contact</h3>
+                <div id="message-list" class="message-conversation">
+                    <p>les messages</p>
+                </div> #}
+                {# <form action="" class="message-form hidden" id="message-form">
+                    <input type="text" id="text" placeholder="Message">
+                    {# <a href="{{ path('app_message_new', {conv: })}}" class="hidden"></a> #}
+                    {# <input type="submit">
+                </form> #}
+        {# </section> #}
+    </div>
+
+</div>
+
+{% endblock %}
+{% block javascripts %}
+<script src="{{ asset('js/loadmessage.js')}}"></script>
+<script src="{{ asset('js/message.js')}}"></script>
+{% endblock %}

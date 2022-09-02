@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Évènements{% endblock %}
+
+{% block body %}
+    <h1 class="center">Évènements</h1>
+    <div class="bloc-main">
+        <div class="list">
+            <a class="btmain center" href="{{ path('app_event_new') }}">Créer un évènement</a>
+            <h2>Mes évènements : </h2>
+            <ul>
+                <li class="center">
+                    <a class="" href="{{ path('app_search')}}">Chercher un évènement</a>
+                </li>
+                {% for event in events %}
+                <a class="js-link" href="{{ path('app_event_show', {id: event.id})}}">
+                    <li class="row item-li">
+                        <p>
+                            {% if event.imagesProfiles.name is defined %}
+                            <img class="profil" src="{{ asset('profil/' ~ event.imagesProfiles.name)}}" alt="">
+                            {% else %}
+                            <img class="profil" src="{{ asset('images/logo.png')}}" alt="">
+                            {% endif %}
+                            {{ event.name }}
+                            {% else %}
+                            Pas d'évènement prévu
+                        </p>
+                    </li>
+                </a>
+                {% endfor %}
+                
+            </ul>
+        </div>
+</div>
+
+{% endblock %}
+{% block javascripts %}
+<script src="{{ asset('js/loader.js')}}"></script>
+{% endblock %}

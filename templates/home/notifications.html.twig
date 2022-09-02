@@ -1,0 +1,46 @@
+<div class="bloc-lg">
+
+    <div data-id="-notification" class="accordion">Mes dernières notifications</div>
+    <div class="panel" id="panel-notification">
+        <div class="column">
+        {% for notification in notifications %}
+            {% if notification.team != null %}
+            <a href="{{ path('app_team_show', {id: notification.team.id })}}" class="bar-notif">
+                {% if notification.image %}
+                    <img class="profil" src="{{ asset('profil/' ~ notification.image)}}" alt="">
+                    {% else %}
+                    <img class="profil" src="{{ asset('images/login.png')}}" alt="">
+                {% endif %}
+                {{ notification.content}}
+            </a>
+            {% endif %}
+            {% if notification.post != null %}
+            <a href="{{ path('app_user_post_show', {id: notification.post.id })}}" class="bar-notif">
+                {% if notification.image %}
+                    <img class="profil" src="{{ asset('profil/' ~ notification.image)}}" alt="">
+                    {% else %}
+                    <img class="profil" src="{{ asset('images/login.png')}}" alt="">
+                {% endif %}
+                {{ notification.content}}
+            </a>
+            {% endif %}
+            {% if notification.challenge != null %}
+            <a href="{{ path('app_challenge_show', {id: notification.challenge.id })}}" class="bar-notif">
+                {% if notification.image %}
+                    <img class="profil" src="{{ asset('profil/' ~ notification.image)}}" alt="">
+                    {% else %}
+                    <img class="profil" src="{{ asset('images/login.png')}}" alt="">
+                {% endif %}
+                {{ notification.content}}
+            </a>
+            {% endif %}
+            {% if notification.image == 'logo.png' %}
+            <div class="bar-notif">
+                <img class="profil" src="{{ asset('images/logo.png')}}" alt="">
+                {{ notification.content}}
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>

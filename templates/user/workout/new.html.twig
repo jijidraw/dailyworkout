@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Workout{% endblock %}
+
+{% block body %}
+<div class="body-log">
+<div class="bloc-middle">
+    <div class="form-base">
+    <div class="bloc-title">
+        <h1>Créer un nouveau Workout</h1>
+    </div>
+    <p>Pour commencer veuillez remplir les informations suivantes</p>
+        {{ include('user/workout/_formNew.html.twig') }}
+    </div>
+</div>
+</div>
+
+{% endblock %}

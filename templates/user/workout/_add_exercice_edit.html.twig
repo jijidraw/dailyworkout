@@ -1,0 +1,38 @@
+<div class="bloc-main shadow">
+    <div class="panel" id="panel-list">
+    <section class="row">
+        <aside class="bloc-column">
+            <h2>Filtrer les exercices</h2>
+            <h3>Famille d'exercice</h3>
+            {{ include('component/_select_form_category.html.twig') }}
+            <h3>Groupes Musculaire</h3>
+            {{ include('component/_select_form_muscle.html.twig') }}
+        </aside>
+        <div class="bloc-large">
+        <div class="gallery" id="{{ workout.id }}">
+            <div class="workout-list scroll">
+    
+            {% for exercice in ListExercice %}
+            <div class="card">
+                <h3>
+                    {{ exercice.name }}
+                </h3>
+                <div class="card-img">
+                    {% if exercice.imageSystem is empty %}
+                    <p>Pas d'image enregistré</p>
+                    {% endif %}
+                    <img src="{{ asset('exercice/' ~ exercice.imageSystem.name)}}" width="400px" alt="">
+                </div>
+                <div class="card-a">
+                    <a data-exercice="{{exercice.id}}" data-workout="{{workout.id}}" class="js-exercice-link" href="{{ path('app_workout_perso_adding', {id: exercice.id, workout: workout.id})}}">Ajouter</a>
+                </div>
+            </div>
+            {% else %}
+                <h3>Pas d'enregistrement trouvé</h3>
+            {% endfor %}
+        </div>
+        </div>
+        </div>
+    </section>
+    </div>
+    </div>

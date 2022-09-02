@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ user.name}} {% endblock %}
+
+{% block body %}
+<section class="bloc-full">
+    <aside class="bloc-column-abs" id="column-left">
+        <h1 class="bloc-title">Modifier mon profil</h1>
+        <div class="bloc-link-column">
+
+        </div>
+    </aside>
+    <section class="bloc-large-abs">
+        <h2 class="bloc-title">Modifier mon profil</h2>
+        {{ include('user/user/_form_parameter.html.twig', {'button_label': 'modifier'}) }}
+    </section>
+</section>
+{% endblock %}

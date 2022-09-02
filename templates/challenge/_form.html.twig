@@ -1,0 +1,5 @@
+{{ form_start(form) }}
+    <h2>Pour commencer <br> donnez un nom au challenge <br> que vous voulez créer</h2>
+    {{ form_row(form.title) }}
+    <button class="btmain">{{ button_label|default('Étape suivante') }}</button>
+{{ form_end(form) }}

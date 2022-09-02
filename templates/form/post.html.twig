@@ -1,0 +1,30 @@
+<div class="modal-background hidden" id="modal">
+    <div class="modal-content">
+        <div id="close" class="help-close">{{ include('svg/deletecross.html.twig') }}</div>
+
+            <div class="form-message">
+
+            {{ form_start(postform)}}
+            <div class="row">
+                <p>Votre message</p>
+                <div class="accordion" data-id="-youtube"><img src="{{ asset('images/icon/youtube.png')}}" alt=""></div>
+                <div class="accordion" data-id="-link"><img src="{{ asset('images/icon/href.png')}}" alt=""></div>
+                <div class="input-file">
+                    <label for="post_images">{{ include('svg/jpg.html.twig') }}</label>
+                </div>
+            </div>
+            {{ form_row(postform.images)}}
+            {{ form_row(postform.content)}}
+            <div class="panel" id="panel-youtube">
+                {{ form_row(postform.youtubeLink)}}
+            </div>
+            <div class="panel" id="panel-link">
+                {{ form_row(postform.link)}}
+            </div>
+                <button class="btvalid">{{ button_label|default('envoyer') }}</button>
+                <div class="preview"></div>
+        {{ form_end(postform)}}
+            </div>
+    </div>
+</div>
+<button class="btmain" id="BtnModal">Créer un nouveau post</button>

@@ -1,0 +1,14 @@
+.bloc-team-post {
+    @extend %column;
+    margin: auto;
+    padding: $mp1;
+    width: 60%;
+    height: 80%;
+    overflow-y: auto;
+}
+
+@media (max-width: 860px) {
+    .bloc-team-post {
+        width: 100%;
+    }
+}

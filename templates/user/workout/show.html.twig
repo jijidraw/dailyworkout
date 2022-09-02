@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Workout{% endblock %}
+
+{% block body %}
+<section class="bloc-full">
+    <aside id="column-left" class="bloc-column-abs">
+        <h1 class="bloc-title">{{workout.name}}</h1>
+        <div class="bloc-link-column">
+            <ul>
+                <li>
+                    <a data-id="{{ workout.id }}" id="js-workout-like" href="{{ path('app_workout_fav', {id: workout.id})}}">
+                        {% if workout.isFavsByUser(app.user) and app.user %}
+                            <span id="star{{workout.id}}" class="svg-star">{{ include('svg/star.html.twig') }}</span>
+                            {% else %}
+                            <span id="star{{workout.id}}" class="svg-empty">{{ include('svg/star.html.twig') }}</span>
+                        {% endif %}
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('app_user_show', {id: workout.user.id})}}">Créer par : <br><div class="row"><img class="profil" src="{{ asset('profil/' ~ workout.user.imagesProfiles.name)}}" alt=""> {{ workout.user.name}}</div></a>
+                </li>
+                <h3 class="bloc-title">Noter ce workout</h3>
+                {% if userNote is null %}
+                    Vous n'avez pas noté ce workout.
+                    {% else %}
+                    Vous avez noté ce workout à {{ userNote.note}}
+                {% endif %}
+                {% if notations is null %}
+                    <p>Personne n'a encore évalué ce workout</p>
+                        {% else %}
+                    <p>Ce workout à été évalué par {{ notations | length }} personnes</p><br>
+                    <p>Sa note moyenne est de {{ mean }}</p>
+                {% endif %}
+                <div class="row">
+                    <a class="js-notation" href="{{ path('app_workout_note1', {id: workout.id})}}">1</a>
+                    <a class="js-notation" href="{{ path('app_workout_note2', {id: workout.id})}}">2</a>
+                    <a class="js-notation" href="{{ path('app_workout_note3', {id: workout.id})}}">3</a>
+                    <a class="js-notation" href="{{ path('app_workout_note4', {id: workout.id})}}">4</a>
+                    <a class="js-notation" href="{{ path('app_workout_note5', {id: workout.id})}}">5</a>
+                </div>
+            </ul>
+        </div>
+    </aside>
+    <section class="bloc-large-abs">
+        <div class="bloc-title"></div>
+        <article class="bloc-view">
+            {{ include('user/workout/_workout_view.html.twig') }}
+        </article>
+        <div class="bloc-space"></div>
+    </section>
+</section>
+
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/workoutNotation.js')}}"></script>
+    <script src="{{ asset('js/workoutFav.js')}}"></script>
+{% endblock %}

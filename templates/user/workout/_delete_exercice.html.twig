@@ -1,0 +1,4 @@
+<form method="post" action="{{ path('app_workout_perso_delete', {'id': exercices.id}) }}">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ exercices.id) }}">
+    <input class="btdelete" type="submit" value="retirer">
+</form>

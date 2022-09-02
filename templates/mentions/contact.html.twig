@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nous contacter{% endblock %}
+
+{% block body %}
+<section class="bloc-full">
+    <aside class="bloc-column-abs" id="column-left">
+        <h1 class="bloc-title">Nous contacter</h1>
+            <div class="bloc-link-column">
+                <ul>
+                    <li>
+                        <a href="{{ path('app_mentions')}}">Mentions légales</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('app_reglement')}}">Réglement de DailyWorkout</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('app_politique')}}">Politique de confidentialité</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('app_contact')}}">Nous contacter</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('home')}}">Retour au site</a>
+                    </li>
+                </ul>
+            </div>
+    </aside>
+    <section class="bloc-large-abs">
+        <h2 class="bloc-title">Nous contacter</h2>
+        <div class="form-loggin">
+            <div class="loggin">
+                <p> Vous souhaitez nous contacter pour nous faire part d'un problème, une suggestion afin d'améliorer DailyWorkout</p>
+                {{ form_start(form) }}
+                {{ form_row(form.email) }}
+                {{ form_row(form.subject) }}
+                {{ form_row(form.content) }}
+                <button class="btmain">{{ button_label|default('envoyer') }}</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+
+    </section>
+</section>
+{% endblock %}

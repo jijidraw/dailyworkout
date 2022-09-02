@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Goal index{% endblock %}
+
+{% block body %}
+<section class="bloc-full">
+    <aside id="column-left" class="bloc-column-abs">
+        <h1 class="bloc-title"></h1>
+        <div class="bloc-link-column">
+            <ul>
+                <li>
+                    <a class="btmain" href="{{ path('app_admin_goal_new') }}">Nouveau</a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+    <section class="bloc-large-abs">
+        <h2 class="bloc-title">Liste des goals</h2>
+        {% for goal in goals %}
+                {{ goal.id }}
+                {{ goal.name }}
+                {{ goal.createdAt ? goal.createdAt|date('Y-m-d H:i:s') : '' }}
+                
+                    <a href="{{ path('app_admin_goal_show', {'id': goal.id}) }}">show</a>
+                    <a href="{{ path('app_admin_goal_edit', {'id': goal.id}) }}">edit</a>
+        {% endfor %}
+    </section>
+</section>
+{% endblock %}

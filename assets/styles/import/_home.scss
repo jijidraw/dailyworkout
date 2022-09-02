@@ -1,0 +1,49 @@
+.bloc-actu {
+    width: 45%;
+    max-width: 680px;
+    margin: auto;
+    padding-top: 100px;
+}
+
+.form-comment {
+    top: 0;
+    display: flex;
+    background: white;
+    margin: 0;
+    margin-bottom: 16px;
+    height: 6rem;
+    border-radius: 8px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.form-comment .btmain {
+    height: 2rem;
+    margin: auto;
+}
+
+
+@media (min-width: 2000px) and (max-width:3560px) {}
+
+@media (min-width: 1554px) and (max-width:2000px) {
+    .col-left {
+        margin-left: 5rem;
+        max-width: 330px;
+    }
+
+    .col-right {
+        margin-left: 70rem;
+        max-width: 330px;
+    }
+}
+
+
+@media (max-width: 860px) {
+    .bloc-actu {
+        width: 100%;
+        margin: auto;
+        padding-top: 100px;
+    }
+}
+
+@media (max-width: 1024px) {}

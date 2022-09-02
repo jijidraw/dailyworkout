@@ -1,0 +1,20 @@
+{{ form_start(form)}}
+    <div class="row">
+        <p>Votre message</p>
+        <div class="accordion" data-id="-youtube"><img src="{{ asset('images/icon/youtube.png')}}" alt=""></div>
+        <div class="accordion" data-id="-link"><img src="{{ asset('images/icon/href.png')}}" alt=""></div>
+        <div class="input-file">
+            <label for="team_post_image">{{ include('svg/jpg.html.twig') }}</label>
+        </div>
+        <div class="preview"></div>
+    </div>
+    {{ form_row(form.image)}}
+    {{ form_row(form.content)}}
+    <div class="panel" id="panel-youtube">
+        {{ form_row(form.youtubeLink)}}
+    </div>
+    <div class="panel" id="panel-link">
+        {{ form_row(form.link)}}
+    </div>
+        <button class="btvalid">{{ button_label|default('envoyer') }}</button>
+{{ form_end(form)}}

@@ -1,0 +1,53 @@
+    {% for workout in workouts %}
+            <div class="workout-bloc">
+                <div class="workout-bar">
+                    <a href="{{ path('app_workout_show', {id :workout.id})}}">
+                        <div class="workout-title">
+                            <h4>{{ workout.name }}</h4>
+                        </div>
+                        <div class="workout-detail">
+                            <p> description : {{ workout.content }}</p>
+                            <p> rounds : {{ workout.rounds }}</p>
+                            <p> difficulté : {{ workout.difficulty }}</p>
+                        </div>
+                    </a>
+                    <a data-id="{{ workout.id }}" id="js-workout-like" href="{{ path('app_workout_fav', {id: workout.id})}}">
+                        {% if workout.isFavsByUser(app.user) and app.user %}
+                            <span id="star{{workout.id}}" class="svg-star">{{ include('svg/star.html.twig') }}</span>
+                            {% else %}
+                            <span id="star{{workout.id}}" class="svg-empty">{{ include('svg/star.html.twig') }}</span>
+                        {% endif %}
+                    </a>
+                </div>
+    
+                {% for exercice in workout.exercicePersos %}
+                <div class="exercice-bloc">
+                        <div class="exercice-img">
+                                <img src="{{ asset('exercice/' ~ exercice.exercice.imageSystem.name)}}" width="100px" alt="">
+                        </div>
+                        <div class="exercice-detail">
+                            <p class="exercice-name">{{ exercice.exercice.name }}</p>
+                            {% if exercice.quantity is empty %}
+                            {% else %}
+                            <p class="exercice-reps">
+                                {{ exercice.quantity }}
+                                {{ exercice.effortType }}<br>
+                            {% endif %}
+                            {% if exercice.Rest is empty %}
+                            {% else %}
+                            Repos : {{ exercice.Rest }}</p>
+                            {% endif %}
+                            {% if exercice.content is empty %}
+                            {% else %}
+                            <div class="exercice-hover">détails
+                                <div class="exercice-content">
+                                    <p>{{ exercice.content }}</p>
+                                    <a href="#">lien vers une video</a>
+                                </div>
+                            </div>
+                            {% endif %}
+                                </div>
+                            </div>
+                {% endfor %}
+            </div>
+            {% endfor %}

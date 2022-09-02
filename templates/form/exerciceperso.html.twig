@@ -1,0 +1,21 @@
+{{ form_start(formPerso) }}
+<div class="post-form">
+    <div class="row">
+    </div>
+    {% for quantity in formPerso.quantity %}
+    {{ form_widget(quantity) }}
+    {% endfor %}
+    {% for effort in formPerso.EffortType %}
+    {{ form_widget(effort) }}
+    {% endfor %}
+    {% for rest in formPerso.Rest %}
+    {{ form_widget(rest) }}
+    {% endfor %}
+    {% for content in formPerso.content %}
+    {{ form_widget(quantity) }}
+    {% endfor %}
+    <div class="row">
+        <button class="btmain">{{ button_label|default('Publier') }}</button>
+    </div>
+</div>
+{{ form_end(formPerso) }}

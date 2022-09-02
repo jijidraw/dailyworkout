@@ -1,0 +1,40 @@
+<div class="workout-post-bloc-view">
+    <div class="workout-bar">
+        <div class="{{publi.level.name }}">difficulté : {{ publi.level.name }}</div>
+
+        <div class="workout-title">
+            <h4>{{ publi.workout.name}}</h4>
+        </div>
+        <div class="workout-detail">
+            <p> description : {{ publi.workout.content}}</p>
+            <p> rounds : {{ publi.workout.rounds}}</p>
+        </div>
+    </div>
+    {% if publi.workout.exercicePersos is null %}
+    {% else %}
+    {% for exercices in publi.workout.exercicePersos %}
+    <div class="exercice-bloc-view">
+        <div class="exercice-img-view">
+            <img src="{{ asset('exercice/' ~ exercices.exercice.imageSystem.name)}}" alt="">
+        </div>
+        <div class="exercice-detail">
+            <p class="exercice-name">{{ exercices.exercice.name }}</p>
+            {% if exercices.quantity is empty %}
+            {% else %}
+            <p class="exercice-reps">{{ exercices.quantity }} {{ exercices.effortType }} <br>
+            Repos : {{ exercices.rest }} </p>
+            {% endif %}
+            {% if exercices.content is empty %}
+            {% else %}
+            <div class="exercice-hover">
+                <div class="exercice-content">
+                    <p>{{ exercices.content }}</p>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+</div>

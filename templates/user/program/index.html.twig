@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon programme{% endblock %}
+{% block body %}
+    <section class="bloc-full">
+        <aside id="column-left" class="bloc-column-abs">
+        
+        <div class="bloc-title">
+            <h2>Mes workout</h2>
+        </div>
+            <ul class="bloc-link-column">
+                <li>
+                    <div class="btblue">
+                        <a href="{{ path('app_workout_new')}}">Nouveau workout</a>
+                    </div>
+                </li>
+                <li class="tab" data-target="#content4">
+                    Mon planning
+                </li>
+                <li class="active tab" data-target="#content1">
+                    Mes workouts
+                </li>
+                <li class="tab" data-target="#content2">
+                    Favoris
+                </li>
+                <p id="search" class="tab" data-target="#content3">
+                    Rechercher
+                </p>
+                <div id="bloc-column-filter" class="hidden">
+                    <div data-id="-muscle" class="accordion">Par zones travaillées</div>
+                    <div class="panel" id="panel-muscle">
+                        {{ include('component/_select_form_muscle.html.twig') }}
+                    </div>
+                    <div data-id="-sport" class="accordion">Pour quel sport</div>
+                    <div class="panel" id="panel-sport">
+                        {{ include('component/_select_group_sport.html.twig') }}
+                    </div>
+                </div>
+            </ul>
+
+    </aside>
+        <section class="bloc-large-abs">
+            <div class="content" id="content4">
+                <div class="bloc-title">
+                    <h1>Mon programme</h1>
+                </div>
+                <div class="week-view">
+                    {{ include('user/program/_weekview.html.twig') }}
+                </div>
+            </div>
+            <div class="content" id="content1">
+                    <h2 class="bloc-title">La liste de mes workout</h2>
+                    {{ include('user/program/_workoutList.html.twig') }}
+                    <div class="bloc-space"></div>
+            </div>
+            <div class="content" id="content2">
+                <h2 class="bloc-title">Mes workouts favoris</h2>
+                {{ include('user/program/_workoutFav.html.twig') }}
+                <div class="bloc-space"></div>
+
+            </div>
+            <div class="content" id="content3">
+                <h2 class="bloc-title">Rechercher un workout</h2>
+                        {{ include('user/program/_workoutSearch.html.twig') }}
+                <div class="bloc-space"></div>
+
+            </div>
+
+        </section>
+    </section>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/ribbon.js')}}"></script>
+    <script src="{{ asset('js/user/tabs.js')}}"></script>
+    <script src="{{ asset('js/search/appearFilter.js')}}"></script>
+    <script src="{{ asset('js/search/searchWorkout.js')}}"></script>
+    <script src="{{ asset('js/search/searchWorkoutBySport.js')}}"></script>
+{% endblock %}

@@ -1,0 +1,194 @@
+%button {
+    @extend %border;
+    @extend %flex-row;
+    display: flex;
+    border: none;
+    padding: 5px 11px;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    display: inline-block;
+    width: fit-content;
+    height: fit-content;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+input[type="text"] {
+    width: 80%;
+}
+
+
+input[type="checkbox"] {
+    display: none;
+}
+
+select {
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    padding: $mp1;
+}
+
+.input-file {
+    @extend %button;
+    background-color: $red;
+    color: white;
+    margin: $mp2 auto;
+    cursor: pointer;
+}
+
+.input-file:hover {
+    background-color: $red2;
+    @extend %button;
+    cursor: pointer;
+}
+
+.input-file label {
+    margin-left: 0;
+}
+
+.btmain {
+    @extend %button;
+    color: white;
+    background-color: $red;
+    font-size: 16px;
+}
+
+.btmain a {
+    color: white;
+}
+
+.btmain a:visited {
+    color: white;
+}
+
+.btmain:hover {
+    @extend %button;
+    background-color: $red2;
+}
+
+.btempty {
+    @extend %button;
+    background-color: white;
+    border: 1px solid $grey2;
+    font-size: 16px;
+}
+
+.btempty:hover {
+    @extend %button;
+}
+
+.btdelete {
+    @extend %button;
+    background-color: $main;
+    color: $red;
+    border: 1px solid $red;
+    font-size: 16px;
+}
+
+.btdelete svg {
+    height: 16px;
+    width: 16px;
+}
+
+.btdelete:hover {
+    background-color: $red2;
+    color: white;
+}
+
+.btdelete:hover svg {
+    fill: $main;
+}
+
+.btndelete {
+    @extend %button;
+    border-radius: 50%;
+    background-color: $main;
+    color: $red;
+    border: 1px solid $red;
+    font-size: 16px;
+}
+
+.btndelete svg {
+    height: 16px;
+    width: 16px;
+}
+
+.btndelete:hover {
+    background-color: $red2;
+}
+
+.btndelete:hover svg {
+    fill: $main;
+}
+
+
+.main-link {
+    margin: $mp2;
+    color: white;
+}
+
+
+.btblue {
+    @extend %button;
+    background-color: $blue1;
+}
+
+.btblue:hover {
+    @extend %button;
+    background-color: $blue2;
+}
+
+.btblue a {
+    color: white;
+}
+
+.btblack {
+    @extend %button;
+    background-color: $main;
+    color: $red;
+    border: 1px solid $red;
+    font-size: 16px;
+}
+
+.btblack:hover {
+    @extend %button;
+    color: white;
+    background-color: $red2;
+}
+
+.btblack a {
+    color: $red;
+}
+
+.btblack:hover a {
+    color: $red2;
+}
+
+.btvalid {
+    @extend %button;
+    background-color: #2DC66D;
+    color: white;
+}
+
+.btvalid a {
+    color: white;
+}
+
+.btvalid a:hover {
+    color: white;
+}
+
+.btvalid:hover {
+    @extend %button;
+    background-color: #007C00;
+}
+
+.btvalid svg {
+    margin-left: $mp1;
+    height: 16px;
+    width: 16px;
+    fill: white;
+}

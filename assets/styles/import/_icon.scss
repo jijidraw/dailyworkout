@@ -1,0 +1,92 @@
+svg {
+    fill: $red;
+    height: 36px;
+    width: 36px;
+    cursor: pointer;
+    z-index: 0;
+}
+
+svg:hover {
+    fill: white;
+}
+
+.svg-workout svg {
+    height: 36px;
+    width: 36px;
+    fill: white;
+}
+
+.svg-star svg {
+    height: 36px;
+    width: 36px;
+    fill: rgb(210, 210, 3);
+}
+
+.svg-empty svg {
+    height: 36px;
+    width: 36px;
+    fill: rgb(65, 65, 57);
+}
+
+.post-view svg {
+    fill: $main;
+}
+
+.post-view svg:hover {
+    fill: $red;
+}
+
+.arrow {
+    display: none;
+    z-index: 50;
+}
+
+.arrow-right {
+    display: none;
+    z-index: 50;
+}
+
+@media (max-width: 860px) {
+    svg {
+        height: 24px;
+        width: 24px;
+    }
+
+    .arrow svg {
+        height: 36px;
+        width: 36px;
+    }
+
+    .arrow-right svg {
+        height: 36px;
+        width: 36px;
+    }
+
+    .arrow {
+        display: initial;
+        position: fixed;
+        transition: 0.4s;
+        top: 60px;
+        left: 5px;
+        border-radius: 50%;
+    }
+
+    .arrow-right {
+        display: initial;
+        position: fixed;
+        transition: 0.4s;
+        top: 60px;
+        right: 5px;
+        border-radius: 50%;
+    }
+
+    .arrow.open {
+        left: calc(70vw + 5px);
+        transition: left 1.0s;
+    }
+
+    .arrow-right.open {
+        right: calc(80vw);
+        transition: right 1.0s;
+    }
+}

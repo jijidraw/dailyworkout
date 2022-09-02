@@ -1,0 +1,59 @@
+<div class="post-view">
+    <div class="post-title">
+        <a href="{{ path('app_user_show', {id: publi.user.id})}}">
+            <div class="row">
+                    {% if publi.user.imagesProfiles. name is defined %}
+                            <img class="profil" src="{{ asset('profil/' ~ publi.user.imagesProfiles. name)}}" alt="">
+                        {% else %}
+                            <img class="profil" src="{{ asset('images/login.png')}}" alt="">
+                    {% endif %}
+                <div class="column">
+                    <h3>{{ publi.user.name }}</h3>
+                    <p class="date">{{ publi.createdAt|date("d/m/Y")}}</p>
+                </div> 
+            </div>
+        </a>
+    </div>
+    <div class="column post-main">
+        <p>{{ publi.content | nl2br }}</p>
+        {% if publi.images is empty %}
+            
+        {% endif %}
+        {% for img in publi.images %}
+        <div class="img-post">
+            <img src="{{ asset('post/' ~ img.name)}}" alt="image du post">   
+        </div>
+        {% endfor %}
+        {% if publi.youtubeLink %}
+        <iframe width="560" height="315" src="{{ publi.youtubeLink | replace({'https://www.youtube.com/watch?v=' : 'https://www.youtube.com/embed/'})}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        {% else %}
+        {% endif %}
+        
+    </div>
+    <div class="bloc-link">
+        <a href="{{ path('newlike', { id: publi.id })}}" id="js-like" data-id="{{ publi.id }}">
+            <p>
+                <span class="js-likes">{{ publi.likes | length}}</span>
+                <span class="svg-post">{{ include('svg/thumb.html.twig') }}</span>
+            </p>
+        </a>
+        <a href="{{ path('getComment', {id: publi.id})}}" data-id="{{ publi.id }}" id="delete-link{{ publi.id }}" class="delete-comment hidden svg-post">
+            <p>
+                {{ publi.comments | length }} {{ include('svg/message.html.twig') }}
+            </p>
+        </a>
+        <a href="{{ path('getComment', {id: publi.id})}}" data-id="{{ publi.id }}" class="js-comment svg-post">
+            <p>
+                {{ publi.comments | length }} {{ include('svg/message.html.twig') }}
+            </p>
+        </a>
+    </div>
+    
+<div id="comment-zone{{ publi.id }}" class="comment-zone"></div>
+{# commentaire écrit #}
+        {# formulaire post commentaire #}
+        {{ include('form/comment.html.twig') }}
+</div>
+
+{% block javascripts %}
+{% endblock %}

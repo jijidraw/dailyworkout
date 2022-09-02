@@ -1,0 +1,33 @@
+.bloc-user-link {
+    @extend %flex-row;
+    @extend %shadow;
+    @extend %border;
+    position: relative;
+    background-color: $maintrans;
+    width: 100%;
+    border: 1px solid $grey2;
+    margin: $mp1 auto;
+    height: 46px;
+    overflow: hidden;
+    color: white;
+}
+
+.bloc-user-link .btvalid,
+.btdelete {
+    position: absolute;
+    width: fit-content;
+    top: 5px;
+    right: 5px;
+}
+
+.bloc-user-link a {
+    color: white;
+}
+
+.bloc-user-link img {
+    margin: 0 $mp2;
+}
+
+.bloc-user-link:hover {
+    background-color: $blue2;
+}

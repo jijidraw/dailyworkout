@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des sports{% endblock %}
+
+{% block body %}
+<div id="help" class="help-background hidden">
+    <div class="help-content">
+        <div id="close-help" class="help-close">{{ include('svg/deletecross.html.twig') }}</div>
+        <h1 class="help-title">Bienvenue sur Daily Workout</h1>
+        <p>Pour commencer nous vous conseillons d'aller sur l'onglet de votre profil</p>
+        <p>Dans le menu déroulant sous votre profil vous trouverez les accès à différentes partie.</p>
+        <ul>
+            <li>L'accés à votre profil</li>
+            <li>Votre espace programme</li>
+            <li>L'accés à l'espace Challenge ainsi que l'espace Team</li>
+            <li>Le portail des sports</li>
+        </ul>
+    </div>
+</div>
+<section class="bloc-full">
+    <aside class="bloc-column-abs" id="column-left">
+        <h2 class="bloc-title">La zone des sports</h2>
+        <div class="bloc-link-column">
+            <p>Sélectionner un sport dans la liste sur le côté et trouvez plus d'information à son sujet. </p>
+                <ul>
+                    <li> - Les personnes de DailyWorkout qui le pratiquent</li>
+                    <li> - Les Teams qui en parlent</li>
+                    <li> - Des entrainement adaptés et crée par des pratiquants</li>
+                </ul>
+        </div>
+    </aside>
+    <section class="bloc-large-abs">
+        <h1 class="bloc-title">La liste des sport</h1>
+        <div class="gallery">
+            {% for sport in sports %}
+            <div class="card">
+                <h3>
+                    {{ sport.name }}
+                </h3>
+                <div class="card-img">
+                    {% if sport.imageSystem is empty %}
+                    <p>Pas d'image enregistré</p>
+                    {% else %}
+                    <img src="{{ asset('sport/' ~ sport.imageSystem.name)}}" width="400px" alt="">
+                    {% endif %}
+                </div>
+                <div class="card-a">
+                    <a href="{{ path('app_sport_show', {id: sport.id})}}">En voir plus</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</section>
+{% endblock %}

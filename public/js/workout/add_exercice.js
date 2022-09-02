@@ -1,0 +1,37 @@
+var exercicesForm = document.querySelector('.workout-list-exercice')
+const linksExercices = document.querySelectorAll('.js-exercice-link')
+
+
+
+for(let linkExercice of linksExercices) {
+    linkExercice.addEventListener("click", function(e){
+        e.preventDefault();
+        let IdWorkout = this.dataset.workout
+        let IdExercice = this.dataset.exercice
+        let url = `/workout/add/${IdExercice}/${IdWorkout}`
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function(){
+            if(this.readyState == 4 ){
+                if(this.status == 200){
+                    console.log(this.response)
+                    let exercice = JSON.parse(this.response)
+                    var card = 
+                    `
+                    <div class="card">
+                    <h3>${exercice.name}</h3>
+                    <div class="card-img">
+                        <img src="/exercice/${exercice.imageSystem.name}" width="400px" alt="">
+                    </div>
+                    <div class="card-a>
+                    <a href="/workout/delete/exercice/${exercice.id}>retirer</a>
+                    </div>
+                    </div>
+                    `
+                    document.querySelector('.workout-list-exercice').innerHTML += card;
+                }
+            }
+        }
+        xhr.open("get", url, true)
+        xhr.send();
+    })
+}

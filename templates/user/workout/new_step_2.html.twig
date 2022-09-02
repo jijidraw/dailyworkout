@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter des exercices{% endblock %}
+
+{% block body %}
+<div class="bloc-full">
+        <aside class="bloc-column-abs">
+            <h1 class="bloc-title">Filtrer les exercices</h1>
+                <div class="bloc-link-column">
+                    <div class="accordion" data-id="-category">Par famille d'exercice</div>
+                        <div class="panel" id="panel-category">
+                            {{ include('component/_select_form_category.html.twig') }}
+                        </div>
+                    <div class="accordion" data-id="-muscle">Par groupe musculaire</div>
+                        <div class="panel" id="panel-muscle">
+                            {{ include('component/_select_form_muscle.html.twig') }}
+                        </div>
+                    <div class="btvalid">
+                        <a href="{{ path('app_workout_edit', {workout: workout.id})}}">Étape suivante</a>
+                    </div>
+                </div>
+        </aside>
+        <section class="bloc-large-abs">
+        <h2 class="bloc-title">Exercices selectionnés</h2>
+        <div class="workout-list-exercice">
+            {% for exercices in workout.exercicePersos %}
+            <div class="card">
+                <h3>{{ exercices.exercice.name}}</h3>
+                <div class="card-img">
+                    {% if exercices.exercice.imageSystem is empty %}
+                    <p>Pas d'image enregistré</p>
+                    {% endif %}
+                    <img src="{{ asset('exercice/' ~ exercices.exercice.imageSystem.name)}}" width="400px" alt="">
+                </div>
+                <div class="card-a">
+                    {{ include('user/workout/_delete_exercice.html.twig') }}
+                </div>
+            </div>
+                
+            {% endfor %}
+        </div>
+        <h2>
+            Liste des exercices
+        </h2>
+        <div class="workout-list-select">
+            <div class="gallery" id="{{ workout.id }}">
+                    {% for exercice in ListExercice %}
+                    <div class="card">
+                        <h3>
+                            {{ exercice.name }}
+                        </h3>
+                        <div class="card-img">
+                            {% if exercice.imageSystem is empty %}
+                            <p>Pas d'image enregistré</p>
+                            {% endif %}
+                            <img src="{{ asset('exercice/' ~ exercice.imageSystem.name)}}" width="400px" alt="">
+                        </div>
+                        <div class="card-a">
+                            <a data-exercice="{{exercice.id}}" data-workout="{{workout.id}}" class="js-exercice-link" href="{{ path('app_workout_perso', {id: exercice.id, workout: workout.id})}}">Ajouter</a>
+                        </div>
+                    </div>
+                    {% else %}
+                        <h3>Pas d'enregistrement trouvé</h3>
+                    {% endfor %}
+            </div>
+        </div>
+
+        </section>
+</div>
+
+{% endblock %}
+{% block javascripts %}
+<script src="{{ asset('js/workout/add_exercice.js')}}"></script>
+<script src="{{ asset('js/workout/filter_category.js')}}"></script>
+<script src="{{ asset('js/workout/filter_muscle.js')}}"></script>
+{% endblock %}

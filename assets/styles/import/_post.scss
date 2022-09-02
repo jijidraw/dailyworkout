@@ -1,0 +1,120 @@
+.post-form {
+    @extend %flex-column;
+    @extend %shadow;
+    @extend %border;
+    margin: $mp2 auto;
+    width: fit-content;
+    max-width: 540px;
+    padding: $mp2;
+    background: white;
+    justify-content: space-around;
+    border: 2px solid $grey3;
+}
+
+.post-title {
+    width: 100%;
+    min-width: 100%;
+    display: flex;
+    height: fit-content;
+    flex-direction: row;
+    justify-content: center;
+    justify-content: space-between;
+    margin: $mp1 0 0 $mp1;
+}
+
+.post-title img {
+    margin-right: $mp1;
+}
+
+.date {
+    font-size: 10px;
+}
+
+.team-post form {
+    position: absolute;
+    width: fit-content;
+    top: 5px;
+    right: 5px;
+}
+
+.post-view {
+    @extend %flex-column;
+    @extend %shadow;
+    @extend %border;
+    text-align: left;
+    background: white;
+    width: 100%;
+    height: fit-content;
+    margin: $mp3 auto;
+    padding: $mp1;
+    overflow: hidden;
+}
+
+.post-view h3,
+a,
+span,
+p {
+    color: black;
+}
+
+.post-link {
+    width: 100%;
+    line-height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    vertical-align: middle;
+}
+
+.comment-zone {
+    width: 100%;
+}
+
+.comment-text {
+    margin: $mp1;
+}
+
+.comment-post {
+    width: 90%;
+    border-bottom: 1px solid $grey2;
+    margin: $mp2 auto;
+}
+
+.comment-post img {
+    margin-right: $mp2;
+}
+
+.post-main {
+    width: 100%;
+    border-top: 1px solid $grey;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.post-main p {
+    margin: $mp1 0;
+}
+
+.follow-button {
+    background-color: $red;
+}
+
+.team-post {
+    @extend %column;
+    @extend %border;
+    @extend %shadow;
+    margin: $mp1 0;
+    position: relative;
+    height: fit-content;
+    background: white;
+}
+
+@media (max-width: 860px) {
+    .post-view {
+        border-radius: 0;
+        margin: $mp2 0;
+        padding: 0;
+    }
+
+}

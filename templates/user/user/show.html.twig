@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}profil de : {{ user.name }}{% endblock %}
+
+{% block body %}
+<div class="modal-background hidden" id="modal">
+    <div class="modal-content">
+        <div class="modal-list">
+        </div>
+    </div>
+</div>
+<div id="help" class="help-background hidden">
+    <div class="help-content">
+        <div id="close-help" class="help-close">{{ include('svg/deletecross.html.twig') }}</div>
+        <h1 class="help-title">Bienvenue sur Daily Workout</h1>
+        <p>Pour commencer nous vous conseillons d'aller sur l'onglet de votre profil</p>
+        <p>Dans le menu déroulant sous votre profil vous trouverez les accès à différentes partie.</p>
+        <ul>
+            <li>L'accés à votre profil</li>
+            <li>Votre espace programme</li>
+            <li>L'accés à l'espace Challenge ainsi que l'espace Team</li>
+            <li>Le portail des sports</li>
+        </ul>
+    </div>
+</div>
+    <section class="bloc-full ">
+        {{ include('user/user/_show_user_info.html.twig') }}
+           
+<section class="bloc-large-abs">
+<div class="bloc-title"></div>
+                <div class="user-link">
+                       <span class="main-link active tab" data-target="#content1"="">Posts</span>
+                       <span class="main-link tab" data-target="#content2"="">Workouts</span>
+                       <span class="main-link tab" data-target="#content3"="">Programmes</span>
+                </div>
+                <div class="content" id="content1">
+                    <div class="gallery">
+                        {% for post in user.posts %}
+                            {{ include('user/user/userPost.html.twig') }}
+                        {% endfor %}
+                    </div>
+                 </div>
+                <div class="content" id="content2">
+                        {{ include('user/user/userWorkoutList.html.twig') }}
+                </div>
+                <div class="content" id="content3">
+                    {{ include('user/user/userProgram.html.twig') }}
+                </div>
+                <div class="bloc-space"></div>
+        </section>
+
+    </section>
+
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/follow.js')}}"></script>
+    <script src="{{ asset('js/loadFollowing.js')}}"></script>
+    <script src="{{ asset('js/loadFollowers.js')}}"></script>
+    <script src="{{ asset('js/user/tabs.js')}}"></script>
+{% endblock %}

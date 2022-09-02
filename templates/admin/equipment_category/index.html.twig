@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catégorie équipement{% endblock %}
+
+{% block body %}
+<section class="bloc-full">
+<aside id="column-left" class="bloc-column-abs">
+    <div class="bloc-link-column">
+
+        <h1 class="bloc-title">Catégorie équipement</h1>
+        <ul>
+            <li>
+                <a href="{{ path('app_admin_equipment_category_new') }}">Créer une nouvelle catégorie</a>
+            </li>
+        </ul>
+        
+    </div>
+</aside>
+<section class="bloc-large-abs">
+    <h2 class="bloc-title">Liste des catégories</h2>
+    {% for equipment_category in equipment_categories %}
+    <ul>
+        <li>
+            {{ equipment_category.name }}
+            <a href="{{ path('app_admin_equipment_category_edit', {'id': equipment_category.id}) }}">edit</a>
+        </li>
+        
+    </ul>
+    {% else %}
+    {% endfor %}
+    
+</section>
+</section>
+{% endblock %}

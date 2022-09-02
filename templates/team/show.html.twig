@@ -1,0 +1,227 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Team{% endblock %}
+
+{% block body %}
+<div id="help" class="help-background hidden">
+    <div class="help-content">
+        <div id="close-help" class="help-close">{{ include('svg/deletecross.html.twig') }}</div>
+        <h1 class="help-title">Bienvenue sur Daily Workout</h1>
+        <p>Pour commencer nous vous conseillons d'aller sur l'onglet de votre profil</p>
+        <p>Dans le menu déroulant sous votre profil vous trouverez les accès à différentes partie.</p>
+        <ul>
+            <li>L'accés à votre profil</li>
+            <li>Votre espace programme</li>
+            <li>L'accés à l'espace Challenge ainsi que l'espace Team</li>
+            <li>Le portail des sports</li>
+        </ul>
+    </div>
+</div>
+<div class="modal-background hidden" id="modal">
+    <div class="modal-content">
+    </div>
+</div>
+<div class="bloc-full">
+
+    <aside id="column-left" class="bloc-column-abs">
+        <h1 class="bloc-title">
+            {{ team.name }}
+        </h1>
+        
+        <ul class="bloc-link-column">
+            <div class="btblue">
+                <a class="center" href="{{ path('app_team_new')}}">Créer un nouveau groupe</a>
+            </div>
+            <li class="main-link tab" data-target="#content4"="">Présentation du groupe</li>
+            <li class="main-link active tab" data-target="#content1"="">Posts</li>
+            {% if isMember == null %}
+            {% elseif isMember.isWaiting == false %}
+            <li class="main-link tab" data-target="#content2"="">Membres du groupe</li>
+            <div class="accordion" data-id="-team">Inviter mes followers</div>
+        <div class="panel" id="panel-team">
+            {% for follow in follows %}
+            <a class="bloc-user-link" href="{{ path('app_team_invite', {id: team.id, user:follow.follower.id})}}" id="js-send">
+                <img class="profil" src="{{ asset('profil/' ~ follow.follower.imagesProfiles.name)}}" alt="">
+                <p>{{ follow.follower.name}}</p>
+            </a>
+            {% endfor %}
+        </div>
+            {% endif %}
+
+        {% for admin in admins %}
+            {% if app.user.id == admin.user.id %}
+            <li class="bloc-title">Espace Administrateur</li>
+            <li class="main-link tab" data-target="#content3">Supprimer les membres</li>
+            <div class="btblue">
+                <a href="{{ path('app_team_edit', {'id': team.id}) }}">Modifier les informations</a>
+            </div>
+            {% endif %}
+        {% endfor %}
+        
+        </ul>
+    </aside>
+    <section class="bloc-large-abs">
+
+                <div class="content" id="content4">
+                    <div class="bloc-presentation">
+                        <div class="img-presentation">
+                            {% if team.imagesProfiles is null %}
+                            <img src="{{ asset('images/logo.png')}}" width="200px" alt="">
+                            {% else %}
+                            <img src="{{ asset('profil/' ~ team.imagesProfiles.name)}}" alt="">
+                            {% endif %}
+                        </div>
+                        <h3 class="presentation-title">
+                            {{ team.name }}
+                        </h3>
+                        <p> Sport du groupe : {{ team.sport }}</p>
+                        <article class="presentation-text">{{ team.description }}</article>
+                    </div>
+                    <div class="bloc-space"></div>
+                </div>
+
+                {# condition si l'utilisateur est dans le groupe ou pas #}
+                <div class="content" id="content1">
+                    {% if isMember is empty %}
+                    <article class="message-middle">
+                        <h3>les posts</h3>
+                        Vous ne faites pas partie du groupe. <br><br>
+                        <a href="{{ path('app_team_add_member', {id: team.id})}}">Demander à rejoindre le groupe</a>
+                    </article>
+                        {% elseif isMember.isWaiting == true %}
+                    <article class="message-middle">
+                        <p>Votre demande est en attente de validation</p> <br><br>
+                        <p>Une notification vous sera envoyé lorsqu'un administrateur l'aura approuvé.</p>
+                    </article>
+                        {% elseif isMember.isInvite == true %}
+                    <article class="message-middle">
+                        <p>Vous avez été invité à rejoindre la team {{team.name}}</p> <br><br>
+                        <p>Si vous souhaitez faire partie de cet team cliquez sur le bouton</p>
+                        <div class="btvalid">
+                            <a href="{{path('app_team_invite_accept', {id: isMember.id})}}">valider{{ include('svg/checkmark.html.twig') }}</a>
+                        </div>
+                        <div class="btdelete">
+                            <a href="{{path('app_team_invite_refuse', {id: isMember.id})}}">refuser{{ include('svg/deletecross.html.twig') }}</a>
+                        </div>
+                    </article>
+                    {% else %}
+                    
+                {# condition si l'utilisateur est dans le groupe ou pas #}
+
+                {# posts du groupe #}
+                <div class="bloc-title"></div>
+                <div class="form-message">
+                    {{ include('team/_form_comment.html.twig') }}
+                </div>
+                <div class="bloc-team-post">
+                    {% for post in posts %}
+                        <div class="team-post">
+                            {% for admin in admins %}
+                                    {% if admin.user.id == app.user.id %}
+                                    <form method="post" action="{{ path('app_team_delete_post', {'id': post.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ post.id) }}">
+                                        <button class="btdelete">{{ include('svg/deletecross.html.twig') }}</button>
+                                    </form>
+                                    {% endif %}
+                                {% endfor %}
+                            <div class="post-title">
+                                <a href="{{ path('app_user_show', {id: post.user.id })}}">
+                                    <div class="row">
+                                        <img class="profil" src="{{ asset('profil/' ~ post.user.imagesProfiles.name)}}" alt="">
+                                        <div class="column">
+                                            <p>{{ post.user.name }}</p>
+                                            <p class="date">{{ post.createdAt | date('d/m/Y') }}</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="post-main">
+                                {% if post.content %}
+                                <p>{{ post.content | nl2br }}</p>
+                                {% endif %}
+                                {% if post.image %}
+                                <div class="img-post">
+                                    <img class="" src="{{ asset('post/' ~ post.image.name)}}" alt="">
+                                </div>
+                                {% endif %}
+                                {% if post.youtubeLink %}
+                                <iframe width="560" height="315" src="{{ post.youtubeLink | replace({'https://www.youtube.com/watch?v=' : 'https://www.youtube.com/embed/'})}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                {% endif %}
+                                {% if post.link %}
+                                <a target="_blank" href="{{ post.link }}">{{ post.link }}</a>
+                                {% endif %}
+                            </div>
+                            
+                        </div>
+                    {% endfor %}
+                </div>
+                {# posts du groupe #}
+
+                {# form message du groupe #}
+                
+                {# form message du groupe #}
+
+                {% endif %}
+             </div>
+            {# liste des membres #}
+                <div class="content" id="content2">
+                    {{ include('team/_members_list.html.twig') }}
+                </div>
+            {# liste des membres #}
+            {% for admin in admins %}
+                {% if app.user.id == admin.user.id %}
+                    <div class="content" id="content3">
+                        <h3 class="bloc-title">Demande en attentes</h3>
+                        <div class="gallery">
+                            <div class="column">
+
+                        {% for member in team.teamMembers %}
+                            {% if member.isWaiting == true %}
+                            <div class="bloc-user-link">
+                                <a href="{{ path('app_user_show', {id : member.user.id })}}">
+                                    <img class="profil" src="{{ asset('profil/' ~ member.user.imagesProfiles.name)}}" alt="">
+                                    {{ member.user.name }}
+                                    <a class="btvalid" href="{{ path('app_team_accept_member', {id: member.id})}}">{{ include('svg/checkmark.html.twig') }}</a>
+                                </a>
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                            
+                            <h3>Nommer un Admin</h3>
+                            {% for member in team.teamMembers %}
+                            {% if member.isAdmin == false %}
+                            <div class="bloc-user-link">
+                                <a href="{{ path('app_user_show', {id : member.user.id })}}">
+                                        <img class="profil" src="{{ asset('profil/' ~ member.user.imagesProfiles.name)}}" alt="">
+                                        {{ member.user.name }}
+                                        <a class="btvalid" href="{{ path('app_team_admin_member', {id: member.id})}}">{{ include('svg/checkmark.html.twig') }}</a>
+                                </a>
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                            <h4 class="bloc-title">Supprimer des membres de la team</h4>
+                                {% for member in team.teamMembers %}
+                                <div class="bloc-user-link">
+                                    <a href="{{ path('app_user_show', {id : member.user.id })}}">
+                                            <img class="profil" src="{{ asset('profil/' ~ member.user.imagesProfiles.name)}}" alt="">
+                                            {{ member.user.name }}
+                                            <a class="btdelete" href="{{ path('app_team_delete_member', {id: member.id})}}">{{ include('svg/deletecross.html.twig') }}</a>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class="bloc-space"></div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </section>
+</div>
+
+<div class="bloc-space"></div>
+
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/challenge/send_challenge.js')}}"></script>
+    <script src="{{ asset('js/user/tabs.js')}}"></script>
+{% endblock %}

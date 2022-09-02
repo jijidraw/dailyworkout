@@ -1,0 +1,33 @@
+{{ form_start(form) }}
+    <div class="form-text">
+        <label for="">Nom du sport</label>
+        {{ form_row(form.name) }}
+    </div>
+    <div class="form-textarea">
+        <label for="">Description du sport</label>
+        {{ form_row(form.description) }}
+    </div>
+    <div class="form-row">
+        <div class="form-column">
+            <p>En solo ou en groupe ?</p>
+            <div class="form-checkbox">
+                {{ form_widget(form.is_solo) }}
+                {{ form_label(form.is_solo) }}
+            </div>
+            <div class="form-checkbox">
+                {{ form_widget(form.is_group) }}
+                {{ form_label(form.is_group) }}
+            </div>
+        </div>
+        <div class="form-column">
+            <p>Insérer une image</p>
+            {{ form_row(form.imageSystem) }}
+            <div class="form-checkbox">
+                <label class="input-file" for="sports_list_imageSystem">image</label>
+            </div>
+            <div class="form-checkbox">
+                <button class="btvalid">{{ button_label|default('Sauvegarder') }}</button>
+            </div>
+        </div>
+    </div>
+{{ form_end(form) }}

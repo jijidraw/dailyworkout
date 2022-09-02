@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Post{% endblock %}
+
+{% block body %}
+<section class="bloc-full">
+    <aside class="bloc-column-abs" id="column-left">
+        <h2 class="bloc-title"></h2>
+        <ul class="bloc-link-column">
+            {% if app.user.id == post.user.id %}
+                <li>
+                    {{ include('user/post/_delete_form.html.twig') }}
+                </li>
+            {% endif %}
+        </ul>
+    </aside>
+    <section class="bloc-large-abs">
+        <div class="bloc-title"></div>
+        <div class="post-view">
+            <div class="post-title">
+                <a href="{{ path('app_user_show', {id: post.user.id})}}">
+                    <div class="row">
+                            {% if post.user.imagesProfiles. name is defined %}
+                                    <img class="profil" src="{{ asset('profil/' ~ post.user.imagesProfiles. name)}}" alt="">
+                                {% else %}
+                                    <img class="profil" src="{{ asset('images/login.png')}}" alt="">
+                            {% endif %}
+                            <h3>{{ post.user.name }}</h3>
+                        <div class="column">
+                            <p class="date">{{ post.createdAt|date("d/m/Y")}}</p>
+                        </div> 
+                    </div>
+                </a>
+            </div>
+            <div class="column post-main">
+                <p>{{ post.content | raw }}</p>
+                {% if post.images is empty %}
+                    
+                {% endif %}
+                {% for img in post.images %}
+                <div class="img-post">
+                    <img src="{{ asset('post/' ~ img.name)}}" alt="image du post">   
+                </div>
+                {% endfor %}
+                {% if post.youtubeLink %}
+                <iframe width="560" height="315" src="{{ post.youtubeLink | replace({'https://www.youtube.com/watch?v=' : 'https://www.youtube.com/embed/'})}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                {% else %}
+                {% endif %}
+                
+            </div>
+            <div class="bloc-link">
+                <a href="{{ path('newlike', { id: post.id })}}" id="js-like" data-id="{{ post.id }}">
+                    <p>
+                        <span class="js-likes">{{ post.likes | length}}</span>
+                        <span class="svg-post">{{ include('svg/thumb.html.twig') }}</span>
+                    </p>
+                </a>
+                <a href="{{ path('getComment', {id: post.id})}}" data-id="{{ post.id }}" id="delete-link{{ post.id }}" class="delete-comment hidden svg-post">
+                    <p>
+                        {{ post.comments | length }} {{ include('svg/message.html.twig') }}
+                    </p>
+                </a>
+                <a href="{{ path('getComment', {id: post.id})}}" data-id="{{ post.id }}" class="js-comment svg-post">
+                    <p>
+                        {{ post.comments | length }} {{ include('svg/message.html.twig') }}
+                    </p>
+                </a>
+            </div>
+            
+        <div id="comment-zone{{ post.id }}" class="comment-zone"></div>
+        {# commentaire écrit #}
+                {# formulaire post commentaire #}
+                {{ include('user/post/_form_comment.html.twig') }}
+        </div>
+        
+    </section>
+</section>
+
+{% endblock %}
+{% block javascripts %}
+<script src="{{ asset('js/post/loadcomment.js')}}"></script>
+<script src="{{ asset('js/deletecomment.js')}}"></script>
+<script src="{{ asset('js/likes.js')}}"></script>
+<script src="{{ asset('js/post/postcomment.js')}}"></script>
+{% endblock %}

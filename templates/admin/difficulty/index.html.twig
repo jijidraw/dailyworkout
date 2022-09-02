@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Difficulty index{% endblock %}
+
+{% block body %}
+<section class="bloc-full">
+    <aside id="column-left" class="bloc-column-abs">
+        <h1 class="bloc-title">Liste des difficultés</h1>
+        <div class="bloc-link-column">
+            <ul>
+                <li>
+                    <a href="{{ path('app_admin') }}">Retour</a>
+                </li>
+                <li>
+                    <a href="{{ path('app_admin_difficulty_new') }}">Créer nouveau</a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+    <section class="bloc-large-abs">
+        <h2 class="bloc-title"></h2>
+        {% for difficulty in difficulties %}
+            <ul>
+                <li>
+                    {{ difficulty.name }}
+                    <a href="{{ path('app_admin_difficulty_edit', {'id': difficulty.id}) }}">modifier</a>
+                </li>
+            </ul>
+        {% else %}
+        {% endfor %}
+    </section>
+</section>
+
+
+{% endblock %}

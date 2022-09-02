@@ -1,0 +1,149 @@
+<div class="week-view">
+    <div class="day-view">
+        <div class="day-title">Lundi</div>
+        <div class="day-workout">
+            {% if monday is empty %}
+            <p>
+                Repos
+            </p>
+            {% endif %}
+            {% for wod in monday %}
+            <a href="{{ path('app_workout_show', {id: wod.workout.id})}}">
+                <div class="title-workout">
+                        <h4>{{wod.workout.name}}</h4>
+                </div>
+                <div class="content-workout">
+                    <p>{{wod.workout.content}}</p>
+                    <p>{{wod.workout.rounds}}</p>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="day-view">
+        <div class="day-title">Mardi</div>
+        <div class="day-workout">
+            {% if tuesday is empty %}
+            <p>
+                Repos
+            </p>
+            {% endif %}
+            {% for wod in tuesday %}
+            <a href="{{ path('app_workout_show', {id: wod.workout.id})}}">
+                <div class="title-workout">
+                        <h4>{{wod.workout.name}}</h4>
+                </div>
+                <div class="content-workout">
+                    <p>{{wod.workout.content}}</p>
+                    <p>{{wod.workout.rounds}}</p>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="day-view">
+        <div class="day-title">Mercredi</div>
+        <div class="day-workout">
+            {% if wednesday is empty %}
+            <p>
+                Repos
+            </p>
+            {% endif %}
+            {% for wod in wednesday %}
+            <a href="{{ path('app_workout_show', {id: wod.workout.id})}}">
+                <div class="title-workout">
+                        <h4>{{wod.workout.name}}</h4>
+                </div>
+                <div class="content-workout">
+                    <p>{{wod.workout.content}}</p>
+                    <p>{{wod.workout.rounds}}</p>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="day-view">
+        <div class="day-title">Jeudi</div>
+        <div class="day-workout">
+            {% if thursday is empty %}
+            <p>
+                Repos
+            </p>
+            {% endif %}
+            {% for wod in thursday %}
+            <a href="{{ path('app_workout_show', {id: wod.workout.id})}}">
+                <div class="title-workout">
+                        <h4>{{wod.workout.name}}</h4>
+                </div>
+                <div class="content-workout">
+                    <p>{{wod.workout.content}}</p>
+                    <p>{{wod.workout.rounds}}</p>
+                </div>
+        </a>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="day-view">
+        <div class="day-title">Vendredi</div>
+        <div class="day-workout">
+            {% if friday is empty %}
+            <p>
+                Repos
+            </p>
+            {% endif %}
+            {% for wod in friday %}
+            <a href="{{ path('app_workout_show', {id: wod.workout.id})}}">
+                <div class="title-workout">
+                        <h4>{{wod.workout.name}}</h4>
+                </div>
+                <div class="content-workout">
+                    <p>{{wod.workout.content}}</p>
+                    <p>{{wod.workout.rounds}}</p>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="day-view">
+        <div class="day-title">Samedi</div>
+        <div class="day-workout">
+            {% if saturday is empty %}
+            <p>
+                Repos
+            </p>
+            {% endif %}
+            {% for wod in saturday %}
+            <a href="{{ path('app_workout_show', {id: wod.workout.id})}}">
+                <div class="title-workout">
+                        <h4>{{wod.workout.name}}</h4>
+                </div>
+                <div class="content-workout">
+                    <p>{{wod.workout.content}}</p>
+                    <p>{{wod.workout.rounds}}</p>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="day-view">
+        <div class="day-title">Dimanche</div>
+        <div class="day-workout">
+            {% if sunday is empty %}
+            <p>
+                Repos
+            </p>
+            {% endif %}
+            {% for wod in sunday %}
+            <a href="{{ path('app_workout_show', {id: wod.workout.id})}}">
+                <div class="title-workout">
+                        <h4>{{wod.workout.name}}</h4>
+                    </div>
+                    <div class="content-workout">
+                        <p>{{wod.workout.content}}</p>
+                        <p>{{wod.workout.rounds}}</p>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+</div>

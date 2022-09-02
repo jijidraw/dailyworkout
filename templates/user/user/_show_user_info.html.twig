@@ -1,0 +1,107 @@
+<aside id="column-left" class="bloc-column-abs">
+
+    <div class="bloc-title"></div>
+        <div class="bloc-link-column">
+
+        <div class="user-pic">
+            {% if user.imagesProfiles. name is defined %}
+                <img class="profil" src="{{ asset('profil/' ~ user.imagesProfiles.name)}}" alt="">
+                    {% else %}
+                <img class="profil" src="{{ asset('images/login.png')}}" alt="">
+            {% endif %}
+        </div>
+        <div class="user-name">
+            <h2>
+                {{ user.name }}
+            </h2>
+                {% if user.feeling is empty %}
+                {% endif %}
+                <h3>
+                    {{ user.feeling }}
+                </h3>
+        </div>
+        {% if user.id != app.user.id %}
+        {% if isFollow == null %}
+        {{ dump(isFollow) }}
+        <span><a id="js-follow" class="btmain" href="{{ path('userFollowers', {id: user.id})}}">suivre</a></span>
+        {% else %}  
+        <span><a id="js-follow" class="btmain" href="{{ path('userFollowers', {id: user.id})}}">désabonner</a></span>
+        {% endif %}
+        {% endif %}
+        <div class="user-social">
+            {% if user.urlFacebook is empty %}
+                {% else %}
+                <a href="{{ user.urlFacebook }}" target="_blank"><img src="{{ asset('/images/icon/Facebook.png')}}" height="30px" alt=""></a>
+            {% endif %}
+            {% if user.urlInstagram is empty %}
+                {% else %}
+                <a href="{{ user.urlInstagram }}" target="_blank"><img src="{{ asset('/images/icon/insta.png')}}" height="30px" alt=""></a>
+            {% endif %}
+            {% if user.urlTikTok is empty %}
+                {% else %}
+                <a href="{{ user.urlTikTok }}" target="_blank"><img src="{{ asset('/images/icon/TikTok.png')}}" height="30px" alt=""></a>
+            {% endif %}
+            {% if user.urlTwitter is empty %}
+                {% else %}
+                <a href="{{ user.urlTwitter }}" target="_blank"><img src="{{ asset('/images/icon/Twitter.png')}}" height="30px" alt=""></a>
+            {% endif %}
+        </div>
+        <div class="bloc-link-column">
+            <div class="row">
+                {% if app.user.id == user.id %}
+                    <a class="main-link" href="{{ path('app_user_edit', {'id': user.id}) }}">{{ include('svg/gears.html.twig') }}</a>
+                {% endif %}
+                <a class="main-link" href="{{ path('app_conversation_search', {id: user.id})}}">{{ include('svg/message.html.twig') }}</a>
+            </div>
+                <a class="main-link" id="js-following" href="{{ path('app_user_showFollows', {id: user.id })}}">{{ user.follower | length}} abonnements</a>
+                <a class="main-link" id="js-follower" href="{{ path('app_user_showFollowers', {id: user.id })}}">{{ user.following | length}} abonnés</a>
+        </div>
+    <div class="user-bloc">
+        <h3>Description</h3>
+        {# <a class="absolute-corner" href="{{ path('app_sport_list') }}">{{ include('svg/gears.html.twig') }}</a> #}
+        <div class="list-sport">
+            {% if user.description is empty %}
+                Pas de description.
+                {% else %}
+                <p>{{ user.description }}</p>
+            {% endif %}
+        </div>
+        </div>
+    <div class="accordion" data-id="-sport">Sports pratiqués</div>
+    <div class="panel" id="panel-sport">
+
+        {% if app.user.id == user.id %}
+        <a class="svg-menu" href="{{ path('app_sport_list') }}">{{ include('svg/cross.html.twig') }}</a>
+        {% endif %}
+        <div class="list-sport">
+            {% if user.sportlist is empty %}
+            Pas de sport renseigné.
+            {% endif %}
+            {% for sport in user.sportlist %}
+            <div class="card-tiny">
+                <img src="{{ asset('sport/' ~ sport.imageSystem.name)}}" width="150px" alt="">
+                <p>{{ sport.name }}</p>
+            </div>
+            {% endfor %}
+    </div>
+    </div>
+    <div class="accordion" data-id="-objectifs">Objectifs</div>
+    <div class="panel" id="panel-objectifs">
+        {% if app.user.id == user.id %}
+            <a class="svg-menu" href="{{ path('app_user_goal', {'id': user.id}) }}">{{ include('svg/gears.html.twig') }}</a>
+        {% endif %}
+        {# <a class="absolute-corner" href="{{ path('app_sport_list') }}">{{ include('svg/gears.html.twig') }}</a> #}
+        <div class="list-sport">
+            
+            {% if user.goal is empty %}
+            Pas d'objectifs renseigné.
+            {% else %}
+            {% for goal in user.goal %}
+            <span class="btmain">{{ goal }}</span>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+<div class="bloc-space"></div>
+</aside> 

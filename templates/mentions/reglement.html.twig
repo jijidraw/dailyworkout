@@ -1,0 +1,134 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Réglement du site{% endblock %}
+
+{% block body %}
+<section class="bloc-full">
+    <aside class="bloc-column-abs" id="column-left">
+        <h1 class="bloc-title">Réglement intérieur</h1>
+            <div class="bloc-link-column">
+                <ul>
+                    <li>
+                        <a href="{{ path('app_mentions')}}">Mentions légales</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('app_reglement')}}">Réglement de DailyWorkout</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('app_politique')}}">Politique de confidentialité</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('app_contact')}}">Nous contacter</a>
+                    </li>
+                    {% if user is null %}
+                    <li>
+                        <a href="{{ path('app_register')}}">Créer un compte</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('app_login')}}">Se connecter</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+    </aside>
+    <section class="bloc-large-abs">
+        <h2 class="bloc-title">Réglement intérieur de Daily Workout</h2>
+        <article class="text-middle">
+            <h3></h3>
+            <p>L'utilisation de Daily Workout et plus généralement toutes les actions de l'utilisateur sur le site, sont soumis au respect des présentes conditions générales d'utilisation.</p><br>
+            <p>Daily Workout et un lieu d'expression ouvert à tous et à toutes. Vous êtes invités à vous exprimier librement dans le respect des opinions et des droits de chacun. Les échanges doivent se faire dans un esprit de convivialité.</p><br>
+            <p>Les sujets abordés dans le site doivent être en rapport avec la pratique sportive.</p><br><br>
+            <p>L'utilisateur s'engage à ce que le contenu partagé soit en conformité avec les lois et réglements en vigueur et respecte les droits de tiers.</p><br>
+            <p>Daily Workout recommande le respect des rêgles suivantes lors de l'utilisation du site.</p>
+            <ul>
+                <h3>Sont interdits les comportements suivants :</h3>
+                <li>agressivité et insultes</li>
+                <li>les propos ou les conseils faisant clairement la promotion d'un parti politique, une religion, une secte, ou les incitations a des pratiques dangereuses pour la santé (médicaments, drogues, stimulants...)</li>
+                <li>les propos incitant la consommation d'alcool et de tabac</li>
+                <li>les commentaires à caractère promotionnel déguisé</li>
+                <li>l’acharnement – la critique exagérée</li>
+                <li>l’usurpation de l’identité de Daily Workout et des autres Utilisateurs du site ou de toute autre personne ou entité</li>
+                <li>l’ouverture de plusieurs comptes ou identifiants différents dans le but de nuire au service ou de contourner les présentes Conditions</li>
+                <h3>L'utilisateur s'engage :</h3>
+                <li>
+                    à vérifier que ses messages ne sont pas hors sujet et qu’ils sont pertinents, dans le cas contraire l’Utilisateur risque de ne recevoir aucune réponse et de perturber les échanges
+                </li>
+                <li>à être sincère dans ses commentaires</li>
+                <li>à ce que ses commentaires ne portent pas atteinte aux droits des tiers</li>
+                <li>En particulier, chaque Utilisateur ayant la possibilité d’illustrer son profil avec une photo de lui, un avatar ou une image, il s’engage à respecter les lois et règlements en vigueur ainsi que les droits des tiers. A ce titre, il s’engage notamment à ce que</li>
+                <li>dans l’hypothèse où il illustre son profil avec une photo de lui, la photo le représente, à l’exclusion de toute autre personne</li>
+                <li>dans l’hypothèse où il illustre son profil avec une photo de lui, un avatar ou une image, il ne porte atteinte aux droits de la personnalité ou aux droits de propriété intellectuelle d’aucun tiers</li>
+            </ul>
+            <p>L’Utilisateur est expressément informé qu’il est seul responsable du contenu des messages qu’il émet, et plus généralement des Contenus partagés sur le Forum ainsi que de toute autre action de sa part sur le site. Par conséquent, seule la personne ayant renseignée le formulaire d’inscription, assumera la responsabilité tant civile que pénale et Daily Workout ne saurait être tenue responsable du caractère illégal au regard des lois et réglementations en vigueur des contenus échangés, messages ou autre, dans le cadre du Forum. L’Utilisateur sera donc tenu de garantir l’UNCL et éventuellement de l’indemniser au titre de toutes réclamations émanant d »un tiers à ce sujet.</p>
+            <h4>Respect des personnes et de leurs droits</h4><br>
+            <p>Le Contenu partagé par l’Utilisateur doit être conforme à la réglementation, il ne doit pas porter atteinte ou être contraire à l’ordre public, aux bonnes mœurs ou pouvoir heurter la sensibilité des mineurs.</p><br>
+            <p>Le Contenu partagé par l’Utilisateur ne doit pas porter atteinte de quelque manière que ce soit aux droits, à la réputation d’une marque ou d’une personne, à l’image et à la vie privée de toute tierce personne physique ou morale, en ce compris Daily Workout. Ainsi et par exemple, tout propos dénigrant ou diffamatoire est prohibé.</p><br>
+            <p>Le Contenu partagé par l’Utilisateur ne doit pas présenter de caractère pornographique ou pédophile.</p><br>
+            <p>Le Contenu partagé par l’Utilisateur ne doit pas porter atteinte à la sécurité ou à l’intégrité d’un Etat ou d’un territoire, quel qu’il soit.</p><br>
+            <p>Le Contenu partagé par l’Utilisateur ne doit pas permettre à des tiers de se procurer des logiciels piratés, des numéros de série de logiciels ou tout logiciel pouvant nuire ou porter atteinte, de quelque manière que ce soit, aux droits ou aux biens des tiers.</p><br>
+            <p>Le Contenu partagé par l’Utilisateur ne doit pas porter atteinte aux droits de propriété intellectuelle de quelque personne physique ou morale que ce soit, en ce compris Daily Workout.</p><br>
+            <h4>Incitations</h4>
+            <p>Le Contenu partagé par l’Utilisateur ne doit pas inciter à la haine, à la violence, au suicide, au racisme, à l’antisémitisme, à la xénophobie, à l’homophobie, faire l’apologie des crimes de guerre ou des crimes contre l’humanité.</p><br>
+            <p>Le Contenu partagé par l’Utilisateur ne doit pas inciter à commettre un crime, un délit ou un acte de terrorisme.</p><br>
+            <p>Le Contenu partagé par l’Utilisateur ne doit pas inciter à la discrimination d’une personne ou d’un groupe de personne en raison de son appartenance à une ethnie, à une religion, à une race, ou du fait de son orientation sexuelle ou de son handicap.</p><br>
+            <h4>Propriété intelectuelle</h4><br>
+            <p>Il est rappelé qu’en application des dispositions du code de la propriété intellectuelle, une œuvre de l’esprit ne peut pas être reproduite sur Internet sans l’autorisation de l’auteur ou de ses ayants droit. L’Utilisateur s’engage en conséquence à ce que tous les Contenus qu’il poste ne portent pas atteintes à ces droits de propriété intellectuelle.
+            </p><br>
+            <p>L’Utilisateur s’engage à ne pas inclure dans ses commentaires et contributions des adresses ou des liens hypertextes renvoyant vers des sites extérieurs qui soient contraires notamment aux lois, règlements et accords en vigueur et qui portent atteinte aux droits des tiers ou qui soient contraires aux présentes Conditions Générales d’Utilisation.
+            </p><br>
+            <p>Il est interdit de télécharger, diffuser, envoyer par email ou transmettre tout document nuisible pour les systèmes informatiques de Daily Workout ou d’autrui, y compris notamment, tout document contenant des virus, ou tout autre code, ver informatique, donnée, fichier ou programme conçu pour endommager le Forum ou y permettre un accès non autorisé susceptible d »entraîner une défaillance, une erreur, un dysfonctionnement ou une altération du Forum.
+            </p><br>
+            <p>L’Utilisateur devra informer sans délai Daily Workout de toute action en justice, et plus généralement de toute plainte ou litige dont il serait informé et qui serait relatif à des Contenus présents sur le site.
+            </p><br>
+            <h4>Identifications et accès</h4><br>
+            <p>Il est strictement interdit de tenter d’accéder au site de façon non autorisée notamment en utilisant tout système informatique ou réseau connecté au site par  »hacking », en exploitant le mot de passe, appropriation d’un autre compte que le sien, utilisation du nom d’une autre personne, mot de passe ou toutes autres informations obtenues par un moyen illégal. Il est également interdit d’utiliser des robots, ou tout autre dispositif automatique, de copie de contenu.
+            </p><br>
+            <p>L’Utilisateur s’interdit de permettre l’accès au site à tout tiers, en ce compris d’autres Utilisateurs, notamment en communiquant ses codes d »accès. Il s’engage à veiller à ce que ses codes d’accès ne puissent être accessibles par ces tiers.
+            </p><br>
+            <h4>Garantie</h4><br>
+            <p>L’Utilisateur déclare de façon expresse qu’il détient tous les droits ou a obtenu toutes les autorisations nécessaires liés à l’utilisation et à la distribution des Contenus partagés sur le site. Ces Contenus doivent être à tout moment conformes aux présentes Conditions et plus généralement, ne pas être nuisibles ou illégaux, en particulier à destination du public mineur.
+            </p><br>
+            <p>À ce titre, l’Utilisateur garantit Daily Workout contre toute plainte, réclamation, recours de tout tiers qui serai(en)t fondé(s) sur la diffusion des Contenus et informations partagées sur le site et/ou causé(s) par tout manquement de l’Utilisateur aux présentes Conditions Générales d’Utilisation.
+            </p><br>
+            <h4>Réclamation et modération</h4><br>
+            <p>Pour toute réclamation, il est possible de s’adresser, par email, à Daily Workout via le formulaire de contact, le motif de la réclamation et en joignant toute pièce justificative. Daily Workout s’engage à retirer tout message mis en ligne par un des Utilisateurs du site s’il porte atteinte aux droits d’autrui, à l’ordre public et aux bonnes mœurs, tels que définis par la législation française applicable.
+            </p><br>
+            <p>Il est expressément rappelé que Daily Workout n’a la maîtrise que des articles et messages qu’elle rédige et publie elle-même sur le site.
+            </p><br>
+            <p>L'utilisateur à la possibilité de signaler tout message et publication dont il juge le contenu en désaccord avec le réglement du site</p><br>
+            <p>L’équipe de modération analysera le Contenu, ceci pouvant aboutir à un masquage.
+            </p><br>
+            <h4>Sécurité</h4><br>
+            <p>Dans le cadre de son accès sur le site https://www.dailyworkout.com il est expressément rappelé à l’Utilisateur qu’internet n’est pas un réseau sécurisé.
+            </p><br>
+            <p>Dans ces conditions, il appartient à l’Utilisateur de prendre toutes les mesures appropriées de façon à protéger ses propres données et/ou logiciels notamment de la contamination par d »éventuels virus circulant sur le réseau Internet ou de l’intrusion d’un tiers dans le système de son terminal à quelque fin que ce soit et de vérifier que les fichiers transmis ne contiennent aucun virus informatique. L’UNCL décline toute responsabilité quant à la propagation des virus informatiques, ainsi que sur toutes les conséquences qui pourraient résulter de ces virus.
+            </p><br>
+            <p>Plus particulièrement Daily Workout, ne saurait être tenue pour responsable d’un quelconque dommage causé aux Utilisateurs, à leurs équipements informatiques et aux données qui y sont stockées, ainsi que des conséquences pouvant en découler sur leur activité personnelle ou professionnelle.
+            </p><br>
+            <p>Daily Workout ne pourra pas être tenue pour responsable en cas de dysfonctionnements du réseau Internet, notamment dus à des actes de malveillance externe, qui empêcheraient le bon fonctionnement du Service. Daily Workout ne saurait davantage être tenue pour responsable au cas où un ou plusieurs Utilisateurs ne pourraient parvenir à se connecter au site du fait de tout problème ou défaut technique lié notamment à l’encombrement du réseau.
+            </p><br>
+            <h4>Résiliation</h4><br>
+            <p>Daily Workout se réserve le droit de résilier définitivement l’accès au site à toute personne qui ne respecterait pas les présentes Conditions Générales d’Utilisation.
+            </p><br>
+            <p>Si l’Utilisateur souhaite se désactiver son compte, il doit se rendre dans la rubrique « paramêtre du compte » prévue à cet effet.
+            </p><br>
+            <p>En cas de suppression par Daily Workout de l’accès au site à un Utilisateur pour manquement aux présentes Conditions Générales d’Utilisation, il est interdit à cet Utilisateur de tenter de s’inscrire à nouveau.
+            </p><br>
+            <h4>Publication de contenus</h4><br>
+            <p>Le site offre la possibilité à tous les Utilisateurs de proposer des sujets ou de lire et commenter des sujets proposés par d’autres Utilisateurs.
+            </p><br>
+            <p>Pour chaque message partagé par les Utilisateurs, la date de publication de l’avis et de son éventuelle mise à jour sera indiquée et le message sera signé du pseudo de l’Utilisateur qui l’aura publié.
+            </p><br>
+            <p>La publication des commentaires et contributions des Utilisateurs sur le site est immédiate.</p><br>
+            <p>Les Utilisateurs acceptent que tous les autres Utilisateurs aient accès sans restriction aux Contenus qu’ils auront mis en ligne à l’exception des messages privés envoyés depuis leur messagerie privée sur la messagerie privée d’un autre Utilisateur.
+            </p><br>
+            <p>
+                L’Utilisateur est seul responsable des Contenus qu’il publie sur le Forum.
+            </p><br>
+            <p>Daily Workout se réserve le droit d’effectuer une vérification a posteriori de la conformité des Contenus proposés au regard de la réglementation et des présentes Conditions Générales d’Utilisation.
+            </p><br>
+        </article>
+        <div class="bloc-space"></div>
+    </section>
+</section>
+{% endblock %}

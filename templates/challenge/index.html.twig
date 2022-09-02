@@ -1,0 +1,163 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Espace challenge{% endblock %}
+
+{% block body %}
+<div class="bloc-full">
+    <div id="help" class="help-background hidden">
+        <div class="help-content">
+            <div id="close-help" class="help-close">{{ include('svg/deletecross.html.twig') }}</div>
+            <h1 class="help-title">Bienvenue sur Daily Workout</h1>
+            <p>Pour commencer nous vous conseillons d'aller sur l'onglet de votre profil</p>
+            <p>Dans le menu déroulant sous votre profil vous trouverez les accès à différentes partie.</p>
+            <ul>
+                <li>L'accés à votre profil</li>
+                <li>Votre espace programme</li>
+                <li>L'accés à l'espace Challenge ainsi que l'espace Team</li>
+                <li>Le portail des sports</li>
+            </ul>
+        </div>
+    </div>
+    <div id="column-left" class="bloc-column-abs">
+        <div class="bloc-title">Challenge</div>
+        <div class="bloc-link-column">
+            <div class="btmain">
+                <a href="{{ path('app_challenge_new') }}">Créer un challenge</a>
+            </div>
+            <span class="main-link active tab" data-target="#content1"="">Challenges en cours</span>
+            <span class="main-link tab" data-target="#content2"="">Mes challenges crées</span>
+            <span class="main-link tab" data-target="#content3"="">Mes challenges accomplis</span>
+            <span class="main-link tab" data-target="#content4"="">Mes invitations</span>
+        </div>
+    </div>
+    <div class="bloc-large-abs">
+        <div class="content" id="content1">
+            <h3 class="bloc-title">Challenges en cours</h3>
+            {% for challenge in inProgress %}
+                <div class="bloc-info">
+                    <a href="{{ path('app_challenge_show', {id: challenge.challenge.id})}}">
+                        <h3>{{ challenge.challenge.title }}</h3>
+                        <p>{{ challenge.challenge.content }}</p>
+                    </a>
+                </div>
+                {% else %}
+                <article class="text-middle">
+                    <h4>Pas de challenge en cours</h4>
+                </article>
+                {% endfor %}
+                <h3>Les derniers challenges ajoutés</h3>
+                <div class="gallery">
+                    {% for challenge in lastChallenge %}
+                    <div class="card">
+                        <h3>
+                            {{ challenge.title }} <br>
+                        </h3>
+                        {% if challenge.images is empty %}
+                        <div class="card-challenge">
+                            <img src="{{ asset('images/challenge.png')}}" width="400px" alt="">
+                        </div>
+                            {% else %}
+                        <div class="card-img">
+                            <img src="{{ asset('post/' ~ challenge.images.name)}}" width="400px" alt="">
+                        </div>
+                        {% endif %}
+                        <div class="card-a">
+                            <a href="{{ path('app_challenge_show', {id: challenge.id})}}">En voir plus</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <div class="bloc-space"></div>
+                </div>
+        </div>
+        <div class="content" id="content2">
+            <h3 class="bloc-title">Mes challenges crées</h3>
+            <div class="gallery">
+
+            {% for challenge in challenges %}
+            <div class="card">
+                <h3>
+                    {{ challenge.title }} <br>
+                </h3>
+                <div class="card-img">
+                    {% if challenge.images is empty %}
+                    <img src="{{ asset('images/challenge.png')}}" width="400px" alt="">
+                    {% else %}
+                    <img src="{{ asset('post/' ~ challenge.images.name)}}" width="400px" alt="">
+                    {% endif %}
+                </div>
+                <div class="card-a">
+                    <a href="{{ path('app_challenge_show', {id: challenge.id})}}">En voir plus</a>
+                </div>
+            </div>
+                {% else %}
+                <h4>Pas de challenge crée</h4>
+
+            {% endfor %}
+        </div>
+        <div class="bloc-space"></div>
+        </div>
+        <div class="content" id="content3">
+            <h3 class="bloc-title">Mes challenges accomplis</h3>
+            <div class="gallery">
+
+            {% for challenge in done %}
+            <div class="card">
+                <h3>
+                    {{ challenge.challenge.title }} <br>
+                </h3>
+                <div class="card-img">
+                    {% if challenge.challenge.images is empty %}
+                    <img src="{{ asset('images/challenge.png')}}" width="400px" alt="">
+                    {% else %}
+                    <img src="{{ asset('post/' ~ challenge.challenge.images.name)}}" width="400px" alt="">
+                    {% endif %}
+                </div>
+                <div class="card-a">
+                    <a href="{{ path('app_challenge_show', {id: challenge.challenge.id})}}">En voir plus</a>
+                </div>
+            </div>
+            {% else %}
+            <h4>Pas de challenge accompli</h4>
+            {% endfor %}
+        </div>
+        <div class="bloc-space"></div>
+
+        </div>
+        <div class="content" id="content4">
+            <h3 class="bloc-title">Mes invitations</h3>
+            <div class="gallery">
+
+            {% for challenge in invited %}
+            <div class="card">
+                <h3>
+                    {{ challenge.challenge.title }} <br>
+                </h3>
+                <div class="card-img">
+                    {% if challenge.challenge.images is empty %}
+                    <img src="{{ asset('images/challenge.png')}}" width="400px" alt="">
+                    {% else %}
+                    <img src="{{ asset('post/' ~ challenge.challenge.images.name)}}" width="400px" alt="">
+                    {% endif %}
+                </div>
+                <div class="card-a">
+                    <a href="{{ path('app_challenge_show', {id: challenge.challenge.id})}}">En voir plus</a>
+                </div>
+            </div>
+            {% else %}
+                <h4>Pas d'invitation en cour</h4>
+            {% endfor %}
+        </div>
+        <div class="bloc-space"></div>
+
+        </div>
+    </div>
+</div>
+
+        
+
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/challenge/valid_challenge.js')}}"></script>
+    <script src="{{ asset('js/challenge/accept_challenge.js')}}"></script>
+    <script src="{{ asset('js/user/tabs.js')}}"></script>
+{% endblock %}

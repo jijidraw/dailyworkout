@@ -1,0 +1,17 @@
+<div class="bloc-inner">
+<p>Vos Challenges en cours</p>
+{% for challenge in userChallenge %}
+    <div class="bloc-user-link">
+        <a href="{{ path('app_challenge_show', {id: challenge.challenge.id})}}">
+            <div class="row">
+                {% if challenge.challenge.images == null %}
+                <img class="profil" src="{{ asset('images/challenge.png')}}" alt="">
+                {% else %}
+                <img class="profil" src="{{ asset('post/' ~ challenge.challenge.images.name)}}" alt="">
+                {% endif %}
+                {{ challenge.challenge.title }}
+            </div>
+        </a>
+    </div>
+{% endfor %}
+</div>

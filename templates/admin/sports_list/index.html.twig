@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des sports{% endblock %}
+
+{% block body %}
+<section class="bloc-full">
+    <aside id="column-left" class="bloc-column-abs">
+        <h1 class="bloc-title"></h1>
+        <div class="bloc-link-column">
+            <ul>
+                <li class="btmain">
+                    <a href="{{ path('app_admin_sports_list_new') }}">Nouveau</a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+    <section class="bloc-large-abs">
+        <h2 class="bloc-title">Liste des sports</h2>
+        <div class="gallery">
+            {% for sports_list in sports_lists %}
+            <div class="card">
+                <h3>
+                    {{ sports_list.name }}
+                </h3>
+                {% if sports_list.imageSystem is empty %}
+                <p>Pas d'image enregistré</p>
+                {% else %}
+                <div class="card-img">
+                    <img src="{{ asset('sport/' ~ sports_list.imageSystem.name)}}" width="400px" alt="">
+                </div>
+                {% endif %}
+                <div class="card-a">
+                    <a href="{{ path('app_admin_sports_list_edit', {'id': sports_list.id}) }}">Modifier</a>
+                </div>
+            </div>
+                    {% endfor %}
+        </div>
+    </section>
+</section>
+{% endblock %}

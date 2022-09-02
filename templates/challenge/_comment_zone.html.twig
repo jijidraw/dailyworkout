@@ -1,0 +1,29 @@
+{% for message in comments %}
+    <div class="team-post">
+        <div class="post-title">
+            <a href="{{ path('app_user_show', {id: message.user.id })}}">
+                <div class="row">
+                    <img class="profil" src="{{ asset('profil/' ~ message.user.imagesProfiles.name)}}" alt="">
+                    <div class="column">
+                        <p>{{ message.user.name }}</p>
+                        <p class="date">{{ message.createdAt | date('d/m/Y') }}</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="post-main">
+            <p>{{ message.content }}</p>
+                {# {% if message.image == null %}
+                {% else %}
+                <div class="img-post">
+                    <img class="" src="{{ asset('post/' ~ message.image.name)}}" alt="">
+                </div>
+                {% endif %}
+                {% if message.youtubeLink %}
+                <iframe width="560" height="315" src="{{ message.youtubeLink | replace({'https://www.youtube.com/watch?v=' : 'https://www.youtube.com/embed/'})}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                {% else %}
+                {% endif %}
+            <a target="_blank" href="{{ message.link }}">{{ message.link }}</a> #}
+        </div>
+    </div>
+{% endfor %}

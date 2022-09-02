@@ -1,0 +1,13 @@
+{{ form_start(form) }}
+        {{ form_row(form.name) }}
+        {{ form_row(form.description) }}
+        {{ form_row(form.urlInstagram) }}
+        {{ form_row(form.urlFacebook) }}
+        {{ form_row(form.urlTwitter) }}
+        {{ form_row(form.urlTikTok) }}
+        {{ form_row(form.image) }}
+        <label class="input-file" for="user_image">image</label>
+        <button class="btmain">{{ button_label|default('Save') }}</button>
+        <div class="preview"></div>
+        {{ form_end(form) }}
+    

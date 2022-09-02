@@ -1,0 +1,55 @@
+.block-body {
+    max-width: 1550px;
+    min-height: 100vh;
+    padding-top: 100px;
+    margin: auto;
+    position: relative;
+}
+
+header {
+    position: fixed;
+    z-index: 800;
+    margin: 0;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    background-color: $maintrans;
+    padding: 8px;
+    line-height: 100%;
+}
+
+header ul {
+    @extend %flex-row;
+    justify-content: space-around;
+}
+
+header ul li {
+    display: inline-block;
+}
+
+header img {
+    height: 36px;
+}
+
+.nav {
+    width: 100%;
+}
+
+.nav ul li {
+    height: 3rem;
+    display: inline;
+}
+
+
+footer {
+    position: fixed;
+    background-color: $greytrans;
+    padding: $mp1;
+    width: 100%;
+    bottom: 0;
+}
+
+footer a {
+    margin: 0 $mp1;
+    font-size: 12px;
+}

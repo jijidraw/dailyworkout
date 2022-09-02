@@ -1,0 +1,9 @@
+<ul>
+    {% for categories in category %}
+    <li>
+        <div class="btmain">
+            <a class="js-category" href="{{ path('app_workout_category', {id: categories.id})}}">{{ categories.name }}</a>
+        </div>
+    </li>
+    {% endfor %}
+</ul>

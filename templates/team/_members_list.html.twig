@@ -1,0 +1,17 @@
+{% if isMember is empty %}
+vous ne faite pas partie du groupe
+{% else %}
+    {% if isMember is not null and isMember.isWaiting == true %}
+        Demande en attente
+    {% else %}
+    <h3>Membres de {{ team.name }}</h3>
+    {% for member in team.teamMembers %}
+        <div class="gallery">
+            <a class="bloc-user-link" href="{{ path('app_user_show', {id : member.user.id })}}">
+                <img class="profil" src="{{ asset('profil/' ~ member.user.imagesProfiles.name)}}" alt="">
+                {{ member.user.name }}
+            </a>
+        </div>
+    {% endfor %}
+    {% endif %}
+{% endif %}

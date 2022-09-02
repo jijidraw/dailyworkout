@@ -1,0 +1,19 @@
+.gallery {
+    @extend %row;
+    flex-wrap: wrap;
+    height: 100%;
+    width: 100%;
+    justify-content: space-around;
+    overflow-y: auto;
+    padding: $mp1;
+}
+
+.gallery .workout-bloc-view {
+    width: 30%;
+}
+
+@media (max-width: 860px) {
+    .gallery {
+        padding: 0;
+    }
+}

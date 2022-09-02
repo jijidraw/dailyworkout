@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}profil de : {{ user.name }}{% endblock %}
+
+{% block body %}
+{% if app.user.id == user.id %}
+{% endif %}
+    <section class="bloc-full">
+        <aside class="bloc-column-abs" id="column-left">
+
+        </aside>
+        <section class="bloc-large-abs">
+
+            <div class="post-user">
+                {% for post in user.posts %}
+                <div class="post-view-">
+                    <div class="row post-title">
+                        <img class="profil" src="{{ asset('profil/' ~ app.user.imagesProfiles[0]. name)}}" alt="">
+                        <div class="column">
+                            <h3>{{ app.user.name }}</h3>
+                            <p class="date">{{ post.createdAt|date("d/m/Y")}}</p>
+                        </div>   
+                    </div>
+                    <div class="column post-main">
+                        <p>{{ post.content }}</p>
+                        {% if post.images is empty %}
+                        
+                        {% endif %}
+                        {% for img in post.images %}
+                        <img class="img-post" src="{{ asset('post/' ~ img.name)}}" height="150px" alt="">   
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+    </section>
+
+
+{% endblock %}

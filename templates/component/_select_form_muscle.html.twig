@@ -1,0 +1,9 @@
+<ul>
+    {% for muscle in muscles %}
+        <li>
+            <div class="btmain">
+                <a class="js-muscle" href="{{ path('app_workout_muscle', {id: muscle.id})}}" data-id="{{ muscle.id }}">{{ muscle.name }}</a>
+            </div>
+        </li>
+    {% endfor %}
+</ul>

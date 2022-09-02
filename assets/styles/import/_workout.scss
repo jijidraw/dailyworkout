@@ -1,0 +1,347 @@
+// planning semaine
+
+.week-view {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: $mp1 auto $mp3 auto;
+    flex-direction: row;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.day-view {
+    @extend %shadow;
+    background-color: $red2;
+    color: white;
+    overflow: hidden;
+    text-align: center;
+    width: 30%;
+    margin: $mp1;
+    min-height: 200px;
+    height: fit-content;
+}
+
+
+.day-title {
+    width: 100%;
+    background-color: $main;
+    color: white;
+    padding: $mp1;
+}
+
+.day-workout {
+    @extend %flex-center;
+    position: relative;
+    flex-direction: column;
+    padding: $mp1;
+}
+
+.day-workout .btdelete {
+    position: relative;
+}
+
+.day-workout h4 {
+    color: white;
+}
+
+.day-workout p {
+    color: white;
+}
+
+// planning semaine
+
+// liste des workouts
+
+
+.workout-list {
+    width: 100%;
+    height: fit-content;
+    padding: $mp1;
+    -webkit-column-count: 3;
+    -webkit-column-gap: $mp1;
+    -moz-column-count: 3;
+    -moz-column-gap: $mp1;
+    column-count: 3;
+    column-gap: $mp1;
+}
+
+.workout-title {
+    width: 100%;
+}
+
+.workout-info {
+    @extend %column;
+    width: 100%;
+}
+
+.workout-bloc-search {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+// liste des workouts
+
+// workout bloc
+
+
+.workout-bloc {
+    @extend %row;
+    position: relative;
+    background-color: $red2;
+    border: 1px solid $red;
+    margin-bottom: $mp1;
+    width: 100%;
+    height: fit-content;
+    color: white;
+    flex-wrap: wrap;
+    display: inline-flex;
+}
+
+.workout-bloc-view {
+    @extend %row;
+    position: relative;
+    background-color: $red2;
+    border: 1px solid $red;
+    width: 80%;
+    margin: auto;
+    color: white;
+    height: fit-content;
+    flex-wrap: wrap;
+    display: inline-flex;
+}
+
+.workout-post-bloc-view {
+    @extend %row;
+    position: relative;
+    background-color: $red2;
+    border: 1px solid $red;
+    width: 100%;
+    margin: $mp1 0;
+    color: white;
+    height: fit-content;
+    flex-wrap: wrap;
+    display: inline-flex;
+}
+
+.workout-bloc p {
+    color: white;
+}
+
+.workout-title {
+    width: 100%;
+}
+
+.workout-title h4 {
+    color: white;
+}
+
+.workout-detail {
+    margin-top: $mp1;
+    width: 100%;
+    word-break: break-all;
+}
+
+.workout-detail p {
+    color: white;
+}
+
+.workout-bar {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-bottom: 1px solid $main;
+    background-color: $main;
+    width: 100%;
+    height: fit-content;
+    line-height: 100%;
+    align-items: center;
+    justify-content: space-around;
+    padding: 36px 8px 8px 8px;
+    color: white;
+}
+
+.workout-bar h4 {
+    text-align: center;
+    font-size: 1.6em;
+    color: white;
+    border-radius: 8px;
+}
+
+.exercice-bloc {
+    @extend %row;
+    flex-wrap: wrap;
+    width: 50%;
+    height: 150px;
+    max-height: 150px;
+    padding: 5px;
+    border: 1px solid white;
+    font-size: 10px;
+    z-index: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.exercice-bloc-view {
+    @extend %row;
+    flex-wrap: wrap;
+    color: white;
+    width: 50%;
+    height: 250px;
+    max-height: 250px;
+    padding: 5px;
+    border: 1px solid white;
+    position: relative;
+    overflow: hidden;
+}
+
+.exercice-name {
+    position: absolute;
+    color: white;
+    top: 5%;
+    left: 5%;
+}
+
+.exercice-reps {
+    position: absolute;
+    top: 20%;
+    left: 5%;
+}
+
+.exercice-detail {
+    @extend %column;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.exercice-detail p {
+    color: white;
+}
+
+.exercice-hover {
+    position: absolute;
+    cursor: pointer;
+    width: 100%;
+    margin: auto;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+}
+
+.exercice-content {
+    position: absolute;
+    bottom: -500%;
+    width: 100%;
+    transition: bottom 0.3s ease-in-out;
+}
+
+.exercice-hover:hover .exercice-content {
+    bottom: 100%;
+}
+
+// workout bloc
+
+// workout list exercice
+
+.workout-list-exercice {
+    @extend %row;
+    height: fit-content;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: $mp1;
+    background-color: white;
+}
+
+.workout-list-select {
+    @extend %row;
+    height: fit-content;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    margin: $mp1;
+    background-color: white;
+}
+
+// workout list exercice
+
+@media (min-width: 860px) and (max-width:1210px) {
+    .workout-list {
+        width: 100%;
+        height: fit-content;
+        padding: 0;
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+    }
+
+    .workout-bloc-search {
+        flex-direction: column;
+    }
+}
+
+@media (min-width: 450px) and (max-width: 860px) {
+    .workout-list {
+        width: 100%;
+        height: fit-content;
+        padding: 0;
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+    }
+
+    .workout-bloc-view {
+        width: 100%;
+    }
+
+    .exercice-bloc {
+        width: 50%;
+        height: 150px;
+        min-height: 150px;
+    }
+
+    .exercice-bloc-view {
+        width: 50%;
+        padding: 5px;
+        height: fit-content;
+    }
+
+    .workout-bloc-search {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 450px) {
+    .workout-list {
+        width: 100%;
+        height: fit-content;
+        padding: 0;
+        -webkit-column-count: 1;
+        -moz-column-count: 1;
+        column-count: 1;
+    }
+
+    .workout-bloc-view {
+        width: 100%;
+    }
+
+    .exercice-bloc {
+        width: 50%;
+        height: fit-content;
+    }
+
+    .exercice-bloc-view {
+        width: 50%;
+        padding: 5px;
+        height: fit-content;
+    }
+
+    .workout-bloc-search {
+        flex-direction: column;
+    }
+}

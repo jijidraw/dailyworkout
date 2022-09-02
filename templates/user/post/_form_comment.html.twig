@@ -1,0 +1,8 @@
+<div class="form-comment hidden" id="post-comment{{ post.id }}">
+    <form method="POST" id="comment-form" action="{{ path('newcomment', {id: post.id })}}" data-id="{{ post.id }}" class="js-comment">
+        <input class="input-comment" type="textarea" id="texte" placeholder="Entrez votre texte" >
+    
+        <a href="{{ path('newcomment', {id: post.id })}}" id="path" class="hidden">lien</a>
+        <input class="btmain" type="submit" id="submit">
+    </form>
+</div>

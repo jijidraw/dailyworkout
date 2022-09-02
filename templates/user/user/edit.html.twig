@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ user.name}} {% endblock %}
+
+{% block body %}
+<section class="bloc-full">
+    <aside class="bloc-column-abs" id="column-left">
+        <h1 class="bloc-title">Modifier mon profil</h1>
+        <div class="bloc-link-column">
+
+        </div>
+    </aside>
+    <section class="bloc-large-abs">
+        <h2 class="bloc-title">Modifier mon profil</h2>
+        <div class="form-base1">
+            {{ include('user/user/_form.html.twig', {'button_label': 'modifier'}) }}
+        </div>
+    </section>
+</section>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/imgPreview.js')}}"></script>
+{% endblock %}

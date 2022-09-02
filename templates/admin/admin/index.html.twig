@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion admin{% endblock %}
+
+{% block body %}
+<section class="bloc-full">
+    <h1 class="bloc-title">Espace d'administration</h1>
+        <aside class="bloc-column-abs">
+                <div class="bloc-title">Espace administration</div>
+                <h3>Gérer les sports</h3>
+                <ul class="bloc-link-column">
+                    <li class="tab">
+                        <a href="{{ path('app_admin_exercice_index')}}">Gérer les exercices</a>
+                    </li>
+                    <li class="tab">
+                        <a href="{{ path('app_admin_difficulty_index')}}">Gérer les difficultés</a>
+                    </li>
+                    <li class="tab">
+                        <a href="{{ path('app_admin_sports_list_index')}}">Gérer les sports</a>
+                    </li>
+                    <li class="tab">
+                        <a href="{{ path('app_admin_muscle_group_index')}}">Groupe musculaires</a>
+                    </li>
+                    <li class="tab">
+                        <a href="{{ path('app_admin_category_index')}}">Catégorie d'exercices</a>
+                    </li>
+                    <li class="tab">
+                        <a href="{{ path('app_admin_equipment_index')}}">Liste des accessoires</a>
+                    </li>
+                    <li class="tab">
+                        <a href="{{ path('app_admin_equipment_category_index')}}">Categorie des accessoires</a>
+                    </li>
+                </ul>
+                <h3>Gérer les utilisateurs</h3>
+                <ul class="bloc-link-column">
+                    <li class="tab">
+                        <a href="{{ path('app_admin_exercice_index')}}">Bloquer un utilisateurs</a>
+                    </li>
+                    <li class="tab">
+                        <a href="{{ path('app_admin_sports_list_index')}}">Supprimer des messages</a>
+                    </li>
+                    <li class="tab">
+                        <a href="{{ path('app_admin_muscle_group_index')}}">Supprimer des posts</a>
+                    </li>
+                    <li class="tab">
+                        <a href="{{ path('app_admin_category_index')}}">Supprimer des challenges</a>
+                    </li>
+                    <li class="tab">
+                        <a href="{{ path('app_admin_equipment_index')}}">Liste des accessoires</a>
+                    </li>
+                </ul>
+                <h3>Publication officiel</h3>
+                <ul class="bloc-link-column">
+                    <li class="tab">
+                        <a href="{{ path('app_admin_article_index')}}">Ecrire un article</a>
+                    </li>
+                    <li class="tab">
+                        <a href="{{ path('app_admin_article_category_index')}}">Catégorie d'article</a>
+                    </li>
+                    <h3>Autres</h3>    
+                    <a class="main-link" href="{{ path('app_admin_goal_index')}}">Goal</a>
+                    <a class="main-link" href="{{ path('app_admin_reward_index')}}">Récompense</a>
+                </ul>
+        </aside>
+    </section>
+{% endblock %}

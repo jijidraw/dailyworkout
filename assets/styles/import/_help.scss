@@ -1,0 +1,82 @@
+.help-background {
+    z-index: 200;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    overflow-y: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $greytrans;
+}
+
+.help-content {
+    @extend %column;
+    position: relative;
+    z-index: 1000;
+    width: 50%;
+    padding: $mp1;
+    height: 50vh;
+    overflow-y: hidden;
+    background-color: white;
+    border: 1px solid $grey2;
+}
+
+.help-content li {
+    color: black;
+}
+
+.help-title {
+    margin: $mp2 auto;
+}
+
+.help-toggle {
+    @extend %flex-center;
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
+    background-color: $red;
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+    cursor: pointer;
+}
+
+.help-toggle:hover {
+    background-color: $red2;
+}
+
+.help-close {
+    @extend %flex-center;
+    position: absolute;
+    bottom: 6px;
+    right: 6px;
+    border-radius: 50%;
+    background-color: $red;
+    margin-left: 80%;
+    height: 36px;
+    width: 36px;
+    font-weight: 500;
+    color: white;
+    cursor: pointer;
+}
+
+.help-close svg {
+    fill: white;
+    height: 16px;
+}
+
+.help-close:hover {
+    background-color: $red2;
+}
+
+@media (max-width: 860px) {
+    .help-content {
+        position: relative;
+        width: 100%;
+        padding: $mp1;
+        height: fit-content;
+    }
+}

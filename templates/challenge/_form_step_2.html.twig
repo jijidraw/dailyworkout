@@ -1,0 +1,22 @@
+{{ form_start(form) }}
+    <label for="">Nom du challenge</label>
+    {{ form_row(form.title) }}
+    <label for="">Description</label>
+    {{ form_row(form.content) }}
+    <label for="">Lien</label>
+    {{ form_row(form.link) }}
+    <label for="">Youtube</label>
+    <p>Si vous souhaitez ajouter une vidéo youtube pour expliquer votre challenge ou faire une démonstration.</p>
+    {{ form_row(form.youtubeLink) }}
+    {{ form_row(form.images) }}
+        <div class="input-file">
+            <label for="challenge1_images">choisir une image</label>
+        </div>
+        <button class="btvalid">
+            <div class="row">
+                {{ button_label|default('valider') }}  
+                {{ include('svg/checkmark.html.twig') }}
+            </div>
+        </button>
+        <div class="preview"></div>
+{{ form_end(form) }}

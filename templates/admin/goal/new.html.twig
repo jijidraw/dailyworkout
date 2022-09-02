@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Goal{% endblock %}
+
+{% block body %}
+<section class="bloc-full">
+    <aside id="column-left" class="bloc-column-abs">
+        <h1 class="bloc-title"></h1>
+        <div class="bloc-link-column">
+            <ul>
+                <li>
+                    <a class="btmain" href="{{ path('app_admin_goal_index') }}">Retour</a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+    <section class="bloc-large-abs">
+        <h2 class="bloc-title">Nouveau goal</h2>
+        <div class="form-base1">
+            {{ include('admin/goal/_form.html.twig') }}
+        </div>
+    </section>
+</section>
+{% endblock %}

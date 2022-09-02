@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Difficulty{% endblock %}
+
+{% block body %}
+<section class="bloc-full">
+    <aside id="column-left" class="bloc-column-abs">
+        <h1 class="bloc-title">Créer une nouvelle difficultés</h1>
+        <div class="bloc-link-column">
+            <ul>
+                <li>
+                    <a href="{{ path('app_admin') }}">Retour</a>
+                </li>
+                <li>
+                    <a href="{{ path('app_admin_difficulty_index') }}">Retour à la liste</a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+    <section class="bloc-large-abs">
+        <h2 class="bloc-title"></h2>
+        <div class="form-base1">
+            {{ include('admin/difficulty/_form.html.twig') }}
+        </div>
+    </section>
+</section>
+
+
+{% endblock %}

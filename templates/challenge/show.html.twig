@@ -1,0 +1,169 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Challenge{% endblock %}
+
+{% block body %}
+<div id="help" class="help-background hidden">
+    <div class="help-content">
+        <div id="close-help" class="help-close">{{ include('svg/deletecross.html.twig') }}</div>
+        <h1 class="help-title">Bienvenue sur Daily Workout</h1>
+        <p>Pour commencer nous vous conseillons d'aller sur l'onglet de votre profil</p>
+        <p>Dans le menu déroulant sous votre profil vous trouverez les accès à différentes partie.</p>
+        <ul>
+            <li>L'accés à votre profil</li>
+            <li>Votre espace programme</li>
+            <li>L'accés à l'espace Challenge ainsi que l'espace Team</li>
+            <li>Le portail des sports</li>
+        </ul>
+    </div>
+</div>
+<section class="bloc-full">
+    <aside id="column-left" class="bloc-column-abs">
+        
+        <div class="bloc-title">Mettre au défis</div>
+        
+        <div class="bloc-link-column">
+            {% if app.user.id == challenge.creatorChallenge.id %}
+                <div class="btmain">
+                    <a href="{{ path('app_challenge_step2', {id: challenge.id})}}">Modifier le challenge</a>
+                </div>
+            {% endif %}
+            <div class="accordion" data-id="-followers">Inviter parmis mes abonnés</div>
+                <div class="panel" id="panel-followers">
+                    {% for follow in follows %}
+                    <div class="bloc-user-link">
+                        <a class="bloc-user-link" href="{{ path('app_challenge_invite', {id: challenge.id, user:follow.follower.id})}}" id="js-send">
+                            <img class="profil" src="{{ asset('profil/' ~ follow.follower.imagesProfiles.name)}}" alt="">
+                            {{ follow.follower.name}}
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+                <ul>
+                    <li>
+                        <span class="main-link active tab" data-target="#content1"="">Challenge</span>
+                    </li>
+                    <li>
+                        <span class="main-link tab" data-target="#content2"="">Challenger</span>
+                    </li>
+                    <li>
+                        <span class="main-link tab" data-target="#content3"="">Challenge accompli</span>
+                    </li>
+                    <li>
+                        <span class="main-link tab" data-target="#content4"="">En attente de validation</span>
+                    </li>
+                    <div class="btblue">
+                        <a href="{{ path('app_challenge_index') }}">Retour aux challenges</a>
+                    </div>
+                </ul>
+        </div>
+    </aside>
+    <section class="bloc-large-abs">
+        <div class="content" id="content1">
+            <div class="bloc-view">
+                <h1 class="bloc-title">{{ challenge.title}}</h1>
+                {% if challenger is null %}
+                <div class="btvalid">
+                    <a id="js-accept" href="{{ path('app_challenge_accept', {id: challenge.id,user: app.user.id})}}">Accepter de relever le challenge</a>
+                </div>
+                    {% else %}
+                    {% if challenger.isInvite == true %}
+                    <div class="btvalid">
+                        <a id="js-accept" href="{{ path('app_challenge_accept_invited', {id: challenger.id})}}">Accepter de relever le challenge</a>
+                    </div>
+                    {% endif %}
+                    {% if challenger.isChallenged == true %}
+                    <div class="btvalid">
+                        <a id="js-valid" href="{{ path('app_challenge_accomplish', {id: challenger.user.id, challenge: challenger.challenge.id})}}">Challenge relevé</a>
+                    </div>
+                    {% endif %}
+                    {% if challenger.isAccomplish == true %}
+                        <h3>Bravo vous avez accompli ce challenge</h3>
+                    {% endif %}
+                    {% endif %}
+                <article class="bloc-info">
+                    <p>{{ challenge.content | nl2br }}</p>
+                </article>
+                {% if challenge.images is null %}
+                            {% else %}
+                        <img class="img-challenge" src="{{ asset('post/' ~ challenge.images.name)}}" alt="">
+                {% endif %}
+                {% if challenge.workout is null %}
+                {% else %}
+                {{ include('challenge/_workout_view.html.twig') }}
+                    
+                {% endif %}
+                <div class="bloc-link">
+                    <a target="_blank" href="{{ challenge.link }}">{{ challenge.link }}</a>
+                </div>
+                <iframe width="560" height="315" src="{{ challenge.youtubeLink | replace({'https://www.youtube.com/watch?v=' : 'https://www.youtube.com/embed/'})}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                {# espace commentaire #}
+                    {{ include('challenge/_form_comment.html.twig') }}
+                    {{ include('challenge/_comment_zone.html.twig') }}
+                {# espace commentaire #}
+        </div>
+        <div class="content" id="content2">
+            <h2 class="bloc-title">Challenger de : {{ challenge.title}}</h2>
+            {% if challengers == null %}
+                <p class="message-middle">Personne n'a encore accepté de relevé le défi</p>
+                {% else %}
+            <p class="message-middle">Nombres de challenger pour {{ challenge.title }} : {{ challengers | length }}</p>
+            <div class="gallery">
+                {% for users in challengers %}
+                <div class="bloc-user-link">
+                    <a href="{{ path('app_user_show', {id: users.user.id})}}" class="js-send">
+                        <img class="profil" src="{{ asset('profil/' ~ users.user.imagesProfiles.name)}}" alt="">
+                        {{ users.user.name}}
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        <div class="content" id="content3">
+            <h2 class="bloc-title">Challenge accompli : {{ challenge.title}}</h2>
+            {% if accomplish == null %}
+                <p class="message-middle">Personnes n'a encore accompli ce challenge</p>
+                {% else %}
+            <p class="message-middle">Nombres de challenger qui on accompli {{ challenge.title }} : {{ accomplish | length }}</p>
+            <div class="gallery">
+                {% for users in accomplish %}
+                <div class="bloc-user-link">
+                    <a href="{{ path('app_user_show', {id: users.user.id})}}" class="js-send">
+                        <img class="profil" src="{{ asset('profil/' ~ users.user.imagesProfiles.name)}}" alt="">
+                        {{ users.user.name}}
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        <div class="content" id="content4">
+            <h2 class="bloc-title">Invitations en attente</h2>
+            {% if invited == null %}
+                <p class="message-middle">Pas encore d'invité</p>
+            {% else %}
+            <p class="message-middle">Invitations envoyés : {{ invited | length }}</p>
+            <div class="gallery">
+                {% for users in invited %}
+                    <a class="bloc-user-link" href="{{ path('app_user_show', {id: users.user.id})}}">
+                        <img class="profil" src="{{ asset('profil/' ~ users.user.imagesProfiles.name)}}" alt="">
+                        {{ users.user.name}}
+                    </a>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+        </div>
+        <div class="bloc-space"></div>
+    </section>
+
+</section>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/challenge/send_challenge.js')}}"></script>
+    <script src="{{ asset('js/challenge/valid_challenge.js')}}"></script>
+    <script src="{{ asset('js/challenge/accept_challenge.js')}}"></script>
+    <script src="{{ asset('js/user/tabs.js')}}"></script>
+{% endblock %}

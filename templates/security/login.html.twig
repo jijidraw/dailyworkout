@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Se connecter{% endblock %}
+
+{% block body %}
+<div class="body-log">
+
+    <section class="form-loggin">
+    <div class="form-presentation">
+    <div class="form-presentation-bloc">
+        <h1 class="form-presentation-sentence">Rejoignez un réseau social pour les sportifs.</h1>
+        <img src="{{ asset('images/crossfit.jpg')}}" alt="">
+    </div>
+    <div class="form-presentation-bloc">
+        <h2 class="form-presentation-sentence">Créer tes propres entrainements, grace au créateur de workout</h2>
+        <img src="{{ asset('images/sprint.jpg')}}" alt="">
+    </div>
+    <div class="form-presentation-bloc">
+    <img src="{{ asset('images/yoga.jpg')}}" alt="">
+    <h2 class="form-presentation-sentence">Challenge les autres et relevés les défis que l'on te propose</h3>
+    </div>
+    <div class="form-presentation-bloc">
+        <img src="{{ asset('images/natation.jpg')}}" alt="">
+        <h2 class="form-presentation-sentence">Fait partie de Team qui te ressemblent autour d'une passion commune</h3>
+        </div>
+    </div>
+
+    <form method="post" class="loggin">
+        <div class="img-loggin">
+            <img src="{{ asset('images/logo.png')}}" alt="">
+            <h3>Prenez en main vos exploits</h3>
+        </div>
+        {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+        
+        {% if app.user %}
+        <div class="mb-3">
+            Vous êtes connecté en tant que : {{ app.user.name }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+        {% endif %}
+        
+        <h1 class="h3 mb-3 font-weight-normal">Veuillez vous connecter.</h1>
+        <label for="inputEmail">Email</label>
+        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="" autocomplete="email" required autofocus>
+        <label for="inputPassword">Password</label>
+        <input type="password" name="password" id="inputPassword" class="" autocomplete="current-password" required>
+        
+    <input type="hidden" name="_csrf_token"
+    value="{{ csrf_token('authenticate') }}"
+    >
+    
+    <div class="checkbox">
+        <p>
+            <input type="checkbox" name="_remember_me">
+            Se rappeler de moi
+        </p>
+    </div>
+    
+    
+    <button class="btmain" type="submit">
+        Se connecter.
+    </button>
+    <h2>Vous n'avez pas encore de compte ?</h2>
+    <div class="btmain">
+        <a href="{{ path('app_register') }}">Créer un compte</a>
+    </div>
+    <p>Mot de passe <a href="{{ path('app_forgot_password_request')}}">oublié ?</a></p>
+</form>
+</section>
+</div>
+
+{% endblock %}

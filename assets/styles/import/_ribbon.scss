@@ -1,0 +1,62 @@
+.ribbon-bloc {
+    @extend %flex-row;
+    @extend %shadow;
+    @extend %border;
+    overflow: hidden;
+    background-color: $maintrans;
+    width: 80%;
+    margin: $mp2 auto;
+    height: fit-content;
+}
+
+.ribbon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $blue1;
+    color: white;
+    height: 100%;
+    min-height: 46px;
+    width: 20%;
+    transition: 0.4s;
+}
+
+.ribbon:hover {
+    cursor: pointer;
+}
+
+.ribbon.open {
+    color: $red;
+    height: 100%;
+}
+
+.ribbon-content {
+    width: 0;
+    padding: $mp1;
+    height: fit-content;
+    transition: width height 0.4s;
+    max-width: 80%;
+}
+
+.ribbon-content ul {
+    display: none;
+    transition: display 0.4s;
+}
+
+.ribbon-content.open ul {
+    display: initial;
+}
+
+.ribbon-content ul li {
+    display: inline;
+    max-height: 100%;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin: $mp2;
+}
+
+.ribbon-content.open {
+    width: 80%;
+    max-width: 80%;
+    overflow-x: auto;
+}

@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Category index{% endblock %}
+
+{% block body %}
+<section class="bloc-full">
+    <aside id="column-left" class="bloc-column-abs">
+        <h1 class="bloc-title"></h1>
+        <div class="bloc-link-column">
+            <ul>
+                <li class="btvalid">
+                    <a href="{{ path('app_admin_category_new') }}">Nouveau</a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+    <section class="bloc-large-abs">
+        <h2 class="bloc-title">Liste des catégories</h2>
+        {% for category in categories %}
+                    {{ category.id }}
+                    {{ category.name }}
+                        <a href="{{ path('app_admin_category_show', {'id': category.id}) }}">show</a>
+                        <a href="{{ path('app_admin_category_edit', {'id': category.id}) }}">edit</a>
+            {% endfor %}
+    </section>
+</section>
+{% endblock %}

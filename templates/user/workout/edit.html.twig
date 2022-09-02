@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{workout.name}}{% endblock %}
+
+{% block body %}
+
+    {{ include('user/workout/_form.html.twig', {'button_label': 'Update'}) }}
+
+{% endblock %}
+{% block javascripts %}
+<script src="{{ asset('js/workout/filter_category.js')}}"></script>
+<script src="{{ asset('js/workout/filter_muscle.js')}}"></script>
+{% endblock %}

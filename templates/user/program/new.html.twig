@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon programme{% endblock %}
+
+{% block body %}
+<section>
+    {{ form_start(form)}}
+    <button class="btn">{{ button_label|default('suivant')}}</button>
+    {{ form_end(form)}}
+    
+</section>
+{% endblock %}
+{% block javascripts %}
+{% endblock %}

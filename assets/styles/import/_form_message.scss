@@ -1,0 +1,40 @@
+.form-message {
+    width: 100%;
+}
+
+.form-message .row .accordion {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    width: 46px;
+    background: none;
+    margin: 0 $mp1;
+    border-radius: 0px;
+    overflow: hidden;
+}
+
+.form-message .row .input-file {
+    margin: 0 $mp1;
+    background: none;
+}
+
+.form-message .row .accordion img {
+    width: auto;
+    height: 26px;
+}
+
+.form-message svg {
+    height: 26px;
+    fill: black;
+}
+
+.form-message .panel {
+    width: 100%;
+}
+
+.form-message .btvalid {
+    margin: $mp2 auto;
+}
+
+.form-message textarea {
+    height: 50px;
+}

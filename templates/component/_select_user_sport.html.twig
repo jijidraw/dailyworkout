@@ -1,0 +1,9 @@
+<ul>
+    {% for sport in sportList %}
+        <li>
+            <div class="btmain">
+                <a data-id="{{ sport.id }}" class="js-sport-user" href="{{ path('app_search_user_sport', {id: sport.id})}}">{{ sport.name }}</a>
+            </div>
+        </li>
+    {% endfor %}
+</ul>

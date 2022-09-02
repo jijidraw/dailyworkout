@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reward index{% endblock %}
+
+{% block body %}
+<section class="bloc-full">
+    <aside id="column-left" class="bloc-column-abs">
+        <h1 class="bloc-title">Liste des récompenses</h1>
+        <div class="bloc-link-column">
+            <ul>
+                <li class="btmain">
+                    <a href="{{ path('app_admin_reward_new') }}">Nouvelle récompense</a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+    <section class="bloc-large-abs">
+        <div class="bloc-title"></div>
+        <div class="gallery">
+            {% for reward in rewards %}
+            <div class="card">
+                {{ reward.id }}</td>
+                {{ reward.name }}</td>
+                <a href="{{ path('app_admin_reward_edit', {'id': reward.id}) }}">modifier</a>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</section>
+
+{% endblock %}

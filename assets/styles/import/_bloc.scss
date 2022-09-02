@@ -1,0 +1,253 @@
+.bloc-full {
+    position: absolute;
+    @extend %row;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+}
+
+.bloc-info {
+    @extend %flex-center;
+    margin: $mp1 auto;
+    width: 80%;
+}
+
+.bloc-full .bloc-title {
+    padding-top: 100px;
+}
+
+.bloc-top {
+    width: 100%;
+    @extend %flex-center;
+    @extend %shadow;
+    @extend %border;
+    background-color: white;
+    padding: $mp2;
+}
+
+.bloc-view {
+    @extend %column;
+    width: 60%;
+    margin: auto;
+}
+
+.bloc-actu p {
+    color: $main;
+}
+
+.bloc-column-abs {
+    background-color: $main;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    height: 100vh;
+    max-height: 100vh;
+    left: 0;
+    overflow-y: auto;
+    width: 25%;
+    padding: $mp1;
+}
+
+.bloc-column-abs .btmain,
+.btblue,
+.btvalid,
+.btblack {
+    margin: auto;
+}
+
+.bloc-column-abs .profil {
+    margin-right: $mp1;
+}
+
+.bloc-column-abs-rg {
+    position: fixed;
+    height: 100vh;
+    max-height: 100vh;
+    right: 0;
+    overflow-y: auto;
+    background-color: $main;
+    width: 25%;
+    padding: $mp1;
+}
+
+.bloc-large-abs {
+    position: absolute;
+    right: 0;
+    height: fit-content;
+    min-height: 100%;
+    width: 75%;
+    overflow: hidden;
+}
+
+.bloc-lg-img {
+    width: 100%;
+    height: 150px;
+    max-height: 150px;
+    overflow: hidden
+}
+
+.bloc-lg-img img {
+    width: 100%;
+    height: auto
+}
+
+.bloc-title {
+    @extend %row;
+    width: 100%;
+    justify-content: space-around;
+    padding: $mp2;
+}
+
+.bloc-title-abs {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    text-align: center;
+    padding: $mp2;
+}
+
+.bloc-link {
+    @extend %flex-row;
+    justify-content: center;
+    width: 100%;
+    margin: $mp1;
+    padding: 0 $mp2;
+    justify-content: space-between;
+}
+
+.bloc-link p {
+    @extend %flex-row;
+    color: $main;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.bloc-link svg {
+    fill: $main;
+}
+
+.bloc-link p:hover svg {
+    fill: $red2;
+}
+
+.bloc-link p:hover {
+    color: $red2;
+}
+
+p svg {
+    margin-left: $mp1;
+}
+
+.bloc-link-column {
+    @extend %column;
+    color: white;
+    text-align: center;
+    width: 100%;
+    margin: $mp1;
+    padding: 0 $mp2;
+}
+
+.bloc-link-column li,
+a {
+    color: white;
+    margin: $mp2 0;
+}
+
+.bloc-link-column li.active {
+    color: $red;
+}
+
+.bloc-form {
+    width: 80%;
+    margin: 80px auto $mp1;
+}
+
+.bloc-space {
+    height: 100px;
+    width: 100vw;
+}
+
+.bloc-message {
+    width: 80%;
+    margin: auto;
+    border-bottom: 1px solid $grey2;
+}
+
+.bloc-column-filter {
+    width: 25%;
+    height: fit-content;
+}
+
+@media (min-width: 1600px) and (max-width:3560px) {
+    .bloc-full {
+        width: 100%;
+        max-width: 1680px;
+        margin: auto;
+    }
+
+    .bloc-column-abs {
+        left: 10%;
+        width: 15%;
+    }
+
+    .bloc-column-abs-rg {
+        right: 10%;
+        width: 15%;
+    }
+
+    .bloc-large-abs {
+        position: absolute;
+        right: 0;
+        height: fit-content;
+        min-height: 100%;
+        width: 75%;
+        overflow: hidden;
+    }
+
+}
+
+@media (max-width: 860px) {
+    .bloc-column-abs {
+        left: -30px;
+        width: 0px;
+        transition: width 0.5s;
+        z-index: 30;
+    }
+
+    .bloc-top {
+        border-radius: 0;
+    }
+
+    .bloc-column-abs-rg {
+        right: -100px;
+        width: 0;
+        transition: width 0.5s;
+        z-index: 30;
+    }
+
+    .bloc-column-abs.open {
+        width: 70vw;
+        left: 0;
+        transition: width 1.0s;
+    }
+
+    .bloc-column-abs-rg.open {
+        width: 80vw;
+        right: 0;
+        transform: translateX(0);
+        transition: width 1.0s;
+    }
+
+    .bloc-large-abs {
+        width: 100%;
+    }
+
+    .bloc-view {
+        width: 100%;
+    }
+
+    .bloc-column-filter {
+        width: 100%;
+    }
+}

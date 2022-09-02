@@ -1,0 +1,13 @@
+.bar-notif {
+    @extend %flex-row;
+    background-color: $maintrans;
+    width: 80%;
+    margin: auto;
+    margin-bottom: $mp1;
+    border-bottom: 1px solid $red;
+    color: white;
+}
+
+.bar-notif img {
+    margin: 0 $mp1;
+}

@@ -1,0 +1,15 @@
+<div class="form-loggin">
+    <div class="loggin">
+        {{ form_start(form) }}
+        <p>En choisissant de rendre votre profil privé. <br>
+        Les autres utilisateurs ne pourront pas voir votre profil. <br>
+        Vous verrez toujours les publications récentes mais vous ne pourrez suivre personne de plus.</p>
+        {{ form_row(form.is_private) }}
+        <label class="unchecked" for="user2_is_private">Rendre mon profil privé</label>
+        <p>Cliquez sur ce bouton pour désactiver votre profil. Vous pourrez réactiver votre compte quand vous le souhaitez.</p>
+        {{ form_row(form.is_unactive) }}
+        <label class="unchecked" for="user2_is_unactive">Désactiver mon profil</label>
+        <button class="btmain">{{ button_label|default('Save') }}</button>
+        {{ form_end(form) }}
+    </div>
+</div>

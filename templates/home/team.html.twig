@@ -1,0 +1,39 @@
+<div class="bloc-inner">
+    {% if teams is empty %}
+    <p class="message-info">Vous ne faites pas encore partie d'une équipe</p>
+    {% else %}
+    <p>Les derniers messages de mes Teams</p>
+    {% for team in teams %}
+    <a class="team-home" href="{{ path('app_team_show', {id: team.id})}}">
+            {% if team.imagesProfiles is empty %}
+            <img class="img-team-home" src="{{ asset('images/team.png')}}" alt="">
+            {% else %}
+            <img class="img-team-home" src="{{ asset('profil/' ~ team.imagesProfiles.name)}}" height="100px" alt="">
+            {% endif %}
+            <p class="team-home-name">{{ team.name }}</p>
+    </a>
+        {% for post in team.teamPosts | reverse | slice (0, 1) %}
+        <div class="team-home-user">
+            {% if post.user.imagesProfiles == null %}
+                <img class="profil" src="{{ asset('images/login.png')}}" alt="">
+                    {% else %}
+                <img class="profil" src="{{ asset('profil/' ~ post.user.imagesProfiles.name)}}" alt="">
+            {% endif %}
+            <p>{{ post.user.name }}</p>
+        </div>
+        {% if post.content %}
+            <p>{{ post.content | nl2br }}</p>
+        {% endif %}
+        {% if post.link %}
+        <a target="_blank" href="{{ post.link }}">{{ post.link }}</a>
+        {% endif %}
+        {% if post.youtubeLink %}
+        <iframe width="560" height="315" src="{{ post.youtubeLink | replace({'https://www.youtube.com/watch?v=' : 'https://www.youtube.com/embed/'})}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        {% endif %}
+        {% if post.image %}
+        <img class="img-team-home-post" src="{{ asset('post/' ~ post.image.name)}}" alt="">
+        {% endif %}
+        {% endfor %}
+{% endfor %}
+{% endif %}
+</div>

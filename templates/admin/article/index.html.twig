@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article index{% endblock %}
+
+{% block body %}
+<section class="bloc-full">
+    <aside id="column-left" class="bloc-column-abs">
+        <h1 class="bloc-title"></h1>
+        <div class="bloc-link-column">
+            <ul>
+                <li class="btvalid">
+                    <a href="{{ path('app_admin_article_new') }}">Nouvelle article</a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+    <section class="bloc-large-abs">
+        <h2 class="bloc-title"></h2>
+        <div class="gallery">
+            {% for article in articles %}
+                {{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}
+                {{ article.title }}
+                {{ article.content }}
+                {{ article.updatedAt ? article.updatedAt|date('Y-m-d H:i:s') : '' }}
+                {{ article.link }}
+                {{ article.youtubeLink }}
+                <a href="{{ path('app_admin_article_show', {'id': article.id}) }}">show</a>
+                <a href="{{ path('app_admin_article_edit', {'id': article.id}) }}">edit</a>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </div>
+    </section>
+</section>
+{% endblock %}

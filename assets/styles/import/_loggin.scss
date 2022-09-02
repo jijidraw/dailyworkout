@@ -1,0 +1,132 @@
+.body-log {
+    position: absolute;
+    @extend %flex-center;
+    top: 0px;
+    height: 100vh;
+    width: 100%;
+    @extend %flex-center;
+}
+
+.form-loggin {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    @extend %shadow;
+    margin: auto;
+    text-align: center;
+    width: fit-content;
+    width: 60%;
+    height: 75vh;
+    background: white;
+}
+
+.form-loggin form {
+    @extend %column;
+    width: 50%;
+    margin: 0;
+}
+
+.form-presentation {
+    @extend %column;
+    height: 100%;
+    width: 50%;
+    margin: 0;
+}
+
+.form-presentation-bloc {
+    position: relative;
+    width: 100%;
+    height: 25%;
+    max-height: 250px;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.form-presentation-bloc img {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    height: auto;
+}
+
+.form-presentation-sentence {
+    position: absolute;
+    margin: auto;
+    top: 5px;
+    z-index: 10;
+    margin: $mp1;
+    font-size: larger;
+    color: white;
+    background: rgb(1, 0, 0);
+    background: linear-gradient(0deg, rgba(1, 0, 0, 1) 0%, rgba(84, 84, 84, 0.32239000984791955) 100%);
+}
+
+.form-loggin label {
+    text-align: left;
+}
+
+.form-loggin .btmain {
+    margin: $mp1 auto;
+}
+
+.form-loggin a {
+    font-size: 10px;
+    color: $red;
+    margin: 6px;
+}
+
+.form-loggin a:hover {
+    color: $red2;
+}
+
+.form-loggin .btmain a {
+    font-size: 16px;
+}
+
+.loggin {
+    @extend %flex-column;
+}
+
+.img-loggin {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.img-loggin img {
+    height: 250px;
+    margin: auto;
+}
+
+@media (min-width: 320px) and (max-width:860px) {
+    .form-loggin {
+        flex-direction: column;
+        width: 100%;
+        height: fit-content;
+        overflow-y: auto;
+    }
+
+    .form-presentation {
+        width: 100%;
+    }
+
+    .form-presentation-bloc:last-child {
+        margin-bottom: 100px;
+    }
+
+    .form-presentation-bloc img {
+        position: relative;
+    }
+
+    .form-loggin form {
+        width: 100%;
+    }
+
+    .img-loggin img {
+        margin: auto;
+        width: 60%;
+        height: auto;
+    }
+}

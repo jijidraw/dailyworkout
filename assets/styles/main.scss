@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@900&family=Poppins:wght@600&display=swap');
+@import './import/_variables.scss';
+@import './import/_mixin.scss';
+@import './import/_placeholder.scss';
+@import './import/_element.scss';
+@import './import/_gallery.scss';
+@import './import/_help.scss';
+@import './import/_modal.scss';
+@import './import/_ribbon.scss';
+@import './import/_card.scss';
+@import './import/_icon.scss';
+@import './import/_font.scss';
+@import './import/_bloc_user.scss';
+@import './import/_bloc_home_team.scss';
+@import './import/_flash.scss';
+@import './import/_bloc.scss';
+@import './import/_bar.scss';
+@import './import/_button.scss';
+@import './import/_form.scss';
+@import './import/_form_message.scss';
+@import './import/_balise.scss';
+@import './import/_layout.scss';
+@import './import/_image.scss';
+@import './import/_bar_difficulty.scss';
+@import './import/_loggin.scss';
+@import './import/_message.scss';
+@import './import/_message_team_challenge_messenger.scss';
+@import './import/_presentation.scss';
+@import './import/_home.scss';
+@import './import/_post.scss';
+@import './import/_profil.scss';
+@import './import/_workout.scss';
+@import './import/_workout_note.scss';
+
+.hidden {
+    display: none;
+}
+
+.show {
+    display: initial;
+}
+
+.active {
+    border-bottom: 1px solid $red;
+    color: $red;
+}

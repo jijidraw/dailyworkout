@@ -1,0 +1,47 @@
+<div class="bloc-lg">
+    <h4>Programme du jour</h4>
+
+    {% for workouts in today %}
+    <div data-id="{{workouts.workout.id}}" class="accordion">{{ workouts.workout.name}}</div>
+    <div class="panel" id="panel{{workouts.workout.id}}">
+
+    <div class="workout-bloc">
+        <div class="workout-bar">
+            <div class="workout-title">
+                <h4>{{ workouts.workout.name}}</h4>
+            </div>
+            <div class="workout-detail">
+                <p> description : {{ workouts.workout.content}}</p>
+                <p> rounds : {{ workouts.workout.rounds}}</p>
+                <p> difficulté : {{ workouts.workout.difficulty}}</p>
+            </div>
+        </div>
+        {% for exercices in workouts.workout.exercicePersos %}
+        <div class="exercice-bloc">
+            <div class="exercice-img">
+                <img class="" src="{{ asset('exercice/' ~ exercices.exercice.imageSystem.name)}}" width="50px" alt="">
+            </div>
+            <div class="exercice-detail">
+                <p class="exercice-name">{{ exercices.exercice.name }}</p>
+
+                {% if exercices.quantity is empty %}
+                    {% else %}
+                <p class="exercice-reps">{{ exercices.quantity }} {{ exercices.effortType }} <br>
+                Repos : {{ exercices.rest }}</p>
+                {% endif %}
+                {% if exercices.content is empty %}
+                {% else %}
+                <div class="exercice-hover">
+                    <div class="exercice-content">
+                        <p>{{ exercices.content }}</p>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+    {% endfor %}
+</div>

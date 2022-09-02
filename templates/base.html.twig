@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="{{ asset('/images/logo.png')}}">
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        
+    </head>
+    <body>
+        
+        <div class="block-body">
+        {% if is_granted('ROLE_USER') %}
+        <header>
+            <ul class="nav">
+                <li><a href="{{ path('home')}}"><img src="{{ asset('/images/logo.png')}}" alt=""></a></li>
+                <li class="svg-menu"><a href="{{ path('app_search')}}">{{ include('svg/wen.html.twig') }}</a></li>
+                <li class="svg-menu"><a href="{{ path('app_message')}}">{{ include('svg/message.html.twig') }}</a></li>
+                <li class="dropdown">
+                    {% if app.user.imagesProfiles.name is defined %}
+                    <img class="profil dropdown" src="{{ asset('profil/' ~ app.user.imagesProfiles.name)}}" alt="">
+                    {% else %}
+                    <img class="profil dropdown" src="{{ asset('images/login.png')}}" alt="">
+                    {% endif %}
+                    <div class="dropdown-content">
+                        <div class="item-dropdown">
+                            <a href="{{ path('app_user_show', {id: app.user.id})}}">Mon profil</a>
+                        </div>
+                        <div class="item-dropdown">
+                            <a href="{{ path('app_user_program')}}">Mon programme</a>
+                        </div>
+                        <div class="item-dropdown">
+                            <a href="{{ path('app_challenge_index')}}">Challenge</a>
+                        </div>
+                        <div class="item-dropdown">
+                            <a href="{{ path('app_team_index')}}">Teams</a>
+                        </div>
+                        <div class="item-dropdown">
+                            <a href="{{ path('app_sport_list')}}">Les sports</a>
+                        </div>
+
+                    </div>
+                </li>
+                <li class=" svg-menu dropdown">{{ include('svg/menu.html.twig') }}</a>
+                    <div class="dropdown-content">
+                        <div class="item-dropdown">
+                            <a href="{{ path('app_user_system', {id: app.user.id})}}">Paramètre du compte</a>
+                        </div>
+                        <div class="item-dropdown">
+                            <a href="{{ path('app_logout')}}">Déconnexion</a>
+                        </div>
+                        <div class="item-dropdown">
+                            {% if is_granted("ROLE_ADMIN") %}
+                            <a href="{{ path('app_admin')}}">espace admin</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div id="help-toggle" class="help-toggle"> ? </div>
+                </li>
+            </ul>
+            
+        </header>
+        <div id="arrow-left" class="arrow" href="">{{ include('svg/arrowleft.html.twig') }}</div>
+        {% endif %}
+        {% block body %}{% endblock %}
+    </div>
+        <footer class="row">
+            <a href="{{ path('app_mentions')}}">Mentions légales</a>
+            <a href="{{ path('app_politique')}}">Politique de confidentialité</a>
+            <a href="{{ path('app_reglement')}}">Réglement</a>
+            <a href="{{ path('app_contact')}}">Nous contacter</a>
+            <a target="_blank" href="https://impulse-web-design.com/">Site dévellopé par : ImpulseWebDesign</a>
+        </footer>
+    </body>
+    {% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+            <script src="{{ asset('js/imgPreview.js')}}"></script>
+            <script src="{{ asset('js/help.js')}}"></script>
+            <script src="{{ asset('js/arrowleft.js')}}"></script>
+            <script src="{{ asset('js/modal.js')}}"></script>
+            <script src="{{ asset('js/checkbox.js')}}"></script>
+            <script src="{{ asset('js/accordion.js')}}"></script>
+</html>

@@ -1,0 +1,105 @@
+.profil {
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
+}
+
+.profil img {
+    height: 100%;
+}
+
+.img-post {
+    width: 60%;
+    margin: $mp1 auto;
+    overflow: hidden;
+    min-height: 350px;
+    max-height: 700px;
+}
+
+.img-post-default {
+    width: 100%;
+    overflow: hidden;
+    height: 250px;
+    text-align: center;
+}
+
+.img-post-default img {
+    height: 100%;
+}
+
+
+.img-team-post img {
+    height: 150px;
+}
+
+.img-post img {
+    width: 100%;
+}
+
+.exercice-img {
+    line-height: 100%;
+    vertical-align: middle;
+    width: 100%;
+    z-index: 0;
+}
+
+.exercice-img img {
+    width: 100%;
+    height: 100%;
+}
+
+.exercice-img-view {
+    line-height: 100%;
+    vertical-align: middle;
+    width: 100%;
+    padding: auto;
+    z-index: 0;
+}
+
+.exercice-img-view img {
+    margin: auto;
+    height: 100%;
+    width: 100%;
+}
+
+.img-presentation {
+    width: 100%;
+    min-width: 100%;
+    height: 400px;
+    overflow: hidden;
+}
+
+.img-presentation img {
+    width: 100%;
+}
+
+.img-icon {
+    width: 36px;
+    height: 36px;
+}
+
+.img-icon img {
+    height: 36px;
+    width: 36px;
+}
+
+form .profil {
+    margin: 0 $mp1 $mp1 0;
+}
+
+.img-challenge {
+    width: 50%;
+    margin: $mp2 auto;
+}
+
+.img-challenge img {
+    width: 100%;
+}
+
+@media (max-width: 860px) {
+    .profil {
+        height: 24px;
+        width: 24px;
+        border-radius: 50%;
+    }
+}

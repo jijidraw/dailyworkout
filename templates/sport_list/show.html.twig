@@ -1,0 +1,148 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{sport.name}}{% endblock %}
+
+{% block body %}
+<div id="help" class="help-background hidden">
+    <div class="help-content">
+        <div id="close-help" class="help-close">{{ include('svg/deletecross.html.twig') }}</div>
+        <h1 class="help-title">Bienvenue sur Daily Workout</h1>
+        <p>Pour commencer nous vous conseillons d'aller sur l'onglet de votre profil</p>
+        <p>Dans le menu déroulant sous votre profil vous trouverez les accès à différentes partie.</p>
+        <ul>
+            <li>L'accés à votre profil</li>
+            <li>Votre espace programme</li>
+            <li>L'accés à l'espace Challenge ainsi que l'espace Team</li>
+            <li>Le portail des sports</li>
+        </ul>
+    </div>
+</div>
+<section class="bloc-full">
+    <aside class="bloc-column-abs" id="column-left">
+        <h1 class="bloc-title">La liste des sport</h1>
+        <div class="bloc-link-column">
+            <ul>
+                <li class="tab active" data-target="#content1">
+                    {{ sport.name }}
+                </li>
+                <li class="tab" data-target="#content2">
+                    Les pratiquants
+                </li>
+                <li class="tab" data-target="#content3">
+                    Les Teams
+                </li>
+                <li class="tab" data-target="#content4">
+                    Les Workouts
+                </li>
+                <li class="tab" data-target="#content5">L'équipement</li>
+                {% if remove == true %}
+                <div class="btvalid">
+                    <a href="{{ path('app_sport_list_remove', {id: app.user.id, sport: sport.id})}}">Retirer de ma liste</a>
+                </div>
+                {% else %}
+                <div class="btvalid">
+                    <a href="{{ path('app_sport_list_perso', {id: app.user.id, sport: sport.id})}}">Ajouter à ma liste</a>
+                </div>
+                {% endif %}
+            </ul>
+        </div>
+    </aside>
+    <section class="bloc-large-abs">
+        <div class="content" id="content1">
+            <div class="bloc-presentation">
+                <div class="img-presentation">
+                    <img src="{{ asset('sport/' ~ sport.imageSystem.name)}}" alt="">
+                </div>
+                <h3 class="presentation-title">
+                    {{ sport.name }}
+                </h3>
+                <article class="presentation-text">{{ sport.description }}</article>
+                <div class="row">
+                    {% if sport.isSolo == false %}
+                        {% else %}
+                        Peut se pratiquer en solo
+                    {% endif %}
+                    {% if sport.isGroup == false %}
+                        {% else %}
+                        Peut se faire en groupe
+                    {% endif %}
+                </div>
+            </div>
+            <div class="bloc-space"></div>
+        </div>
+        <div class="content" id="content2">
+            <h3 class="bloc-title">Les membres de Daily Workout qui pratiquent {{ sport.name }}</h3>
+            <div class="gallery">
+                {% for user in users %}
+                <div class="bloc-user-link">
+                    <a href="{{ path('app_user_show', {id: user.id})}}">
+                        <div class="row">
+                            {% if user.imagesProfiles is null %}
+                            <img class="profil" src="{{ asset('images/login.png')}}" alt="">
+                                {% else %}
+                            <img class="profil" src="{{ asset('profil/' ~ user.imagesProfiles.name)}}" alt="">
+                            {% endif %}
+                            {{ user.name}}
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="content" id="content3">
+            <h3 class="bloc-title">Les teams qui en parlent : {{ sport.name }}</h3>
+            <div class="gallery">
+                {% for team in teams %}
+                <div class="bloc-user-link">
+                    <a href="{{ path('app_team_show', {id: user.id})}}">
+                        <div class="row">
+                            {% if team.imagesProfiles is null %}
+                            <img class="profil" src="{{ asset('images/login.png')}}" alt="">
+                            {% else %}
+                            <img class="profil" src="{{ asset('profil/' ~ team.imagesProfiles.name)}}" alt="">
+                            {% endif %}
+                            {{ team.name}}
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="content" id="content4">
+            <h3 class="bloc-title">Les workouts utile pour s'améliorer en :  {{ sport.name }}</h3>
+            <div class="gallery">
+                <div class="workout-list">
+                    {{ include('sport_list/_workout_list.html.twig') }}
+                </div>
+            </div>
+        </div>
+        <div class="content" id="content5">
+            <h3 class="bloc-title">Le matériel pour pratiquer :  {{ sport.name }}</h3>
+            <div class="gallery">
+                {% for equipment in equipments %}
+            <div class="card">
+                <h3>
+                    {{ equipment.name }}
+                </h3>
+                <div class="card-img">
+                    {% if sport.imageSystem is empty %}
+                    <p>Pas d'image enregistré</p>
+                    {% else %}
+                    <img src="{{ asset('accessory/' ~ equipment.imageSystem.name)}}" width="400px" alt="">
+                    {% endif %}
+                </div>
+                <div class="card-a">
+                    <a href="{{ path('app_sport_show', {id: equipment.id})}}">En voir plus</a>
+                </div>
+            </div>
+            {% endfor %}
+
+            </div>
+        </div>
+    </section>
+</section>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/user/tabs.js')}}"></script>
+    <script src="{{ asset('js/workoutFav.js')}}"></script>
+{% endblock %}

@@ -1,0 +1,58 @@
+.item-li {
+    margin: $mp2;
+    line-height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.item-li img {
+    vertical-align: middle;
+}
+
+.contact-message {
+    display: flex;
+    flex-direction: column;
+}
+
+.message-form {
+    bottom: 0;
+    border: 1px solid $grey2;
+    width: 100%;
+}
+
+.message-form input:first-child {
+    width: 80%;
+    margin: 20px;
+}
+
+.team-presentation {
+    width: 100%;
+    padding: $mp2;
+    position: relative;
+}
+
+.message-middle {
+    @extend %flex-column;
+    width: 100%;
+    height: 350px;
+}
+
+.text-middle {
+    @extend %column;
+    width: 100%;
+    height: 100%;
+    padding: $mp2;
+    overflow-y: auto;
+}
+
+.text-middle li {
+    margin: $mp1 auto;
+    color: black;
+    list-style-type: disc;
+}
+
+.img-message img {
+    height: 250px;
+}
+
+@media (max-width: 860px) {}

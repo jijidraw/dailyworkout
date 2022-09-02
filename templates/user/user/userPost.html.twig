@@ -1,0 +1,23 @@
+<div class="user-post-view">
+    <a href="{{ path('app_user_post_show', {id: post.id})}}">
+        <div class="column post-main">
+            <p>{{ post.content | raw }}</p>
+            {% if post.images is empty %}
+                {% else %}
+                {% for img in post.images %}
+                <img class="img-post" src="{{ asset('post/' ~ img.name)}}" height="150px" alt="">   
+                {% endfor %}
+            {% endif %}
+            <div class="bloc-link">
+                <p>
+                    {{ post.likes | length}}    
+                    {{ include('svg/thumb.html.twig') }}
+                </p>
+                <p>
+                    {{ post.comments | length}}
+                    {{ include('svg/message.html.twig') }}
+                </p>
+            </div>
+        </div>
+    </a>
+</div>

@@ -1,0 +1,32 @@
+.bloc-presentation {
+    @extend %flex-center;
+    @extend %shadow;
+    flex-wrap: wrap;
+    margin: 10% auto 0;
+    background-color: white;
+    flex-direction: column;
+    width: 60%;
+    height: fit-content;
+    overflow: hidden;
+}
+
+.bloc-presentation img {
+    width: 100%;
+}
+
+.presentation-title {
+    width: 100%;
+    padding: $mp1;
+}
+
+.presentation-text {
+    width: 100%;
+    height: fit-content;
+    padding: $mp2;
+}
+
+.presentation-title h2,
+h3 {
+    font-size: 22px;
+
+}

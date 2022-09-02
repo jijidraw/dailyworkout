@@ -1,0 +1,13 @@
+<div class="form-comment-light">
+{{ form_start(form) }}
+<div class="row">
+        {% if app.user.imagesProfiles. name is defined %}
+        <img class="profil" src="{{ asset('profil/' ~ app.user.imagesProfiles.name)}}" alt="">
+        {% else %}
+        <img class="profil" src="{{ asset('images/login.png')}}" alt="">
+        {% endif %}
+    {{ form_row(form.content) }}
+    <button class="btvalid">{{ button_label|default('envoyer') }}</button>
+</div>
+    {{ form_end(form) }}
+</div>

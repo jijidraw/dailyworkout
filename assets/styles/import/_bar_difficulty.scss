@@ -1,0 +1,33 @@
+%bar-difficulty {
+    width: 100%;
+    color: white;
+    padding: $mp1;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.very-easy {
+    @extend %bar-difficulty;
+    background-color: $green2;
+}
+
+.easy {
+    @extend %bar-difficulty;
+    background-color: rgb(175, 175, 0);
+}
+
+.moyen {
+    @extend %bar-difficulty;
+    background-color: $blue1;
+}
+
+.hard {
+    @extend %bar-difficulty;
+    background-color: $red;
+}
+
+.very-hard {
+    @extend %bar-difficulty;
+    background-color: $main;
+}

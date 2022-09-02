@@ -1,0 +1,161 @@
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: $main;
+  text-align: center;
+  position: absolute;
+  height: fit-content;
+  width: fit-content;
+  padding: $mp1;
+  border: 1px solid $red;
+  z-index: 1000;
+}
+
+.dropdown-content .btblue {
+  margin: $mp1 auto;
+}
+
+.dropdown-content a {
+  color: white;
+}
+
+.dropdown-content a:hover {
+  color: $red2;
+}
+
+.dropdown-content a:visited {
+  color: white;
+}
+
+.dropdown-bloc {
+  @extend %column;
+  width: fit-content;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.item-dropdown {
+  padding: $mp1;
+}
+
+.item-dropdown:hover a {
+  color: $red;
+}
+
+
+
+// accordéon
+.accordion {
+  @extend %shadow;
+  @extend %border;
+  background-color: $blue1;
+  color: $main;
+  transition: 0.4s;
+  text-align: center;
+  width: 100%;
+  font-size: 16px;
+  color: white;
+  padding: $mp1;
+  border: none;
+  margin: $mp1 0;
+}
+
+.accordion.active {
+  background-color: $blue2;
+}
+
+.accordion:hover {
+  cursor: pointer;
+  background-color: $blue2;
+  color: white;
+}
+
+.panel {
+  transition: height 0.5s;
+  height: 0;
+  overflow: hidden;
+  text-align: center;
+}
+
+.panel ul {
+  @extend %flex-row;
+  flex-wrap: wrap;
+  padding: $mp1;
+}
+
+.panel ul li {
+  @extend %row;
+  flex-wrap: wrap;
+  margin: $mp1;
+}
+
+.panel label {
+  margin: $mp1;
+}
+
+// accordéon
+
+.scroll {
+  overflow: scroll;
+  scrollbar-width: none;
+  border: none
+}
+
+.checked {
+  @extend %button;
+  color: white;
+  background-color: $red;
+}
+
+.unchecked {
+  @extend %button;
+  color: black;
+  border: 1px solid $red;
+  background-color: $greytrans;
+}
+
+.checked,
+.unchecked label {
+  color: white;
+}
+
+
+.tab {
+  cursor: pointer;
+}
+
+.select-group {
+  display: none;
+}
+
+.form-loggin .checkbox {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  margin: $mp1 auto;
+  width: fit-content;
+}
+
+.form-loggin input[type="checkbox"] {
+  width: fit-content;
+}
+
+.checkbox input[type="checkbox"] {
+  display: initial;
+  height: 12px;
+}
+
+// img preview
+.preview {
+  margin: auto;
+}
+
+// img preview

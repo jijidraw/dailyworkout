@@ -1,0 +1,204 @@
+form {
+    @extend %column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    padding: $mp2;
+    margin: $mp1;
+}
+
+form .btmain {
+    margin: $mp1;
+}
+
+input {
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    padding: $mp1;
+    height: 2rem;
+}
+
+input .input-file:hover {
+    background: $red;
+}
+
+textarea {
+    font-family: 'Poppins', sans-serif;
+    padding: $mp1;
+    width: 100%;
+    height: 150px;
+    resize: none;
+}
+
+.form-row {
+    @extend %row;
+    justify-content: space-around;
+    width: 100%;
+    min-width: 100%;
+}
+
+.form-column {
+    @extend %column;
+    width: 50%;
+    margin: $mp2 auto;
+}
+
+
+
+.form-base1 {
+    @extend %flex-column;
+    @extend %shadow;
+    @extend %border;
+    margin: $mp2 auto;
+    width: 80%;
+    max-width: 740px;
+    padding: $mp2;
+    background: white;
+    border: 2px solid $grey3;
+}
+
+.form-textarea {
+    width: 100%;
+    margin: $mp1 auto;
+    height: 150px;
+    min-height: 150px;
+}
+
+.form-text {
+    width: 100%;
+    margin: $mp1 auto;
+}
+
+.form-checkbox {
+    margin: $mp1 0;
+}
+
+.form-base .btvalid {
+    margin: $mp1 auto;
+}
+
+// workout form
+
+.form-workout {
+    @extend %row;
+    padding: $mp1;
+    justify-content: space-around;
+    width: 80%;
+    margin: auto;
+}
+
+.form-workout-2 {
+    @extend %flex-row;
+    flex-wrap: wrap;
+    padding: $mp1;
+    width: 80%;
+    margin: auto;
+}
+
+.form-list {
+    @extend %column-3;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.item-list {
+    @extend %column;
+}
+
+.item-form {
+    @extend %column;
+    margin: $mp1 auto;
+    width: 80%;
+    height: fit-content;
+    overflow: hidden;
+}
+
+.form-experso {
+    @extend %column;
+    @extend %shadow;
+    background-color: white;
+    width: 30%;
+    margin-bottom: $mp1;
+    overflow: hidden;
+}
+
+.item-form label {
+    width: 100%;
+    font-size: 1.2em;
+    text-align: left;
+    padding-left: 10px;
+    background-color: $red;
+    color: white;
+}
+
+.form-bloc {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    height: 100%;
+    margin-right: 0;
+    justify-content: space-around;
+}
+
+.img-exercice {
+    width: 100%;
+    height: 150px;
+}
+
+.img-exercice img {
+    max-width: 100%;
+    height: auto;
+}
+
+// workout form
+
+// comment form
+
+.form-comment {
+    @extend %flex-center;
+    border-top: 1px solid $grey2;
+    width: 100%;
+}
+
+.form-comment [type="textarea"] {
+    width: 100%;
+    margin: $mp2 auto;
+    height: fit-content;
+}
+
+.form-comment [type="submit"] {
+    margin: $mp3;
+    height: $mp1;
+    line-height: $mp1;
+}
+
+
+// comment form
+
+// team-post-form
+
+// team-post-form
+
+// challenge comment
+
+.form-comment-light {
+    @extend %flex-row;
+    @extend %border;
+    @extend %shadow;
+    width: 80%;
+    padding: $mp2;
+    background-color: white;
+    margin: $mp2 auto;
+}
+
+.form-comment-light img {
+    margin-right: $mp1;
+}
+
+.form-comment-light input[type="text"] {
+    width: 40vh;
+}
+
+// challenge comment

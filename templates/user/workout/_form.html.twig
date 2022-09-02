@@ -1,0 +1,76 @@
+{{ form_start(form) }}
+<div class="bloc-full">
+    {{ form_widget(form._token)}}
+
+    <div class="bloc-column-abs">
+    <h1 class="bloc-title">Modifier workout</h1>
+    
+    <div class="bloc-link-column">
+        <div class="item-list">
+            <div class="item-form">
+                <label for="">Nom</label>
+                {{ form_row(form.name) }}
+            </div>
+            <div class="item-form">
+                <label for="">Nombre de tours</label>
+                {{ form_row(form.rounds) }}
+            </div>
+            <div class="item-form">
+                <label for="">Détails</label>
+                {{ form_row(form.content) }}
+            </div>
+            <div class="item-form">
+                <label for="">Difficulté</label>
+                {{ form_row(form.level) }}
+            </div>
+        </div>
+        <div class="btblue">
+
+            <a href="{{ path('app_workout_new_step_2', {id: workout.id })}}">Ajouter/supprimer des exercices</a>
+        </div>
+        <div class="item-list">
+            <div data-id="-sport" class="accordion">Pour quel sport ce workout est recommandé</div>
+                <div id="panel-sport" class="panel">
+                    {{ form_row(form.sport) }}
+                </div>
+        </div>
+        <input class="btvalid" type="submit" value="valider">
+        </div>
+
+    </div>
+    <section class="bloc-large-abs">
+        <h2 class="bloc-title">Mes exercices</h2>
+    <div class="gallery">
+    {% for exercice in form.exercicePersos %}
+        <div class="form-experso">
+            {% for exo in experso %}
+
+                {% if exo.id == exercice.vars.data.id %}
+                        <div class="img-exercice">
+                            <img src="{{ asset('exercice/' ~ exo.exercice.imageSystem.name)}}" alt="">
+                        </div>
+                {% endif %}
+            {% endfor %}
+                <div class="item-form">
+                    <label for="">Nombre</label>
+                    {{ form_widget(exercice.quantity)}}
+                </div>
+                <div class="item-form">
+                    <label for="">Repétition, durée ?</label>
+                    {{ form_widget(exercice.EffortType)}}
+                </div>
+                <div class="item-form">
+                    <label for="">Repos</label>
+                    {{ form_widget(exercice.Rest)}}
+                </div>
+                <div class="item-form">
+                    <label for="">Détails éxécution</label>
+                    {{ form_widget(exercice.content)}}
+                </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+</div>
+{{ form_end(form) }}
+</section>

@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes groupes{% endblock %}
+
+{% block body %}
+<div id="help" class="help-background hidden">
+    <div class="help-content">
+        <div id="close-help" class="help-close">{{ include('svg/deletecross.html.twig') }}</div>
+        <h1 class="help-title">Bienvenue sur Daily Workout</h1>
+        <p>Pour commencer nous vous conseillons d'aller sur l'onglet de votre profil</p>
+        <p>Dans le menu déroulant sous votre profil vous trouverez les accès à différentes partie.</p>
+        <ul>
+            <li>L'accés à votre profil</li>
+            <li>Votre espace programme</li>
+            <li>L'accés à l'espace Challenge ainsi que l'espace Team</li>
+            <li>Le portail des sports</li>
+        </ul>
+    </div>
+</div>
+<section class="bloc-full">
+    <aside id="column-left" class="bloc-column-abs">
+        <h1 class="bloc-title">Mes groupes</h1>
+        <div class="bloc-link-column">
+            <div class="btblue">
+                <a href="{{ path('app_team_new')}}">Créer un nouveau groupe</a>
+            </div>
+            <ul>
+                {% for teams in teamsrepo %}
+                    <li>
+                        <div class="bloc-user-link">
+                            <a class="js.link" href="{{ path('app_team_show', {id: teams.team.id})}}">
+                                <div class="row">
+                                    {% if teams.team.imagesProfiles. name is defined %}
+                                    <img class="profil" src="{{ asset('profil/' ~ teams.team.imagesProfiles.name)}}" alt="">
+                                    {% else %}
+                                    <img class="profil" src="{{ asset('images/login.png')}}" alt="">
+                                    {% endif %}
+                                    {{ teams.team.name}}
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </aside>
+    <section class="bloc-large-abs">
+        <article class="message-middle">
+            <h2>Les Teams</h2><br><br>
+            <p>Rejoignez des teams qui parlent de vos sports.</p>
+            <p>Échangez vos truc et astuces pour vous améliorer.</p>
+        </article>
+        <div class="gallery">
+            {% for team in teams %}
+
+            <div class="card">
+                <h3>
+                    {{ team.name }} <br>
+                     sport : {{ team.sport.name}}
+                </h3>
+                <div class="card-img">
+                    {% if team.imagesProfiles is empty %}
+                    <p>Pas d'image enregistré</p>
+                    {% else %}
+                    <img src="{{ asset('profil/' ~ team.imagesProfiles.name)}}" width="400px" alt="">
+                    {% endif %}
+                </div>
+                <div class="card-a">
+                    <a href="{{ path('app_team_show', {id: team.id})}}">En voir plus</a>
+                </div>
+            </div>            
+            {% endfor %}
+            <div class="bloc-space"></div>
+        </div>
+    </section>
+</section>
+
+{% endblock %}

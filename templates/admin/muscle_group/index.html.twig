@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MuscleGroup index{% endblock %}
+
+{% block body %}
+<section class="bloc-full">
+    <aside id="column-left" class="bloc-column-abs">
+        <h1 class="bloc-title"></h1>
+        <div class="bloc-link-column">
+            <ul>
+                <li class="btvalid">
+                    <a href="{{ path('app_admin_muscle_group_new') }}">Nouveau</a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+    <section class="bloc-large-abs">
+        <h2 class="bloc-title"></h2>
+        {% for muscle_group in muscle_groups %}
+                <td>{{ muscle_group.name }}</td>
+                    <a href="{{ path('app_admin_muscle_group_edit', {'id': muscle_group.id}) }}">edit</a>
+        {% endfor %}
+    </section>
+</section>
+{% endblock %}

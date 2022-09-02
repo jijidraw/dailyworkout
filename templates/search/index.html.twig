@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recherche{% endblock %}
+
+{% block body %}
+<section class="bloc-full">
+    <div id="help" class="help-background hidden">
+        <div class="help-content">
+            <div id="close-help" class="help-close">{{ include('svg/deletecross.html.twig') }}</div>
+            <h1 class="help-title">Bienvenue sur Daily Workout</h1>
+            <p>Pour commencer nous vous conseillons d'aller sur l'onglet de votre profil</p>
+            <p>Dans le menu déroulant sous votre profil vous trouverez les accès à différentes partie.</p>
+            <ul>
+                <li>L'accés à votre profil</li>
+                <li>Votre espace programme</li>
+                <li>L'accés à l'espace Challenge ainsi que l'espace Team</li>
+                <li>Le portail des sports</li>
+            </ul>
+        </div>
+    </div>
+    <div id="column-left" class="bloc-column-abs">
+
+    <h2 class="bloc-title">Rechercher par : </h2>
+    <div class="bloc-link-column">
+                <span class="main-link active tab" data-target="#content1"="">Personnes</span>
+                <span class="main-link tab" data-target="#content2"="">Groupes</span>
+                <div class="content" id="content1">
+                    <p>Recherchez vos amis. <br>Trouvez des personnes qui ont les mêmes ambitions et les mêmes passions que vous.</p>
+                        <input type="text" placeholder="rechercher un utilisateur" id="search">
+                        <div data-id="-user-sport" class="accordion">Liste des sports</div>
+                        <div class="panel" id="panel-user-sport">
+                            {{ include('component/_select_user_sport.html.twig') }}
+                        </div>
+                        <div data-id="-user-goals" class="accordion">Liste des goals</div>
+                        <div class="panel" id="panel-user-goals">
+                            {{ include('component/_select_form_goals.html.twig') }}
+                        </div>
+                </div>
+                <div class="content" id="content2">
+                    <p>Trouvez des Teams qui vous correspondent</p>
+                        <input type="text" placeholder="rechercher un groupe" id="search-team">
+                        <div data-id="-team-sport" class="accordion">Liste des sports</div>
+                        <div class="panel" id="panel-team-sport">
+                            {{ include('component/_select_group_sport.html.twig') }}
+                        </div>
+                </div>
+    </div>
+    </div>
+    <section class="bloc-large-abs">
+        <div class="bloc-title"></div>
+        <div class="gallery">
+                {% for user in users %}
+                <div class="bloc-user-link">
+                    <a href="{{ path('app_user_show', {id: user.id})}}">
+                        <div class="row">
+                            {% if user.imagesProfiles is null %}
+                            <img class="profil" src="{{ asset('images/login.png')}}" alt="">
+                                {% else %}
+                            <img class="profil" src="{{ asset('profil/' ~ user.imagesProfiles.name)}}" alt="">
+                            {% endif %}
+                            {{ user.name}}
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+        </div>
+    </section>
+</section>
+
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/user/tabs.js')}}"></script>
+    <script src="{{ asset('js/search/searchTeam.js')}}"></script>
+    <script src="{{ asset('js/search/searchUser.js')}}"></script>
+    <script src="{{ asset('js/search/searchUserByGoal.js')}}"></script>
+    <script src="{{ asset('js/search/searchTeamBySport.js')}}"></script>
+    <script src="{{ asset('js/search/searchUserBySport.js')}}"></script>
+{% endblock %}

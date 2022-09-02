@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Messagerie{% endblock %}
+
+{% block body %}
+<div id="help" class="help-background hidden">
+    <div class="help-content">
+        <div id="close-help" class="help-close">{{ include('svg/deletecross.html.twig') }}</div>
+        <h1 class="help-title">Bienvenue sur Daily Workout</h1>
+        <p>Pour commencer nous vous conseillons d'aller sur l'onglet de votre profil</p>
+        <p>Dans le menu déroulant sous votre profil vous trouverez les accès à différentes partie.</p>
+        <ul>
+            <li>L'accés à votre profil</li>
+            <li>Votre espace programme</li>
+            <li>L'accés à l'espace Challenge ainsi que l'espace Team</li>
+            <li>Le portail des sports</li>
+        </ul>
+    </div>
+</div>
+<section class="bloc-full">
+    <aside id="column-left" class="bloc-column-abs">
+        <h2 class="bloc-title">Mes conversations</h2>
+        {% for conversation in conversations %}
+            {% if conversation.userA.id == app.user.id %}
+            <div class="bloc-user-link">
+                <a href="{{ path('app_conversation_show', {id: conversation.id})}}">
+                        <div class="row">
+                        <img class="profil" src="{{ asset('profil/' ~ conversation.userB.imagesProfiles.name)}}" alt="">
+                        {{ conversation.userB.name}}
+                    </div>
+                    </a>
+            </div>
+                {% else %}
+                <div class="bloc-user-link">
+                    <a href="{{ path('app_conversation_show', {id: conversation.id})}}">
+                        <div class="row">
+                            <img class="profil" src="{{ asset('profil/' ~ conversation.userA.imagesProfiles.name)}}" alt="">
+                            {{ conversation.userA.name}}
+                        </div>
+                    </a>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </aside>
+    <section class="bloc-large-abs">
+        <div class="bloc-title"></div>
+        <div class="form-message">
+            {{ include('message/_form.html.twig') }}
+        </div>
+        <section id="message" class="contact-message">
+            <div class="bloc-team-post">
+
+            {{ include('message/_message.html.twig') }}
+
+            {# {% for message in messsages %}
+            <a class="bloc-user-link" href="">
+                <img class="profil" src="{{ asset('profil/' ~ conversation.userB.imagesProfiles.name)}}" alt="">
+                <span>{{ conversation.userB.name}}</span>
+            </a>
+            {% endfor %} #}
+            </div>
+        </section>
+    </section>
+
+</section>
+
+{% endblock %}
+{% block javascripts %}
+{% endblock %}
