@@ -3,7 +3,11 @@
         <div class="post-title">
             <a href="{{ path('app_user_show', {id: message.user.id })}}">
                 <div class="row">
-                    <img class="profil" src="{{ asset('profil/' ~ message.user.imagesProfiles.name)}}" alt="">
+                    {% if message.user.imagesProfiles is empty %}
+                        <img class="profil" src="{{ asset('images/login.png')}}" alt="">
+                        {% else %}
+                        <img class="profil" src="{{ asset('profil/' ~ message.user.imagesProfiles.name)}}" alt="">
+                    {% endif %}
                     <div class="column">
                         <p>{{ message.user.name }}</p>
                         <p class="date">{{ message.createdAt | date('d/m/Y') }}</p>
