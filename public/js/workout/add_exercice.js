@@ -13,17 +13,14 @@ for(let linkExercice of linksExercices) {
         xhr.onreadystatechange = function(){
             if(this.readyState == 4 ){
                 if(this.status == 200){
-                    console.log(this.response)
                     let exercice = JSON.parse(this.response)
+                    console.log(exercice)
                     var card = 
                     `
                     <div class="card">
                     <h3>${exercice.name}</h3>
                     <div class="card-img">
                         <img src="/exercice/${exercice.imageSystem.name}" width="400px" alt="">
-                    </div>
-                    <div class="card-a>
-                    <a href="/workout/delete/exercice/${exercice.id}>retirer</a>
                     </div>
                     </div>
                     `

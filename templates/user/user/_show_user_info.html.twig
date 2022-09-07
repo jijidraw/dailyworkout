@@ -22,7 +22,6 @@
         </div>
         {% if user.id != app.user.id %}
         {% if isFollow == null %}
-        {{ dump(isFollow) }}
         <span><a id="js-follow" class="btmain" href="{{ path('userFollowers', {id: user.id})}}">suivre</a></span>
         {% else %}  
         <span><a id="js-follow" class="btmain" href="{{ path('userFollowers', {id: user.id})}}">désabonner</a></span>

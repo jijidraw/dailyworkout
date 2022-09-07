@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Category;
 use App\Entity\Exercice;
 use App\Entity\MuscleGroup;
+use App\Entity\SportsList;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -26,6 +27,11 @@ class ExerciceType extends AbstractType
             ])
             ->add('muscleGroup', EntityType::class, [
                 'class' => MuscleGroup::class,
+                'multiple' => true,
+                'expanded' => true
+            ])
+            ->add('sports', EntityType::class, [
+                'class' => SportsList::class,
                 'multiple' => true,
                 'expanded' => true
             ])

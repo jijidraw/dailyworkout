@@ -15,6 +15,10 @@
                         <div class="panel" id="panel-muscle">
                             {{ include('component/_select_form_muscle.html.twig') }}
                         </div>
+                    <div class="accordion" data-id="-sports">Par sport</div>
+                        <div class="panel" id="panel-sports">
+                            {{ include('component/_select_form_sport.html.twig') }}
+                        </div>
                     <div class="btvalid">
                         <a href="{{ path('app_workout_edit', {workout: workout.id})}}">Étape suivante</a>
                     </div>
@@ -72,5 +76,6 @@
 {% block javascripts %}
 <script src="{{ asset('js/workout/add_exercice.js')}}"></script>
 <script src="{{ asset('js/workout/filter_category.js')}}"></script>
+<script src="{{ asset('js/workout/filter_sports.js')}}"></script>
 <script src="{{ asset('js/workout/filter_muscle.js')}}"></script>
 {% endblock %}

@@ -60,10 +60,14 @@ class HomeController extends AbstractController
         // recherche de mes teams
 
         $teamMembers = $teamMemberRepository->findBy(['user' => $user, 'is_waiting' => false, 'is_blocked' => false, 'is_invite' => false]);
-        foreach ($teamMembers as $teamMember) {
-            $arrayTeam[] = $teamMember->getTeam()->getId();
+        if (!empty($teamMembers)) {
+            foreach ($teamMembers as $teamMember) {
+                $arrayTeam[] = $teamMember->getTeam()->getId();
+            }
+            $teams = $teamRepository->findBy(array('id' => $arrayTeam), ['updated_at' => 'DESC'], 4);
+        } else {
+            $teams = null;
         }
-        $teams = $teamRepository->findBy(array('id' => $arrayTeam), ['updated_at' => 'DESC'], 4);
 
         // post
         $post = new Post();

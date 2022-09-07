@@ -86,17 +86,21 @@
     font-size: 16px;
 }
 
+.form-loggin h4 {
+    font-size: 14px;
+}
+
 .loggin {
     @extend %flex-column;
 }
 
 .img-loggin {
     width: 100%;
-    margin-bottom: 30px;
+    height: 20%;
 }
 
 .img-loggin img {
-    height: 250px;
+    height: 100%;
     margin: auto;
 }
 
@@ -126,7 +130,7 @@
 
     .img-loggin img {
         margin: auto;
-        width: 60%;
-        height: auto;
+        width: auto;
+        height: 150px;
     }
 }

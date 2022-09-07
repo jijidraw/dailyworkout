@@ -57,6 +57,14 @@ class ExerciceRepository extends ServiceEntityRepository
             ->setParameter('id', $muscle);
         return $query->getQuery()->getResult();
     }
+    public function searchBySport($sport)
+    {
+        $query = $this->createQueryBuilder('e');
+        $query->leftJoin('e.sports', 's');
+        $query->where('s.id = :id')
+            ->setParameter('id', $sport);
+        return $query->getQuery()->getResult();
+    }
 
 
 

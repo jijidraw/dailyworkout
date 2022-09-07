@@ -64,6 +64,12 @@
                     <div id="help-toggle" class="help-toggle"> ? </div>
                 </li>
             </ul>
+
+            {% for message in app.flashes('success') %}
+                <div class="abs-message">
+                    {{ message }}
+                </div>
+            {% endfor %}
             
         </header>
         <div id="arrow-left" class="arrow" href="">{{ include('svg/arrowleft.html.twig') }}</div>

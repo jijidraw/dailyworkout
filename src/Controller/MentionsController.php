@@ -7,6 +7,7 @@ use App\Entity\User;
 use App\Form\ContactEmailType;
 use App\Form\User2Type;
 use App\Repository\UserRepository;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -63,6 +64,7 @@ class MentionsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $contact->setCreatedAt(new DateTime());
             $em->persist($contact);
             $em->flush();
             $email = (new TemplatedEmail())
@@ -71,6 +73,8 @@ class MentionsController extends AbstractController
                 ->subject($contact->getSubject())
                 ->htmlTemplate('emails/contact.html.twig')
                 ->context(compact('contact'));
+            $mailer->send($email);
+            return $this->redirectToRoute('app_contact');
         }
         return $this->render('mentions/contact.html.twig', [
             'controller_name' => 'MentionsController',

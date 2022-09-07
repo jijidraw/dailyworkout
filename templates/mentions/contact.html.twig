@@ -28,8 +28,7 @@
     </aside>
     <section class="bloc-large-abs">
         <h2 class="bloc-title">Nous contacter</h2>
-        <div class="form-loggin">
-            <div class="loggin">
+        <div class="form-base1">
                 <p> Vous souhaitez nous contacter pour nous faire part d'un problème, une suggestion afin d'améliorer DailyWorkout</p>
                 {{ form_start(form) }}
                 {{ form_row(form.email) }}
@@ -37,7 +36,6 @@
                 {{ form_row(form.content) }}
                 <button class="btmain">{{ button_label|default('envoyer') }}</button>
                 {{ form_end(form) }}
-            </div>
         </div>
 
     </section>

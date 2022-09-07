@@ -55,4 +55,12 @@
     height: 250px;
 }
 
+.abs-message {
+    position: absolute;
+    top: 20%;
+    background-color: $grey2;
+    color: black;
+    width: 100%;
+}
+
 @media (max-width: 860px) {}

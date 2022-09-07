@@ -6,6 +6,7 @@ use App\Entity\Category;
 use App\Entity\Exercice;
 use App\Entity\ExercicePerso;
 use App\Entity\MuscleGroup;
+use App\Entity\SportsList;
 use App\Entity\User;
 use App\Entity\Workout;
 use App\Entity\WorkoutFav;
@@ -17,6 +18,7 @@ use App\Repository\ExercicePersoRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use App\Repository\ExerciceRepository;
 use App\Repository\MuscleGroupRepository;
+use App\Repository\SportsListRepository;
 use App\Repository\UserStatRepository;
 use App\Repository\WorkoutNotationRepository;
 use App\Repository\WorkoutRepository;
@@ -70,7 +72,7 @@ class WorkoutController extends AbstractController
     /**
      * @Route("/new/step2/{id}", name="app_workout_new_step_2", methods={"GET", "POST"})
      */
-    public function newWorkoutStep2(UserStatRepository $userStatRepository, Workout $workout, CategoryRepository $categoryRepository, MuscleGroupRepository $muscleGroupRepository, ExerciceRepository $exrepo): Response
+    public function newWorkoutStep2(UserStatRepository $userStatRepository, SportsListRepository $sportsListRepository, Workout $workout, CategoryRepository $categoryRepository, MuscleGroupRepository $muscleGroupRepository, ExerciceRepository $exrepo): Response
     {
         $user = $this->getUser();
         $userStat = $userStatRepository->findOneBy(['user' => $user]);
@@ -80,15 +82,16 @@ class WorkoutController extends AbstractController
         return $this->renderForm('user/workout/new_step_2.html.twig', [
             'workout' => $workout,
             'ListExercice' => $exrepo->findAll(),
-            'category' => $categoryRepository->findAll(),
-            'muscles' => $muscleGroupRepository->findAll(),
+            'category' => $categoryRepository->findBy([], ['name' => 'ASC']),
+            'sports' => $sportsListRepository->findBy([], ['name' => 'ASC']),
+            'muscles' => $muscleGroupRepository->findBy([], ['name' => 'ASC']),
         ]);
     }
 
     /**
      * @Route("/{workout}/edit", name="app_workout_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Workout $workout, WorkoutRepository $workoutRepository, CategoryRepository $categoryRepository, ExerciceRepository $exrepo, MuscleGroupRepository $muscleGroupRepository, ExercicePersoRepository $experso): Response
+    public function edit(Request $request, Workout $workout, WorkoutRepository $workoutRepository, SportsListRepository $sportsListRepository, CategoryRepository $categoryRepository, ExerciceRepository $exrepo, MuscleGroupRepository $muscleGroupRepository, ExercicePersoRepository $experso): Response
     {
         $form = $this->createForm(Workout1Type::class, $workout);
         $form->handleRequest($request);
@@ -102,8 +105,9 @@ class WorkoutController extends AbstractController
             'workout' => $workout,
             'form' => $form,
             'ListExercice' => $exrepo->findAll(),
-            'category' => $categoryRepository->findAll(),
-            'muscles' => $muscleGroupRepository->findAll(),
+            'category' => $categoryRepository->findBy([], ['name' => 'ASC']),
+            'sports' => $sportsListRepository->findBy([], ['name' => 'ASC']),
+            'muscles' => $muscleGroupRepository->findBy([], ['name' => 'ASC']),
             'experso' => $experso->findAll()
         ]);
     }
@@ -156,7 +160,7 @@ class WorkoutController extends AbstractController
             $json,
             200,
             [
-                "Content-Type" => "application/json"
+                "Content-Type" => "application/json",
             ]
         );
         return $response;
@@ -200,6 +204,18 @@ class WorkoutController extends AbstractController
     public function getExerciceByMuscle(MuscleGroup $muscle, ExerciceRepository $exerciceRepository, SerializerInterface $serializer)
     {
         $json = $serializer->serialize($exerciceRepository->searchByMuscle(['muscleGroup' => $muscle]), 'json', ['groups' => 'exercice:category']);
+
+        $response = new Response($json, 200, [
+            "Content-Type" => "application/json"
+        ]);
+        return $response;
+    }
+    /**
+     * @Route("/sport/{id}", name="app_workout_sport", methods={"POST","GET"})
+     */
+    public function getExerciceBySport(SportsList $sport, ExerciceRepository $exerciceRepository, SerializerInterface $serializer)
+    {
+        $json = $serializer->serialize($exerciceRepository->searchBySport(['sports' => $sport]), 'json', ['groups' => 'exercice:category']);
 
         $response = new Response($json, 200, [
             "Content-Type" => "application/json"

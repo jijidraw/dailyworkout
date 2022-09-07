@@ -43,7 +43,6 @@ class Exercice
 
     /**
      * @ORM\OneToMany(targetEntity=ExercicePerso::class, mappedBy="exercice")
-     * @Groups({"exercice:detail"})
      */
     private $exercicePersos;
 
@@ -71,6 +70,11 @@ class Exercice
      */
     private $imageSystem;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=SportsList::class, inversedBy="exercices")
+     */
+    private $sports;
+
     public function __toString()
     {
         return $this->name;
@@ -81,6 +85,7 @@ class Exercice
         $this->exercicePersos = new ArrayCollection();
         $this->muscleGroup = new ArrayCollection();
         $this->categories = new ArrayCollection();
+        $this->sports = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -211,6 +216,30 @@ class Exercice
         }
 
         $this->imageSystem = $imageSystem;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, SportsList>
+     */
+    public function getSports(): Collection
+    {
+        return $this->sports;
+    }
+
+    public function addSport(SportsList $sport): self
+    {
+        if (!$this->sports->contains($sport)) {
+            $this->sports[] = $sport;
+        }
+
+        return $this;
+    }
+
+    public function removeSport(SportsList $sport): self
+    {
+        $this->sports->removeElement($sport);
 
         return $this;
     }

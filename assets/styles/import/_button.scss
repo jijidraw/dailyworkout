@@ -64,6 +64,10 @@ select {
     color: white;
 }
 
+.btmain:hover a:hover {
+    color: white;
+}
+
 .btmain:hover {
     @extend %button;
     background-color: $red2;

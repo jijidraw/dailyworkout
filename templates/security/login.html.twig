@@ -28,8 +28,8 @@
     <form method="post" class="loggin">
         <div class="img-loggin">
             <img src="{{ asset('images/logo.png')}}" alt="">
-            <h3>Prenez en main vos exploits</h3>
         </div>
+        <h3>Prenez en main vos exploits</h3>
         {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}
@@ -61,13 +61,15 @@
     <button class="btmain" type="submit">
         Se connecter.
     </button>
-    <h2>Vous n'avez pas encore de compte ?</h2>
+    <h4>Vous n'avez pas encore de compte ?</h4>
     <div class="btmain">
         <a href="{{ path('app_register') }}">Créer un compte</a>
     </div>
     <p>Mot de passe <a href="{{ path('app_forgot_password_request')}}">oublié ?</a></p>
 </form>
+<div class="bloc-space"></div>
 </section>
+
 </div>
 
 {% endblock %}
