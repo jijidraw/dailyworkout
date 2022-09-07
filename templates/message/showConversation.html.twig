@@ -25,10 +25,10 @@
             <div class="bloc-user-link">
                 <a href="{{ path('app_conversation_show', {id: conversation.id})}}">
                         <div class="row">
-                            {% if conversation.userB.imagesProfiles is defined %}
-                            <img class="profil" src="{{ asset('profil/' ~ conversation.userB.imagesProfiles.name)}}" alt="">
-                            {% else %}
+                            {% if conversation.userB.imagesProfiles is empty %}
                             <img class="profil dropdown" src="{{ asset('images/login.png')}}" alt="">
+                            {% else %}
+                            <img class="profil" src="{{ asset('profil/' ~ conversation.userB.imagesProfiles.name)}}" alt="">
                             {% endif %}
                         {{ conversation.userB.name}}
                     </div>
@@ -38,10 +38,10 @@
                 <div class="bloc-user-link">
                     <a href="{{ path('app_conversation_show', {id: conversation.id})}}">
                         <div class="row">
-                            {% if conversation.userA.imagesProfiles is defined %}
-                            <img class="profil" src="{{ asset('profil/' ~ conversation.userA.imagesProfiles.name)}}" alt="">
-                            {% else %}
+                            {% if conversation.userA.imagesProfiles is empty %}
                             <img class="profil dropdown" src="{{ asset('images/login.png')}}" alt="">
+                            {% else %}
+                            <img class="profil" src="{{ asset('profil/' ~ conversation.userA.imagesProfiles.name)}}" alt="">
                             {% endif %}
                             {{ conversation.userA.name}}
                         </div>
