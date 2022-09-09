@@ -196,7 +196,11 @@
                             {% if member.isAdmin == false %}
                             <div class="bloc-user-link">
                                 <a href="{{ path('app_user_show', {id : member.user.id })}}">
-                                        <img class="profil" src="{{ asset('profil/' ~ member.user.imagesProfiles.name)}}" alt="">
+                                    {% if member.user.imagesProfiles is null %}
+                                            <img class="profil" src="{{ asset('images/login.png')}}" alt="">
+                                            {% else %}
+                                            <img class="profil" src="{{ asset('profil/' ~ member.user.imagesProfiles.name)}}" alt="">
+                                        {% endif %}
                                         {{ member.user.name }}
                                         <a class="btvalid" href="{{ path('app_team_admin_member', {id: member.id})}}">{{ include('svg/checkmark.html.twig') }}</a>
                                 </a>
