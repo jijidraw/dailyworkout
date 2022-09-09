@@ -57,16 +57,6 @@
                     {{ sport.name }}
                 </h3>
                 <article class="presentation-text">{{ sport.description }}</article>
-                <div class="row">
-                    {% if sport.isSolo == false %}
-                        {% else %}
-                        Peut se pratiquer en solo
-                    {% endif %}
-                    {% if sport.isGroup == false %}
-                        {% else %}
-                        Peut se faire en groupe
-                    {% endif %}
-                </div>
             </div>
             <div class="bloc-space"></div>
         </div>
