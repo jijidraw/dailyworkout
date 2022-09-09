@@ -27,30 +27,35 @@ class UserType extends AbstractType
             ])
             ->add('description', TextareaType::class, [
                 'label' => 'Ma description',
+                'required' => false,
                 'attr' => array(
                     'placeholder' => 'mettez un description de qui vous êtes'
                 )
             ])
             ->add('urlInstagram', TextType::class, [
                 'label' => false,
+                'required' => false,
                 'attr' => array(
                     'placeholder' => 'lien de votre compte Instagram'
                 )
             ])
             ->add('urlFacebook', TextType::class, [
                 'label' => false,
+                'required' => false,
                 'attr' => array(
                     'placeholder' => 'lien de votre compte facebook'
                 )
             ])
             ->add('urlTwitter', TextType::class, [
                 'label' => false,
+                'required' => false,
                 'attr' => array(
                     'placeholder' => 'lien de votre compte twitter'
                 )
             ])
             ->add('urlTikTok', TextType::class, [
                 'label' => false,
+                'required' => false,
                 'attr' => array(
                     'placeholder' => 'lien de votre compte tiktok'
                 )

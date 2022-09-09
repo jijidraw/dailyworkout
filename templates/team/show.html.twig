@@ -41,7 +41,11 @@
         <div class="panel" id="panel-team">
             {% for follow in follows %}
             <a class="bloc-user-link" href="{{ path('app_team_invite', {id: team.id, user:follow.follower.id})}}" id="js-send">
-                <img class="profil" src="{{ asset('profil/' ~ follow.follower.imagesProfiles.name)}}" alt="">
+                {% if follow.follower.imagesProfiles is null %}
+                            <img class="profil" src="{{ asset('images/login.png')}}" alt="">
+                            {% else %}
+                            <img class="profil" src="{{ asset('profil/' ~ follow.follower.imagesProfiles.name)}}" alt="">
+                            {% endif %}
                 <p>{{ follow.follower.name}}</p>
             </a>
             {% endfor %}
@@ -203,7 +207,11 @@
                                 {% for member in team.teamMembers %}
                                 <div class="bloc-user-link">
                                     <a href="{{ path('app_user_show', {id : member.user.id })}}">
+                                        {% if member.user.imagesProfiles is null %}
+                                            <img class="profil" src="{{ asset('images/login.png')}}" alt="">
+                                            {% else %}
                                             <img class="profil" src="{{ asset('profil/' ~ member.user.imagesProfiles.name)}}" alt="">
+                                        {% endif %}
                                             {{ member.user.name }}
                                             <a class="btdelete" href="{{ path('app_team_delete_member', {id: member.id})}}">{{ include('svg/deletecross.html.twig') }}</a>
                                     </a>

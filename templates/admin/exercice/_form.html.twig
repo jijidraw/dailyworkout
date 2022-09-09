@@ -1,4 +1,9 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
+    <div class="input-file">
+        <label for="exercice_imageSystem">{{ include('svg/jpg.html.twig') }}</label>
+    </div>
     <button class="btn">{{ button_label|default('Save') }}</button>
+    <div class="preview"></div>
+
 {{ form_end(form) }}

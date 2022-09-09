@@ -143,7 +143,7 @@ class TeamController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
+            $team->setIsPrivate(false);
             $teamRepository->add($team, true);
             $empty = $form->get('imageProfile')->getData();
             if (!empty($empty)) {
@@ -163,7 +163,7 @@ class TeamController extends AbstractController
             $em->persist($team);
             $em->flush();
             $teamMember = new TeamMember();
-            $teamMember->setIsAdmin(true)->setTeam($team)->setUser($user)->setIsWaiting(false);
+            $teamMember->setIsAdmin(true)->setTeam($team)->setUser($user)->setIsWaiting(false)->setIsBlocked(false)->setIsInvite(false);
             $em->persist($teamMember);
             $em->flush();
 
@@ -321,14 +321,22 @@ class TeamController extends AbstractController
         $currentUser = $this->getUser()->getUserIdentifier();
         $currentName = $userRepository->findOneBy(['email' => $currentUser]);
         $name = $currentName->getName();
-        $img = $currentName->getImagesProfiles()->getName();
+        if ($currentName->getImagesProfiles() == null) {
+            $img = null;
+        } else {
+            $img = $currentName->getImagesProfiles()->getName();
+        };
         $teamMember = new TeamMember;
         $teamMember->setUser($user)->setTeam($team)->setIsInvite(true)->setIsBlocked(false)->setIsAdmin(false)->setIsWaiting(false);
         $em->persist($teamMember);
         $em->flush();
         $teamName = $team->getName();
         $notification = new Notification;
-        $notification->setUser($user)->setTeam($team)->setContent("$name vous à invité à rejoindre $teamName")->setIsRead(false)->setImage($img);
+        if ($img == null) {
+            $notification->setUser($user)->setTeam($team)->setContent("$name vous à invité à rejoindre $teamName")->setIsRead(false);
+        } else {
+            $notification->setUser($user)->setTeam($team)->setContent("$name vous à invité à rejoindre $teamName")->setIsRead(false)->setImage($img);
+        };
         $em->persist($notification);
         $em->flush();
         return $this->json([

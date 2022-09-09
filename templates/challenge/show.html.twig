@@ -33,7 +33,11 @@
                     {% for follow in follows %}
                     <div class="bloc-user-link">
                         <a class="bloc-user-link" href="{{ path('app_challenge_invite', {id: challenge.id, user:follow.follower.id})}}" id="js-send">
+                            {% if follow.follower.imagesProfiles is null %}
+                            <img class="profil" src="{{ asset('images/login.png')}}" alt="">
+                            {% else %}
                             <img class="profil" src="{{ asset('profil/' ~ follow.follower.imagesProfiles.name)}}" alt="">
+                            {% endif %}
                             {{ follow.follower.name}}
                         </a>
                     </div>
@@ -113,7 +117,11 @@
                 {% for users in challengers %}
                 <div class="bloc-user-link">
                     <a href="{{ path('app_user_show', {id: users.user.id})}}" class="js-send">
-                        <img class="profil" src="{{ asset('profil/' ~ users.user.imagesProfiles.name)}}" alt="">
+                        {% if users.user.imagesProfiles is null %}
+                            <img class="profil" src="{{ asset('images/login.png')}}" alt="">
+                            {% else %}
+                            <img class="profil" src="{{ asset('profil/' ~ users.user.imagesProfiles.name)}}" alt="">
+                        {% endif %}
                         {{ users.user.name}}
                     </a>
                 </div>
@@ -131,7 +139,11 @@
                 {% for users in accomplish %}
                 <div class="bloc-user-link">
                     <a href="{{ path('app_user_show', {id: users.user.id})}}" class="js-send">
+                        {% if users.user.imagesProfiles is null %}
+                        <img class="profil" src="{{ asset('images/login.png')}}" alt="">
+                        {% else %}
                         <img class="profil" src="{{ asset('profil/' ~ users.user.imagesProfiles.name)}}" alt="">
+                    {% endif %}
                         {{ users.user.name}}
                     </a>
                 </div>
@@ -148,7 +160,11 @@
             <div class="gallery">
                 {% for users in invited %}
                     <a class="bloc-user-link" href="{{ path('app_user_show', {id: users.user.id})}}">
+                        {% if users.user.imagesProfiles is null %}
+                        <img class="profil" src="{{ asset('images/login.png')}}" alt="">
+                        {% else %}
                         <img class="profil" src="{{ asset('profil/' ~ users.user.imagesProfiles.name)}}" alt="">
+                    {% endif %}
                         {{ users.user.name}}
                     </a>
                 {% endfor %}

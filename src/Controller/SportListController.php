@@ -40,11 +40,15 @@ class SportListController extends AbstractController
         foreach ($userSports as $userSport) {
             $userSportsArray[] = $userSport->getId();
         }
-        $remove = false;
-        if (in_array($sportId, $userSportsArray)) {
-            $remove = true;
+        if (!empty($userSportsArray)) {
+
+            $remove = false;
+            if (in_array($sportId, $userSportsArray)) {
+                $remove = true;
+            }
+        } else {
+            $remove = false;
         }
-        dump($remove);
         return $this->render('sport_list/show.html.twig', [
             'controller_name' => 'SportListController',
             'equipments' => $equipmentRepository->searchBySport(['sportList' => $sport]),

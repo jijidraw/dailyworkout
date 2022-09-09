@@ -8,7 +8,11 @@ vous ne faite pas partie du groupe
     {% for member in team.teamMembers %}
         <div class="gallery">
             <a class="bloc-user-link" href="{{ path('app_user_show', {id : member.user.id })}}">
-                <img class="profil" src="{{ asset('profil/' ~ member.user.imagesProfiles.name)}}" alt="">
+                {% if member.user.imagesProfiles is null %}
+                            <img class="profil" src="{{ asset('images/login.png')}}" alt="">
+                            {% else %}
+                            <img class="profil" src="{{ asset('profil/' ~ member.user.imagesProfiles.name)}}" alt="">
+                            {% endif %}
                 {{ member.user.name }}
             </a>
         </div>

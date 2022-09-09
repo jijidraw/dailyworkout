@@ -25,12 +25,14 @@ class WorkoutType extends AbstractType
             ])
             ->add('rounds', TextType::class, [
                 'label' => false,
+                'required' => false,
                 'attr' => array(
                     'placeholder' => 'nombre de tours de votre entrainement'
                 )
             ])
             ->add('content', TextareaType::class, [
                 'label' => false,
+                'required' => false,
                 'attr' => array(
                     'placeholder' => 'détails sur comment faire votre workout'
                 )
