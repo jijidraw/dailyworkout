@@ -82,7 +82,7 @@ class ExerciceController extends AbstractController
     /**
      * @Route("/{id}/edit", name="app_admin_exercice_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Exercice $exercice, ExerciceRepository $exerciceRepository, EntityManagerInterface $em, ImageSystemRepository $imageSystem): Response
+    public function edit(Request $request, Exercice $exercice, ImageSystemRepository $imageSystemRepository, ExerciceRepository $exerciceRepository, EntityManagerInterface $em): Response
     {
         $form = $this->createForm(ExerciceType::class, $exercice);
         $form->handleRequest($request);
@@ -94,11 +94,13 @@ class ExerciceController extends AbstractController
             if (!empty($empty)) {
                 // fonction pour effacer l'ancienne image
                 $userId = $exercice->getId();
-                $ImgRmv = $imageSystem->findOneBy(['exercice' => $userId]);
-                $ImgRmvName = $ImgRmv->getName();
-                unlink($this->getParameter('exercice_directory') . '/' . $ImgRmvName);
-                $em->remove($ImgRmv);
-                $em->flush();
+                $ImgRmv = $imageSystemRepository->findOneBy(['exercice' => $userId]);
+                if (!empty($ImgRmv)) {
+                    $ImgRmvName = $ImgRmv->getName();
+                    unlink($this->getParameter('exercice_directory') . '/' . $ImgRmvName);
+                    $em->remove($ImgRmv);
+                    $em->flush();
+                }
 
                 $images = $form->get('imageSystem')->getData();
                 $fichier = md5(uniqid()) . '.' . $images->guessExtension();

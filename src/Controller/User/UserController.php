@@ -151,9 +151,12 @@ class UserController extends AbstractController
                 // fonction pour effacer l'ancienne image de profil
                 $userId = $user->getId();
                 $ImgRmv = $imagesProfilesRepository->findOneBy(['user' => $userId]);
-                if (!empty($ImgRmv)) {
+                if ($ImgRmv->getName() != 'login.png') {
                     $ImgRmvName = $ImgRmv->getName();
                     unlink($this->getParameter('profil_directory') . '/' . $ImgRmvName);
+                    $em->remove($ImgRmv);
+                    $em->flush();
+                } else {
                     $em->remove($ImgRmv);
                     $em->flush();
                 }

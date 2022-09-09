@@ -154,6 +154,25 @@ textarea {
 
 // workout form
 
+
+.form-middle {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    @extend %shadow;
+    margin: auto;
+    text-align: center;
+    width: fit-content;
+    width: 50%;
+    height: fit-content;
+    background: white;
+}
+
+.form-middle .btmain,
+h2 {
+    margin: $mp2 auto;
+}
+
 // comment form
 
 .form-comment {
@@ -202,3 +221,9 @@ textarea {
 }
 
 // challenge comment
+
+@media (max-width: 860px) {
+    .form-middle {
+        width: 100%;
+    }
+}

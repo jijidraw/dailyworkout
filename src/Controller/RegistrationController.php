@@ -42,7 +42,8 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $user->setIsWelcome(true);
+            $user->setIsWelcome(true)->setIsPrivate(false)->setIsUnactive(false);
+
             // encode the plain password
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
@@ -50,8 +51,12 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
+            $img = new ImagesProfiles;
+            $img->setUser($user)->setName('login.png');
+            $entityManager->persist($img);
+            $entityManager->flush();
             $rewardId = $rewardRepository->findOneBy(['id' => '1']);
-            $user->addReward($rewardId)->setIsPrivate(false)->setIsUnactive(false);
+            $user->addReward($rewardId)->setImagesProfiles($img);
             $entityManager->persist($user);
             $entityManager->flush();
             $userStat = new UserStat();

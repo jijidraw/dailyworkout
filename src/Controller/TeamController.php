@@ -158,7 +158,10 @@ class TeamController extends AbstractController
                 $img->setName($fichier);
                 $img->setTeam($team);
                 $team->setImagesProfiles($img);
-            };
+            } else {
+                $img = new ImagesProfiles();
+                $img->setName('team.png')->setTeam($team);
+            }
 
             $em->persist($team);
             $em->flush();
@@ -252,9 +255,12 @@ class TeamController extends AbstractController
                 // fonction pour effacer l'ancienne image de profil
                 $userId = $team->getId();
                 $ImgRmv = $imagesProfilesRepository->findOneBy(['team' => $userId]);
-                if (!empty($ImgRmv)) {
+                if ($ImgRmv->getName() != 'team.png') {
                     $ImgRmvName = $ImgRmv->getName();
                     unlink($this->getParameter('profil_directory') . '/' . $ImgRmvName);
+                    $em->remove($ImgRmv);
+                    $em->flush();
+                } else {
                     $em->remove($ImgRmv);
                     $em->flush();
                 }

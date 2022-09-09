@@ -115,8 +115,7 @@
             <p class="message-middle">Nombres de challenger pour {{ challenge.title }} : {{ challengers | length }}</p>
             <div class="gallery">
                 {% for users in challengers %}
-                <div class="bloc-user-link">
-                    <a href="{{ path('app_user_show', {id: users.user.id})}}" class="js-send">
+                    <a class="bloc-user-link" href="{{ path('app_user_show', {id: users.user.id})}}" class="js-send">
                         {% if users.user.imagesProfiles is null %}
                             <img class="profil" src="{{ asset('images/login.png')}}" alt="">
                             {% else %}
@@ -124,7 +123,6 @@
                         {% endif %}
                         {{ users.user.name}}
                     </a>
-                </div>
                 {% endfor %}
             </div>
             {% endif %}
@@ -137,16 +135,14 @@
             <p class="message-middle">Nombres de challenger qui on accompli {{ challenge.title }} : {{ accomplish | length }}</p>
             <div class="gallery">
                 {% for users in accomplish %}
-                <div class="bloc-user-link">
-                    <a href="{{ path('app_user_show', {id: users.user.id})}}" class="js-send">
+                    <a class="bloc-user-link" href="{{ path('app_user_show', {id: users.user.id})}}" class="js-send">
                         {% if users.user.imagesProfiles is null %}
-                        <img class="profil" src="{{ asset('images/login.png')}}" alt="">
-                        {% else %}
-                        <img class="profil" src="{{ asset('profil/' ~ users.user.imagesProfiles.name)}}" alt="">
-                    {% endif %}
+                            <img class="profil" src="{{ asset('images/login.png')}}" alt="">
+                            {% else %}
+                            <img class="profil" src="{{ asset('profil/' ~ users.user.imagesProfiles.name)}}" alt="">
+                        {% endif %}
                         {{ users.user.name}}
                     </a>
-                </div>
                 {% endfor %}
             </div>
             {% endif %}

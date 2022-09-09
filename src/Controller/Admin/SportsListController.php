@@ -83,7 +83,7 @@ class SportsListController extends AbstractController
     /**
      * @Route("/{id}/edit", name="app_admin_sports_list_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, SportsList $sportsList, SportsListRepository $sportsListRepository, EntityManagerInterface $em, ImageSystemRepository $imageSystem): Response
+    public function edit(Request $request, SportsList $sportsList, SportsListRepository $sportsListRepository, EntityManagerInterface $em, ImageSystemRepository $imageSystemRepository): Response
     {
         $form = $this->createForm(SportsListType::class, $sportsList);
         $form->handleRequest($request);
@@ -95,11 +95,13 @@ class SportsListController extends AbstractController
             if (!empty($empty)) {
                 // fonction pour effacer l'ancienne image de profil
                 $userId = $sportsList->getId();
-                $ImgRmv = $imageSystem->findOneBy(['sport' => $userId]);
-                $ImgRmvName = $ImgRmv->getName();
-                unlink($this->getParameter('sport_directory') . '/' . $ImgRmvName);
-                $em->remove($ImgRmv);
-                $em->flush();
+                $ImgRmv = $imageSystemRepository->findOneBy(['sport' => $userId]);
+                if (!empty($ImgRmv)) {
+                    $ImgRmvName = $ImgRmv->getName();
+                    unlink($this->getParameter('sport_directory') . '/' . $ImgRmvName);
+                    $em->remove($ImgRmv);
+                    $em->flush();
+                }
 
                 $images = $form->get('imageSystem')->getData();
                 $fichier = md5(uniqid()) . '.' . $images->guessExtension();
