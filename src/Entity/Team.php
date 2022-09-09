@@ -56,7 +56,7 @@ class Team
     private $sport;
 
     /**
-     * @ORM\OneToMany(targetEntity=TeamMember::class, mappedBy="team", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=TeamMember::class, mappedBy="team", cascade={"persist", "remove"})
      * @Groups({"search:team"})
      */
     private $teamMembers;

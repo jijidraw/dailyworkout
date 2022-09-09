@@ -161,6 +161,7 @@ textarea {
     flex-wrap: wrap;
     @extend %shadow;
     margin: auto;
+    padding: $mp2;
     text-align: center;
     width: fit-content;
     width: 50%;

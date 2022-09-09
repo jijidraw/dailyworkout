@@ -4,7 +4,7 @@ vous ne faite pas partie du groupe
     {% if isMember is not null and isMember.isWaiting == true %}
         Demande en attente
     {% else %}
-    <h3>Membres de {{ team.name }}</h3>
+    <h3 class="bloc-title">Membres de {{ team.name }}</h3>
     {% for member in team.teamMembers %}
         <div class="gallery">
             <a class="bloc-user-link" href="{{ path('app_user_show', {id : member.user.id })}}">

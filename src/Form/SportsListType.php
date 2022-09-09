@@ -30,12 +30,6 @@ class SportsListType extends AbstractType
                     'placeholder' => 'Description du sport'
                 )
             ])
-            ->add('is_solo', CheckboxType::class, [
-                'label' => 'solo'
-            ])
-            ->add('is_group', CheckboxType::class, [
-                'label' => 'groupe'
-            ])
             ->add('imageSystem', FileType::class, [
                 'label' => false,
                 'mapped' => false,

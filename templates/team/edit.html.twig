@@ -8,10 +8,6 @@
         <h1 class="bloc-title"></h1>
         <div class="bloc-link-column">
             <ul>
-                <li
-                class="btdelete">
-                    {{ include('team/_delete_form.html.twig') }}
-                </li>
             </ul>
         </div>
 
@@ -20,6 +16,8 @@
         <h2 class="bloc-title">Modifier les informations</h2>
         <div class="form-base">
             {{ include('team/_form.html.twig') }}
+            {{ include('team/_delete_form.html.twig') }}
+
         </div>
     </section>
 </section>

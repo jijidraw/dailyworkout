@@ -29,9 +29,7 @@
         </h1>
         
         <ul class="bloc-link-column">
-            <div class="btblue">
-                <a class="center" href="{{ path('app_team_new')}}">Créer un nouveau groupe</a>
-            </div>
+                <a class="btblue" href="{{ path('app_team_new')}}">Créer un nouveau groupe</a>
             <li class="main-link tab" data-target="#content4"="">Présentation du groupe</li>
             <li class="main-link active tab" data-target="#content1"="">Posts</li>
             {% if isMember == null %}
@@ -55,10 +53,8 @@
         {% for admin in admins %}
             {% if app.user.id == admin.user.id %}
             <li class="bloc-title">Espace Administrateur</li>
-            <li class="main-link tab" data-target="#content3">Supprimer les membres</li>
-            <div class="btblue">
-                <a href="{{ path('app_team_edit', {'id': team.id}) }}">Modifier les informations</a>
-            </div>
+            <li class="main-link tab" data-target="#content3">Gérer les membres</li>
+                <a class="btblue" href="{{ path('app_team_edit', {'id': team.id}) }}">Modifier les informations</a>
             {% endif %}
         {% endfor %}
         
@@ -181,47 +177,37 @@
 
                         {% for member in team.teamMembers %}
                             {% if member.isWaiting == true %}
-                            <div class="bloc-user-link">
-                                <a href="{{ path('app_user_show', {id : member.user.id })}}">
+                                <a class="bloc-user-link" href="{{ path('app_user_show', {id : member.user.id })}}">
                                     <img class="profil" src="{{ asset('profil/' ~ member.user.imagesProfiles.name)}}" alt="">
                                     {{ member.user.name }}
                                     <a class="btvalid" href="{{ path('app_team_accept_member', {id: member.id})}}">{{ include('svg/checkmark.html.twig') }}</a>
                                 </a>
-                            </div>
                             {% endif %}
                             {% endfor %}
                             
                             <h3>Nommer un Admin</h3>
                             {% for member in team.teamMembers %}
                             {% if member.isAdmin == false %}
-                            <div class="bloc-user-link">
-                                <a href="{{ path('app_user_show', {id : member.user.id })}}">
-                                    {% if member.user.imagesProfiles is null %}
-                                            <img class="profil" src="{{ asset('images/login.png')}}" alt="">
-                                            {% else %}
-                                            <img class="profil" src="{{ asset('profil/' ~ member.user.imagesProfiles.name)}}" alt="">
-                                        {% endif %}
-                                        {{ member.user.name }}
-                                        <a class="btvalid" href="{{ path('app_team_admin_member', {id: member.id})}}">{{ include('svg/checkmark.html.twig') }}</a>
+                            <div class="bloc-user-link-group">
+                                <a class="bloc-user-link" href="{{ path('app_user_show', {id : member.user.id })}}">
+                                    <img class="profil" src="{{ asset('profil/' ~ member.user.imagesProfiles.name)}}" alt="">
+                                    {{ member.user.name }}
                                 </a>
+                                <a class="btvalid" href="{{ path('app_team_admin_member', {id: member.id})}}">{{ include('svg/checkmark.html.twig') }}</a>
                             </div>
-                            {% endif %}
+                                {% endif %}
                             {% endfor %}
                             <h4 class="bloc-title">Supprimer des membres de la team</h4>
-                                {% for member in team.teamMembers %}
-                                <div class="bloc-user-link">
-                                    <a href="{{ path('app_user_show', {id : member.user.id })}}">
-                                        {% if member.user.imagesProfiles is null %}
-                                            <img class="profil" src="{{ asset('images/login.png')}}" alt="">
-                                            {% else %}
-                                            <img class="profil" src="{{ asset('profil/' ~ member.user.imagesProfiles.name)}}" alt="">
-                                        {% endif %}
-                                            {{ member.user.name }}
-                                            <a class="btdelete" href="{{ path('app_team_delete_member', {id: member.id})}}">{{ include('svg/deletecross.html.twig') }}</a>
+                            {% for member in team.teamMembers %}
+                            <div class="bloc-user-link-group">
+                                    <a class="bloc-user-link" href="{{ path('app_user_show', {id : member.user.id })}}">
+                                        <img class="profil" src="{{ asset('profil/' ~ member.user.imagesProfiles.name)}}" alt="">
+                                        {{ member.user.name }}
                                     </a>
-                                </div>
-                            {% endfor %}
-                        </div>
+                                    <a class="btdelete" href="{{ path('app_team_delete_member', {id: member.id})}}">{{ include('svg/deletecross.html.twig') }}</a>
+                            </div>
+                                    {% endfor %}
+                            </div>
                         <div class="bloc-space"></div>
                     </div>
                 {% endif %}

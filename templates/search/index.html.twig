@@ -50,8 +50,7 @@
         <div class="bloc-title"></div>
         <div class="gallery">
                 {% for user in users %}
-                <div class="bloc-user-link">
-                    <a href="{{ path('app_user_show', {id: user.id})}}">
+                    <a class="bloc-user-link" href="{{ path('app_user_show', {id: user.id})}}">
                         <div class="row">
                             {% if user.imagesProfiles is null %}
                             <img class="profil" src="{{ asset('images/login.png')}}" alt="">
@@ -61,7 +60,6 @@
                             {{ user.name}}
                         </div>
                     </a>
-                </div>
                 {% endfor %}
         </div>
     </section>

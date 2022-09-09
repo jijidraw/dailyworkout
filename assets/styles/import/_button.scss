@@ -87,30 +87,30 @@ select {
 .btdelete {
     @extend %button;
     background-color: $main;
-    color: $red;
     border: 1px solid $red;
+    color: white;
     font-size: 16px;
 }
 
 .btdelete svg {
     height: 16px;
     width: 16px;
+    fill: white;
 }
 
 .btdelete:hover {
-    background-color: $red2;
+    background-color: $maintrans;
     color: white;
 }
 
 .btdelete:hover svg {
-    fill: $main;
+    fill: $red;
 }
 
 .btndelete {
     @extend %button;
     border-radius: 50%;
     background-color: $main;
-    color: $red;
     border: 1px solid $red;
     font-size: 16px;
 }
@@ -140,13 +140,13 @@ select {
     background-color: $blue1;
 }
 
+.btblue a:hover {
+    color: white;
+}
+
 .btblue:hover {
     @extend %button;
     background-color: $blue2;
-}
-
-.btblue a {
-    color: white;
 }
 
 .btblack {

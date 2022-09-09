@@ -1,11 +1,13 @@
-{{ form_start(form) }}
-    {{ form_row(form.name) }}
-    {{ form_row(form.description) }}
-    {{ form_row(form.imageProfile) }}
-    {{ form_row(form.sport) }}
-    <div class="input-file">
-        <label for="team_imageProfile">choisir une image</label>
-    </div>
-    <button class="btvalid">{{ button_label|default('Enregistrer modification') }}</button>
-    <div class="preview"></div>
-{{ form_end(form) }}
+<div class="form-base1">
+    {{ form_start(form) }}
+        {{ form_row(form.name) }}
+        {{ form_row(form.description) }}
+        {{ form_row(form.imageProfile) }}
+        {{ form_row(form.sport) }}
+        <div class="input-file">
+            <label for="team_imageProfile">choisir une image</label>
+        </div>
+        <button class="btvalid">{{ button_label|default('Enregistrer modification') }}</button>
+        <div class="preview"></div>
+    {{ form_end(form) }}
+</div>

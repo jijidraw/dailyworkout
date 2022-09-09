@@ -16,14 +16,12 @@ for(let linksport of linkSportsUser){
                         console.log(group)
                         gallery.innerHTML =
                             `
-                            <div class="bloc-user-link">
-                            <a href="/user/${group.id}">
+                            <a class="bloc-user-link" href="/user/${group.id}">
                             <div class="row">
                             <img class="profil" src="/profil/${group.imagesProfiles.name}" alt="">
                             ${group.name}
                             </div>
                             </a>
-                        </div>
                                 `
                         + gallery.innerHTML
                     }

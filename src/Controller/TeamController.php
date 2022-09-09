@@ -292,13 +292,20 @@ class TeamController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_team_delete', methods: ['POST'])]
-    public function delete(Request $request, Team $team, TeamRepository $teamRepository): Response
+    /**
+     * @Route("/{id}/delete", name="app_team_delete", methods={"POST"})
+     */
+    public function deleteTeam(Request $request, EntityManagerInterface $em, ImagesProfilesRepository $imagesProfilesRepository, Team $team, TeamRepository $teamRepository): Response
     {
         if ($this->isCsrfTokenValid('delete' . $team->getId(), $request->request->get('_token'))) {
             if ($team->getImagesProfiles() != null) {
-                $imgName = $team->getImagesProfiles()->getName();
-                unlink($this->getParameter('profil_directory') . '/' . $imgName);
+                $imgRmv = $imagesProfilesRepository->findOneBy(['team' => $team]);
+                $imgName = $imgRmv()->getName();
+                if ($imgName != 'team.png') {
+                    unlink($this->getParameter('profil_directory') . '/' . $imgName);
+                    $em->remove($imgRmv);
+                    $em->flush();
+                }
             }
             $teamRepository->remove($team, true);
         }

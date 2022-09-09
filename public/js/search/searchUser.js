@@ -15,14 +15,12 @@ searchInput.addEventListener('keyup', function(){
                 for(const user of result){
                     gallery.innerHTML =
                     `
-                    <div class="bloc-user-link">
-                    <a href="/user/${user.id}">
+                    <a class="bloc-user-link" href="/user/${user.id}">
                     <div class="row">
                     <img class="profil" src="/profil/${user.imagesProfiles.name}" alt="">
                     ${user.name}
                     </div>
                     </a>
-                </div>
                         `
             
 

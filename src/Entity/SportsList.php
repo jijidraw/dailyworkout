@@ -56,16 +56,6 @@ class SportsList
     private $description;
 
     /**
-     * @ORM\Column(type="boolean")
-     */
-    private $is_solo;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $is_group;
-
-    /**
      * @ORM\ManyToMany(targetEntity=Workout::class, mappedBy="sport")
      */
     private $workouts;
@@ -220,30 +210,6 @@ class SportsList
     public function setDescription(?string $description): self
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function isIsSolo(): ?bool
-    {
-        return $this->is_solo;
-    }
-
-    public function setIsSolo(bool $is_solo): self
-    {
-        $this->is_solo = $is_solo;
-
-        return $this;
-    }
-
-    public function isIsGroup(): ?bool
-    {
-        return $this->is_group;
-    }
-
-    public function setIsGroup(bool $is_group): self
-    {
-        $this->is_group = $is_group;
 
         return $this;
     }

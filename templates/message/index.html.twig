@@ -22,8 +22,7 @@
         <h2 class="bloc-title">Mes conversations</h2>
         {% for conversation in conversations %}
             {% if conversation.userA.id == app.user.id %}
-            <div class="bloc-user-link">
-                <a href="{{ path('app_conversation_show', {id: conversation.id})}}">
+                <a class="bloc-user-link" href="{{ path('app_conversation_show', {id: conversation.id})}}">
                         <div class="row">
                             {% if conversation.userB.imagesProfiles is empty %}
                             <img class="profil dropdown" src="{{ asset('images/login.png')}}" alt="">
@@ -33,7 +32,6 @@
                         {{ conversation.userB.name}}
                     </div>
                     </a>
-            </div>
                 {% else %}
                 <div class="bloc-user-link">
                     <a href="{{ path('app_conversation_show', {id: conversation.id})}}">

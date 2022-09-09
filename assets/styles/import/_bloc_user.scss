@@ -12,22 +12,25 @@
     color: white;
 }
 
-.bloc-user-link .btvalid,
-.btdelete {
-    position: absolute;
-    width: fit-content;
-    top: 5px;
-    right: 5px;
-}
-
-.bloc-user-link a {
-    color: white;
-}
-
 .bloc-user-link img {
     margin: 0 $mp2;
 }
 
 .bloc-user-link:hover {
-    background-color: $blue2;
+    background-color: $mainlg;
+}
+
+.bloc-user-link-group {
+    @extend %row;
+    display: flex;
+    justify-content: space-between;
+}
+
+.bloc-user-link-group .btvalid {
+    margin: auto 0;
+}
+
+.bloc-user-link-group .bloc-user-link {
+    width: 80%;
+    margin: $mp1;
 }

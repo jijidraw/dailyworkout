@@ -12,14 +12,12 @@ for(let linkgoal of linkGoalsUser){
                     for(let group of groups){
                         gallery.innerHTML =
                             `
-                            <div class="bloc-user-link">
-                            <a href="/user/${group.id}">
+                            <a class="bloc-user-link" href="/user/${group.id}">
                             <div class="row">
                             <img class="profil" src="/profil/${group.imagesProfiles.name}" alt="">
                             ${group.name}
                             </div>
                             </a>
-                            </div>
                             `
                         + gallery.innerHTML
                     }
