@@ -8,11 +8,9 @@
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
-
-        
+        <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=631def04a6e54600124688c1&product=inline-share-buttons" async="async"></script>
     </head>
     <body>
-        
         <div class="block-body">
         {% if is_granted('ROLE_USER') %}
         <header>
@@ -76,6 +74,7 @@
         {% endif %}
         {% block body %}{% endblock %}
     </div>
+    <div class="bloc-space"></div>
         <footer class="row">
             <a href="{{ path('app_mentions')}}">Mentions légales</a>
             <a href="{{ path('app_politique')}}">Politique de confidentialité</a>

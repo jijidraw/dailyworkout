@@ -97,3 +97,10 @@
 .card-sport .card-img img {
     width: auto;
 }
+
+@media (max-width: 860px) {
+    .card {
+        width: 30%;
+        height: 200px;
+    }
+}

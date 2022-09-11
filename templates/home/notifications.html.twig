@@ -1,8 +1,7 @@
 <div class="bloc-lg">
-
-    <div data-id="-notification" class="accordion">Mes dernières notifications</div>
-    <div class="panel" id="panel-notification">
-        <div class="column">
+    <h3>Partager sur :</h3>
+    <div class="sharethis-inline-share-buttons"></div>
+    <h3>Dernières notifications</h3>
         {% for notification in notifications %}
             {% if notification.team != null %}
             <a href="{{ path('app_team_show', {id: notification.team.id })}}" class="bar-notif">
@@ -41,6 +40,4 @@
             </div>
             {% endif %}
             {% endfor %}
-        </div>
-    </div>
 </div>
