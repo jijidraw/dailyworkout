@@ -14,15 +14,13 @@ searchInputTeam.addEventListener('keyup', function(){
                 for(const team of result){
                     gallery.innerHTML =
                     `
-                    <div class="bloc-user-link">
-                        <a href="/team/${team.id}">
+                        <a class="bloc-user-link" href="/team/${team.id}">
                         <div class="row">
                             <img class="profil" src="/profil/${team.imagesProfiles.name}" alt="">
                             ${team.name}
                         </div>
                                       <p>${team.teamMembers.length} membres</p>
                         </a>
-                        </div>
                         `
             
 

@@ -25,6 +25,7 @@ class Exercice
      * @ORM\Column(type="integer")
      * @Groups("exercice:category")
      * @Groups("exercice:detail")
+     * @Groups("exercice:display")
      */
     private $id;
 
@@ -33,6 +34,7 @@ class Exercice
      * @Groups({"exercice:category"})
      * @Groups({"workout:display"})
      * @Groups({"exercice:detail"})
+     * @Groups({"exercice:display"})
      */
     private $name;
 
@@ -67,6 +69,7 @@ class Exercice
      * @Groups("exercice:category", "workout:display")
      * @Groups({"workout:display"})
      * @Groups({"exercice:detail"})
+     * @Groups({"exercice:display"})
      */
     private $imageSystem;
 

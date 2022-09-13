@@ -140,6 +140,7 @@ class WorkoutController extends AbstractController
     }
     /**
      * @Route("/add/{id}/{workout}", name="app_workout_perso", methods={"POST", "GET"})
+     * @ParamConverter("workout", options={"mapping"={"workout"="id"}})
      */
     public function exerciceperso(EntityManagerInterface $em, Exercice $exercice, Workout $workout, ExerciceRepository $exerciceRepository, SerializerInterface $serializerInterface, WorkoutRepository $workoutRepository)
     {
@@ -154,7 +155,9 @@ class WorkoutController extends AbstractController
             $workoutRepository->add($workout, true);
         }
         $exerciceId = $exercice->getId();
-        $json = $serializerInterface->serialize($exerciceRepository->findOneBy(['id' => $exerciceId]), 'json', ['groups' => 'exercice:detail']);
+        $exPersoId = $ExPerso->getId();
+        $json = $serializerInterface->serialize($ExPerso, 'json', ['groups' => 'workout:display']);
+        // $json = $serializerInterface->serialize($exerciceRepository->findOneBy(['id' => $exerciceId]), 'json', ['groups' => 'exercice:detail', 'exoId' => $exPersoId]);
 
         $response = new Response(
             $json,
@@ -164,6 +167,24 @@ class WorkoutController extends AbstractController
             ]
         );
         return $response;
+    }
+    /**
+     * @Route("/adding/{id}/{workout}", name="app_workout_perso_adding", methods={"POST", "GET"})
+     * @ParamConverter("workout", options={"mapping"={"workout"="id"}})
+     */
+    public function exercicepersoAdd(EntityManagerInterface $em, Exercice $exercice, Workout $workout, ExerciceRepository $exerciceRepository, WorkoutRepository $workoutRepository)
+    {
+        $ExPerso = new ExercicePerso();
+        $ExPerso->setExercice($exercice);
+        $ExPerso->setWorkout($workout);
+        $em->persist($ExPerso);
+        $em->flush();
+        $muscles = $exercice->getMuscleGroup();
+        foreach ($muscles as $muscle) {
+            $workout->addMuscleGroup($muscle);
+            $workoutRepository->add($workout, true);
+        }
+        return $this->redirectToRoute('app_workout_new_step_2', ['id' => $workout->getId()], Response::HTTP_SEE_OTHER);
     }
     /**
      * @Route("/delete/exercice/{id}", name="app_workout_perso_delete", methods={"GET", "POST"})

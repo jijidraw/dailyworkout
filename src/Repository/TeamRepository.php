@@ -43,7 +43,8 @@ class TeamRepository extends ServiceEntityRepository
     {
         $query = $this->createQueryBuilder('t');
         $query->leftJoin('t.sport', 's');
-        $query->where('s.id = :id')
+        $query->where('t.is_private = 0');
+        $query->andWhere('s.id = :id')
             ->setParameter('id', $sport);
         return $query->getQuery()->getResult();
     }

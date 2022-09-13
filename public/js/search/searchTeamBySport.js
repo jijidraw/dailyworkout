@@ -14,15 +14,13 @@ for(let linksport of linkSports){
                     for(const group of groups){
                         gallery.innerHTML =
                             `
-                            <div class="bloc-user-link">
-                            <a href="/team/${group.id}">
+                            <a class="bloc-user-link" href="/team/${group.id}">
                             <div class="row">
                                 <img class="profil" src="/profil/${group.imagesProfiles.name}" alt="">
                                 ${group.name}
                             </div>
                                           <p>${group.teamMembers.length} membres</p>
                             </a>
-                            </div>
                                 `
                         + gallery.innerHTML
                     }

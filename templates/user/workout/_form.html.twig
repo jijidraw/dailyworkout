@@ -1,8 +1,8 @@
+<section class="bloc-full">
 {{ form_start(form) }}
-<div class="bloc-full">
     {{ form_widget(form._token)}}
 
-    <div class="bloc-column-abs">
+    <aside id="column-left" class="bloc-column-abs">
     <h1 class="bloc-title">Modifier workout</h1>
     
     <div class="bloc-link-column">
@@ -37,20 +37,20 @@
         <input class="btvalid" type="submit" value="valider">
         </div>
 
-    </div>
+    </aside>
     <section class="bloc-large-abs">
         <h2 class="bloc-title">Mes exercices</h2>
     <div class="gallery">
     {% for exercice in form.exercicePersos %}
         <div class="form-experso">
             {% for exo in experso %}
-
                 {% if exo.id == exercice.vars.data.id %}
                         <div class="img-exercice">
                             <img src="{{ asset('exercice/' ~ exo.exercice.imageSystem.name)}}" alt="">
                         </div>
                 {% endif %}
             {% endfor %}
+            <div class="column">
                 <div class="item-form">
                     <label for="">Nombre</label>
                     {{ form_widget(exercice.quantity)}}
@@ -67,10 +67,11 @@
                     <label for="">Détails éxécution</label>
                     {{ form_widget(exercice.content)}}
                 </div>
+            </div>
         </div>
         {% endfor %}
     </div>
     
-</div>
-{{ form_end(form) }}
+    {{ form_end(form) }}
+</section>
 </section>

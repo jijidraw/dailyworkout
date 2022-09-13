@@ -10,7 +10,10 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ * normalizationContext={"groups"={"exercice:display"}},
+ * collectionOperations={"get", "post"},
+ * itemOperations={"get"})
  * @ORM\Entity(repositoryClass=ExercicePersoRepository::class)
  */
 class ExercicePerso
@@ -20,6 +23,7 @@ class ExercicePerso
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      * @Groups({"workout:display"})
+     * @Groups({"exercice:display"})
      * 
      */
     private $id;
@@ -53,6 +57,7 @@ class ExercicePerso
     private $workout;
 
     /**
+     * @Groups({"exercice:display"})
      * @Groups({"workout:display"})
      * @ORM\ManyToOne(targetEntity=Exercice::class, inversedBy="exercicePersos", fetch="EAGER")
      */

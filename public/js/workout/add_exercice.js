@@ -18,9 +18,14 @@ for(let linkExercice of linksExercices) {
                     var card = 
                     `
                     <div class="card">
-                    <h3>${exercice.name}</h3>
+                    <h3>${exercice.exercice.name}</h3>
                     <div class="card-img">
-                        <img src="/exercice/${exercice.imageSystem.name}" width="400px" alt="">
+                        <img src="/exercice/${exercice.exercice.imageSystem.name}" width="400px" alt="">
+                    </div>
+                    <div class="card-a">
+                    <form method="post" action="/workout/delete/exercice/${exercice.id}">
+                        <input class="btdelete" type="submit" value="retirer">
+                    </form>
                     </div>
                     </div>
                     `

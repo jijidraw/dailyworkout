@@ -163,8 +163,13 @@ select {
     background-color: $red2;
 }
 
-.btblack a {
+.btdelete form {
+    margin: 0 auto;
+}
+
+.btdelete:hover {
     color: $red;
+    cursor: pointer;
 }
 
 .btblack:hover a {

@@ -20,9 +20,11 @@ use App\Repository\TeamRepository;
 use App\Repository\UserRepository;
 use App\Repository\UserStatRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 
@@ -329,29 +331,43 @@ class TeamController extends AbstractController
     /**
      * @Route("/invite/{id}/{user}", name="app_team_invite", methods={"GET"})
      */
-    public function addTeamMember(Team $team, User $user, EntityManagerInterface $em, UserRepository $userRepository)
+    public function addTeamMember(Team $team, User $user, EntityManagerInterface $em, UserRepository $userRepository, MailerInterface $mailer)
     {
+        $userMail = $user->getEmail();
+        $teamId = $team->getId();
+
+
+        // récupération du nom de l'utilisateur et le nom de son images de profile
         $currentUser = $this->getUser()->getUserIdentifier();
         $currentName = $userRepository->findOneBy(['email' => $currentUser]);
         $name = $currentName->getName();
-        if ($currentName->getImagesProfiles() == null) {
-            $img = null;
-        } else {
-            $img = $currentName->getImagesProfiles()->getName();
-        };
+        $img = $currentName->getImagesProfiles()->getName();
+
+        // creation du teamMember
         $teamMember = new TeamMember;
         $teamMember->setUser($user)->setTeam($team)->setIsInvite(true)->setIsBlocked(false)->setIsAdmin(false)->setIsWaiting(false);
         $em->persist($teamMember);
         $em->flush();
         $teamName = $team->getName();
+        // notification
         $notification = new Notification;
-        if ($img == null) {
-            $notification->setUser($user)->setTeam($team)->setContent("$name vous à invité à rejoindre $teamName")->setIsRead(false);
-        } else {
-            $notification->setUser($user)->setTeam($team)->setContent("$name vous à invité à rejoindre $teamName")->setIsRead(false)->setImage($img);
-        };
+        $notification->setUser($user)->setTeam($team)->setContent("$name vous à invité à rejoindre $teamName")->setIsRead(false)->setImage($img);
         $em->persist($notification);
         $em->flush();
+        // envoie du mail à l invité
+        $emailcontent = [
+            "name" => $name,
+            "teamName" => $teamName,
+            "teamId" => $teamId,
+        ];
+        $email = (new TemplatedEmail())
+            ->from('no-reply@the-daily-workout.com')
+            ->to($userMail)
+            ->subject('invitation à faire partie d\'une team')
+            ->htmlTemplate('emails/team.html.twig')
+            ->context(compact('emailcontent'));
+        $mailer->send($email);
+
         return $this->json([
             'code' => 200,
             'message' => 'Invitation envoyée'

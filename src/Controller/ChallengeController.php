@@ -22,9 +22,11 @@ use App\Repository\UserStatRepository;
 use App\Repository\WorkoutRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 
@@ -178,8 +180,10 @@ class ChallengeController extends AbstractController
     /**
      * @Route("/{id}/{user}", name="app_challenge_invite", methods={"GET"})
      */
-    public function addChallenger(Challenge $challenge, ChallengePlayerRepository $challengePlayerRepository, User $user, EntityManagerInterface $em, UserRepository $userRepository)
+    public function addChallenger(Challenge $challenge, ChallengePlayerRepository $challengePlayerRepository, User $user, EntityManagerInterface $em, UserRepository $userRepository, MailerInterface $mailer)
     {
+        $userMail = $user->getEmail();
+        $challengeId = $challenge->getId();
         $currentUser = $this->getUser()->getUserIdentifier();
         $currentName = $userRepository->findOneBy(['email' => $currentUser]);
         $name = $currentName->getName();
@@ -199,6 +203,19 @@ class ChallengeController extends AbstractController
             $notification->setUser($user)->setChallenge($challenge)->setContent(" $name vous à lancé un défi")->setIsRead(false)->setImage($img);
             $em->persist($notification);
             $em->flush();
+
+            $emailcontent = [
+                "name" => $name,
+                "teamId" => $challengeId,
+            ];
+            $email = (new TemplatedEmail())
+                ->from('no-reply@the-daily-workout.com')
+                ->to($userMail)
+                ->subject('invitation à relever un challenge')
+                ->htmlTemplate('emails/challenge.html.twig')
+                ->context(compact('emailcontent'));
+            $mailer->send($email);
+
             return $this->json([
                 'code' => 200,
                 'message' => 'Invitation envoyée'

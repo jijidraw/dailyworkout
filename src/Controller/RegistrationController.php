@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Follow;
 use App\Entity\ImagesProfiles;
 use App\Entity\Notification;
 use App\Entity\Reward;
@@ -9,6 +10,7 @@ use App\Entity\User;
 use App\Entity\UserStat;
 use App\Form\RegistrationFormType;
 use App\Repository\RewardRepository;
+use App\Repository\UserRepository;
 use App\Security\EmailVerifier;
 use App\Security\UsersAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
@@ -35,8 +37,9 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/register", name="app_register")
      */
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, UsersAuthenticator $authenticator, EntityManagerInterface $entityManager, RewardRepository $rewardRepository): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, UsersAuthenticator $authenticator, EntityManagerInterface $entityManager, RewardRepository $rewardRepository, UserRepository $userRepository): Response
     {
+        $daily = $userRepository->findOneBy(['email' => 'thedailyworkoutofficial@gmail.com']);
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
@@ -67,7 +70,10 @@ class RegistrationController extends AbstractController
             $notification->setUser($user)->setContent("Bienvenue sur Daily Workout")->setImage('logo.png')->setIsRead(false);
             $entityManager->persist($notification);
             $entityManager->flush();
-            // generate a signed url and email it to the user
+            $follow = new Follow;
+            $follow->setFollower($user)->setFollowing($daily);
+            $entityManager->persist($follow);
+            $entityManager->flush();                // generate a signed url and email it to the user
             $this->emailVerifier->sendEmailConfirmation(
                 'app_verify_email',
                 $user,

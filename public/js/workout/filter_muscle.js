@@ -1,6 +1,7 @@
 const linkMuscles = document.querySelectorAll('a.js-muscle')
 let galery = document.querySelector('.gallery')
 let workoutID = gallery.id
+console.log(linkMuscles)
 
 
 for(let linkMuscle of linkMuscles){
@@ -22,7 +23,7 @@ for(let linkMuscle of linkMuscles){
                                     <img src="/exercice/${exercice.imageSystem.name}" width="400px" alt="">
                                 </div>
                                 <div class="card-a">
-                                    <a data-exercice="${exercice.id}" data-workout="${workoutID}" class="js-exercice-link" href="../add/${exercice.id}/${workoutID}">Ajouter</a>
+                                    <a data-exercice="${exercice.id}" data-workout="${workoutID}" class="js-exercice-link" href="/workout/adding/${exercice.id}/${workoutID}">Ajouter</a>
                                 </div>
                         </div>
                             ` + galery.innerHTML

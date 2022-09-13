@@ -16,6 +16,11 @@
     margin: 0 $mp2;
 }
 
+.bloc-user-link p {
+    color: white;
+    margin-left: 12px;
+}
+
 .bloc-user-link:hover {
     background-color: $mainlg;
 }
