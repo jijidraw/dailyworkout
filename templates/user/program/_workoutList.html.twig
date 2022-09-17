@@ -8,15 +8,10 @@
                         <div class="workout-title">
                             <h4>{{ workout.name }}</h4>
                         </div>
-                        <div class="workout-detail">
-                            <p> description : {{ workout.content }}</p>
-                            <p> rounds : {{ workout.rounds }}</p>
-                            <p> difficulté : {{ workout.difficulty }}</p>
-                        </div>
                     </a>
                 </div>
                 <span class="dropdown svg-workout">{{ include('svg/gears.html.twig') }}
-                    <div class="dropdown-content">
+                    <div class="dropdown-content-workout">
                         <div class="dropdown-bloc">
                         <div class="btblue">
                             <a href="{{ path('app_workout_edit', {workout: workout.id})}}">Modifier</a>

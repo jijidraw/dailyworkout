@@ -1,10 +1,18 @@
 {{ form_start(form) }}
-        {{ form_row(form.name) }}
-        {{ form_row(form.description) }}
-        {{ form_row(form.urlInstagram) }}
-        {{ form_row(form.urlFacebook) }}
-        {{ form_row(form.urlTwitter) }}
+{{ form_row(form.name) }}
+{{ form_row(form.description) }}
+<label for="">Mon instagram</label>
+{{ form_row(form.urlInstagram) }}
+<label for="">Mon facebook</label>
+{{ form_row(form.urlFacebook) }}
+<label for="">Mon Twitter</label>
+{{ form_row(form.urlTwitter) }}
+<label for="">Mon TikTok</label>
         {{ form_row(form.urlTikTok) }}
+        <div data-id="-sports" class="accordion">Mes sports pratiqués</div>
+        <div class="panel" id="panel-sports">
+                {{ form_row(form.sportlist) }}
+        </div>
         {{ form_row(form.image) }}
         <label class="input-file" for="user_image">image</label>
         <button class="btmain">{{ button_label|default('Save') }}</button>

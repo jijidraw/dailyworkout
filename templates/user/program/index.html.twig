@@ -2,8 +2,10 @@
 
 {% block title %}Mon programme{% endblock %}
 {% block body %}
+<div id="arrow-left" class="arrow open" href="">{{ include('svg/arrowleft.html.twig') }}</div>
+
     <section class="bloc-full">
-        <aside id="column-left" class="bloc-column-abs">
+        <aside id="column-left" class="bloc-column-abs open">
         
         <div class="bloc-title">
             <h2>Mes workout</h2>
@@ -25,6 +27,8 @@
                     Rechercher
                 </p>
                 <div id="bloc-column-filter" class="hidden">
+                    {# {{ include('component/radio_form_select_workout.html.twig') }} #}
+
                     <div data-id="-muscle" class="accordion">Par zones travaillées</div>
                     <div class="panel" id="panel-muscle">
                         {{ include('component/_select_form_muscle.html.twig') }}
@@ -59,7 +63,9 @@
             </div>
             <div class="content" id="content3">
                 <h2 class="bloc-title">Rechercher un workout</h2>
-                        {{ include('user/program/_workoutSearch.html.twig') }}
+                <div id="content">
+                    {{ include('user/program/_workoutSearch.html.twig') }}
+                </div>
                 <div class="bloc-space"></div>
 
             </div>
@@ -68,7 +74,7 @@
     </section>
 {% endblock %}
 {% block javascripts %}
-    <script src="{{ asset('js/ribbon.js')}}"></script>
+    <script src="{{ asset('js/workout/filter.js')}}"></script>
     <script src="{{ asset('js/user/tabs.js')}}"></script>
     <script src="{{ asset('js/search/appearFilter.js')}}"></script>
     <script src="{{ asset('js/search/searchWorkout.js')}}"></script>

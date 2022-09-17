@@ -235,9 +235,12 @@ class ChallengeController extends AbstractController
     /**
      * @Route("/accept/{id}/{user}", name="app_challenge_accept", methods={"GET"})
      */
-    public function addResponseChallenge(Challenge $challenge, User $user, UserStatRepository $userStatRepository, UserRepository $userRepository, RewardRepository $rewardRepository, EntityManagerInterface $em)
+    public function addResponseChallenge(Challenge $challenge, User $user, UserStatRepository $userStatRepository, UserRepository $userRepository, RewardRepository $rewardRepository, EntityManagerInterface $em, ChallengePlayerRepository $challengePlayerRepository)
     {
-        $challenger = new ChallengePlayer;
+        $challenger = $challengePlayerRepository->findOneBy(['user' => $user, 'challenge' => $challenge]);
+        if ($challenger == null) {
+            $challenger = new ChallengePlayer;
+        }
         $challenger->setUser($user)->setChallenge($challenge)->setCreatedAt(new DateTime())->setIsAccomplish(false)->setIsInvite(false)->setIsChallenged(true);
         $em->persist($challenger);
         $em->flush();
@@ -274,7 +277,7 @@ class ChallengeController extends AbstractController
      */
     public function addIsAccomplish(User $user, Challenge $challenge, ChallengePlayerRepository $challengePlayerRepository, EntityManagerInterface $em, UserStatRepository $userStatRepository, UserRepository $userRepository, RewardRepository $rewardRepository)
     {
-        $creatorChallenge = $challenge->getCreatorChallenge;
+        $creatorChallenge = $challenge->getCreatorChallenge();
         $creatorName = $challenge->getCreatorChallenge()->getName();
         $userName = $user->getName();
         $img = $user->getImagesProfiles()->getName();

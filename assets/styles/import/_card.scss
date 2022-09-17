@@ -4,7 +4,7 @@
     @extend %border;
     width: 200px;
     height: 250px;
-    margin: $mp1;
+    margin: $mp1 0;
     overflow: hidden;
     text-align: center;
 }
@@ -106,6 +106,6 @@
 @media (max-width: 860px) {
     .card {
         width: 30%;
-        height: 200px;
+        height: 20vh;
     }
 }

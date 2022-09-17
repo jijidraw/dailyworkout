@@ -1,7 +1,5 @@
-var exercicesForm = document.querySelector('.workout-list-exercice')
+function addExercice() {
 const linksExercices = document.querySelectorAll('.js-exercice-link')
-
-
 
 for(let linkExercice of linksExercices) {
     linkExercice.addEventListener("click", function(e){
@@ -20,11 +18,11 @@ for(let linkExercice of linksExercices) {
                     <div class="card">
                     <h3>${exercice.exercice.name}</h3>
                     <div class="card-img">
-                        <img src="/exercice/${exercice.exercice.imageSystem.name}" width="400px" alt="">
+                    <img src="/exercice/${exercice.exercice.imageSystem.name}" width="400px" alt="">
                     </div>
                     <div class="card-a">
                     <form method="post" action="/workout/delete/exercice/${exercice.id}">
-                        <input class="btdelete" type="submit" value="retirer">
+                    <input class="btdelete" type="submit" value="retirer">
                     </form>
                     </div>
                     </div>
@@ -36,4 +34,5 @@ for(let linkExercice of linksExercices) {
         xhr.open("get", url, true)
         xhr.send();
     })
+}
 }

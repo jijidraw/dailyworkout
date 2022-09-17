@@ -24,6 +24,7 @@ use App\Repository\WorkoutNotationRepository;
 use App\Repository\WorkoutRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -46,7 +47,7 @@ class WorkoutController extends AbstractController
     /**
      * @Route("/new", name="app_workout_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, WorkoutRepository $workoutRepository, EntityManagerInterface $em): Response
+    public function new(UserStatRepository $userStatRepository, Request $request, WorkoutRepository $workoutRepository, EntityManagerInterface $em): Response
     {
         $user = $this->getUser();
         $workout = new Workout();
@@ -54,6 +55,10 @@ class WorkoutController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $userStat = $userStatRepository->findOneBy(['user' => $user]);
+            $count = $userStat->getWorkout();
+            $userStat->setWorkout(++$count);
+            $userStatRepository->add($userStat, true);
             $workoutRepository->add($workout, true);
             $workout->setUser($user);
             $em->persist($workout);
@@ -72,20 +77,35 @@ class WorkoutController extends AbstractController
     /**
      * @Route("/new/step2/{id}", name="app_workout_new_step_2", methods={"GET", "POST"})
      */
-    public function newWorkoutStep2(UserStatRepository $userStatRepository, SportsListRepository $sportsListRepository, Workout $workout, CategoryRepository $categoryRepository, MuscleGroupRepository $muscleGroupRepository, ExerciceRepository $exrepo): Response
+    public function newWorkoutStep2(Request $request, SportsListRepository $sportsListRepository, Workout $workout, CategoryRepository $categoryRepository, MuscleGroupRepository $muscleGroupRepository, ExerciceRepository $exerciceRepository): Response
     {
         $user = $this->getUser();
-        $userStat = $userStatRepository->findOneBy(['user' => $user]);
-        $count = $userStat->getWorkout();
-        $userStat->setWorkout(++$count);
-        $userStatRepository->add($userStat, true);
-        return $this->renderForm('user/workout/new_step_2.html.twig', [
-            'workout' => $workout,
-            'ListExercice' => $exrepo->findAll(),
-            'category' => $categoryRepository->findBy([], ['name' => 'ASC']),
-            'sports' => $sportsListRepository->findBy([], ['name' => 'ASC']),
-            'muscles' => $muscleGroupRepository->findBy([], ['name' => 'ASC']),
-        ]);
+        $creator = $workout->getUser();
+        if ($user != $creator) {
+            return $this->redirectToRoute('app_workout_show', ['id' => $workout->getId()], Response::HTTP_SEE_OTHER);
+        };
+
+        // filtres d'exercice
+
+        $fCategory = $request->get("category");
+        $fMuscles = $request->get("muscles");
+        $fSports = $request->get("sports");
+
+        // variable envoyé à la vue
+
+        $exercices = $exerciceRepository->exercicesFilters($fCategory, $fMuscles, $fSports);
+        $category = $categoryRepository->findBy([], ['name' => 'ASC']);
+        $sports = $sportsListRepository->findBy([], ['name' => 'ASC']);
+        $muscles = $muscleGroupRepository->findBy([], ['name' => 'ASC']);
+
+
+        if ($request->get('ajax')) {
+            return new JsonResponse([
+                'content' => $this->renderView('user/workout/_content_step2.html.twig', compact('workout', 'exercices', 'category', 'sports', 'muscles'))
+            ]);
+        }
+
+        return $this->render('user/workout/new_step_2.html.twig', compact('workout', 'exercices', 'category', 'sports', 'muscles'));
     }
 
     /**
@@ -172,8 +192,9 @@ class WorkoutController extends AbstractController
      * @Route("/adding/{id}/{workout}", name="app_workout_perso_adding", methods={"POST", "GET"})
      * @ParamConverter("workout", options={"mapping"={"workout"="id"}})
      */
-    public function exercicepersoAdd(EntityManagerInterface $em, Exercice $exercice, Workout $workout, ExerciceRepository $exerciceRepository, WorkoutRepository $workoutRepository)
+    public function exercicepersoAdd(Request $request, EntityManagerInterface $em, Exercice $exercice, Workout $workout, ExerciceRepository $exerciceRepository, WorkoutRepository $workoutRepository)
     {
+        $route = $request->headers->get('referer');
         $ExPerso = new ExercicePerso();
         $ExPerso->setExercice($exercice);
         $ExPerso->setWorkout($workout);
@@ -184,16 +205,16 @@ class WorkoutController extends AbstractController
             $workout->addMuscleGroup($muscle);
             $workoutRepository->add($workout, true);
         }
-        return $this->redirectToRoute('app_workout_new_step_2', ['id' => $workout->getId()], Response::HTTP_SEE_OTHER);
+        return $this->redirect($route);
     }
     /**
      * @Route("/delete/exercice/{id}", name="app_workout_perso_delete", methods={"GET", "POST"})
      */
     public function exercicepersoDelete(ExercicePersoRepository $exerciceRepository, ExercicePerso $exercicePerso, Request $request): Response
     {
-        $workout = $exercicePerso->getWorkout();
+        $route = $request->headers->get('referer');
         $exerciceRepository->remove($exercicePerso, true);
-        return $this->redirectToRoute('app_workout_new_step_2', ['id' => $workout->getId()], Response::HTTP_SEE_OTHER);
+        return $this->redirect($route);
     }
 
     /**

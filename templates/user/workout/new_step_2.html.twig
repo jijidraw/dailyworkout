@@ -3,10 +3,13 @@
 {% block title %}Ajouter des exercices{% endblock %}
 
 {% block body %}
+<div id="arrow-left" class="arrow" href="">{{ include('svg/arrowleft.html.twig') }}</div>
+
 <div class="bloc-full">
         <aside id="column-left" class="bloc-column-abs">
             <h1 class="bloc-title">Filtrer les exercices</h1>
                 <div class="bloc-link-column">
+                    {{ include('component/checkbox_form_select_exercice.html.twig') }}
                     <div class="accordion" data-id="-category">Par famille d'exercice</div>
                         <div class="panel" id="panel-category">
                             {{ include('component/_select_form_category.html.twig') }}
@@ -43,39 +46,17 @@
                 
             {% endfor %}
         </div>
-        <h2>
-            Liste des exercices
-        </h2>
-        <div class="workout-list-select">
-            <div class="gallery" id="{{ workout.id }}">
-                    {% for exercice in ListExercice %}
-                    <div class="card">
-                        <h3>
-                            {{ exercice.name }}
-                        </h3>
-                        <div class="card-img">
-                            {% if exercice.imageSystem is empty %}
-                            <p>Pas d'image enregistré</p>
-                            {% endif %}
-                            <img src="{{ asset('exercice/' ~ exercice.imageSystem.name)}}" width="400px" alt="">
-                        </div>
-                        <div class="card-a">
-                            <a data-exercice="{{exercice.id}}" data-workout="{{workout.id}}" class="js-exercice-link" href="{{ path('app_workout_perso', {id: exercice.id, workout: workout.id})}}">Ajouter</a>
-                        </div>
-                    </div>
-                    {% else %}
-                        <h3>Pas d'enregistrement trouvé</h3>
-                    {% endfor %}
-            </div>
+        <div class="workout-list-select" id="content">
+            {{ include('user/workout/_content_step2.html.twig') }}
         </div>
-
         </section>
 </div>
 
 {% endblock %}
 {% block javascripts %}
+<script src="{{ asset('js/workout/add_exercice.js')}}"></script>
+<script src="{{ asset('js/workout/filter.js')}}"></script>
 <script src="{{ asset('js/workout/filter_category.js')}}"></script>
 <script src="{{ asset('js/workout/filter_muscle.js')}}"></script>
 <script src="{{ asset('js/workout/filter_sports.js')}}"></script>
-<script src="{{ asset('js/workout/add_exercice.js')}}"></script>
 {% endblock %}

@@ -1,14 +1,10 @@
-<aside id="column-left" class="bloc-column-abs">
+<aside id="column-left" class="bloc-column-abs open">
 
     <div class="bloc-title"></div>
         <div class="bloc-link-column">
 
         <div class="user-pic">
-            {% if user.imagesProfiles. name is defined %}
                 <img class="profil" src="{{ asset('profil/' ~ user.imagesProfiles.name)}}" alt="">
-                    {% else %}
-                <img class="profil" src="{{ asset('images/login.png')}}" alt="">
-            {% endif %}
         </div>
         <div class="user-name">
             <h2>
@@ -68,10 +64,6 @@
         </div>
     <div class="accordion" data-id="-sport">Sports pratiqués</div>
     <div class="panel" id="panel-sport">
-
-        {% if app.user.id == user.id %}
-        <a class="svg-menu" href="{{ path('app_sport_list') }}">{{ include('svg/cross.html.twig') }}</a>
-        {% endif %}
         <div class="list-sport">
             {% if user.sportlist is empty %}
             Pas de sport renseigné.
@@ -86,21 +78,17 @@
     </div>
     <div class="accordion" data-id="-objectifs">Objectifs</div>
     <div class="panel" id="panel-objectifs">
-        {% if app.user.id == user.id %}
-            <a class="svg-menu" href="{{ path('app_user_goal', {'id': user.id}) }}">{{ include('svg/gears.html.twig') }}</a>
-        {% endif %}
-        {# <a class="absolute-corner" href="{{ path('app_sport_list') }}">{{ include('svg/gears.html.twig') }}</a> #}
         <div class="list-sport">
             
             {% if user.goal is empty %}
             Pas d'objectifs renseigné.
             {% else %}
             {% for goal in user.goal %}
-            <span class="btmain">{{ goal }}</span>
+            <span class="checked">{{ goal }}</span>
             {% endfor %}
             {% endif %}
         </div>
     </div>
+    <div class="bloc-space"></div>
 </div>
-<div class="bloc-space"></div>
 </aside> 

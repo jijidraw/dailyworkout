@@ -39,6 +39,36 @@ class ExerciceRepository extends ServiceEntityRepository
         }
     }
 
+    // filtres d'exercices
+
+    public function exercicesFilters($fCategory = null, $fMuscles = null, $fSports = null)
+    {
+        $query = $this->createQueryBuilder('e');
+        if ($fCategory != null) {
+            $query->leftJoin('e.categories', 'c');
+            $query->andWhere('c.id = :id')
+                ->setParameter('id', array_values($fCategory));
+            // $query->andWhere('e.categories IN(:cats)')
+            //     ->setParameter(':cats', array_values($fCategory));
+        }
+        if ($fMuscles != null) {
+            $query->leftJoin('e.muscleGroup', 'm');
+            $query->andWhere('m.id = :id')
+                ->setParameter('id', array_values($fMuscles));
+            // $query->andWhere('e.muscleGroup IN(:muscles)')
+            //     ->setParameter(':muscles', array_values($fMuscles));
+        }
+        if ($fSports != null) {
+            $query->leftJoin('e.sports', 's');
+            $query->andWhere('s.id = :id')
+                ->setParameter('id', array_values($fSports));
+            // $query->andWhere('e.sports IN(:sports)')
+            //     ->setParameter(':sports', array_values($fSports));
+        }
+        $query->orderBy('e.name', 'ASC');
+        return $query->getQuery()->getResult();
+    }
+
     // système pour trouver des exercices par catégories
 
     public function searchByCategory($category)

@@ -44,6 +44,7 @@
     width: 100%;
     justify-content: space-between;
     border-bottom: 1px solid $grey2;
+    font-size: 12px;
 }
 
 .user-link .main-link {
@@ -69,7 +70,8 @@
 }
 
 .user-post-view img {
-    width: 50%;
+    width: 100%;
+    height: auto;
     margin: auto;
 }
 
@@ -142,6 +144,10 @@
         height: fit-content;
         margin: $mp3 auto;
         overflow: hidden;
+    }
+
+    .user-post-view img {
+        max-height: 250px;
     }
 
     .card-tiny {

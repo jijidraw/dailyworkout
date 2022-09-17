@@ -3,22 +3,10 @@
 {% block title %}Messagerie{% endblock %}
 
 {% block body %}
-<div id="help" class="help-background hidden">
-    <div class="help-content">
-        <div id="close-help" class="help-close">{{ include('svg/deletecross.html.twig') }}</div>
-        <h1 class="help-title">Bienvenue sur Daily Workout</h1>
-        <p>Pour commencer nous vous conseillons d'aller sur l'onglet de votre profil</p>
-        <p>Dans le menu déroulant sous votre profil vous trouverez les accès à différentes partie.</p>
-        <ul>
-            <li>L'accés à votre profil</li>
-            <li>Votre espace programme</li>
-            <li>L'accés à l'espace Challenge ainsi que l'espace Team</li>
-            <li>Le portail des sports</li>
-        </ul>
-    </div>
-</div>
+<div id="arrow-left" class="arrow open" href="">{{ include('svg/arrowleft.html.twig') }}</div>
+
 <div class="bloc-full">
-    <aside id="column-left" class="bloc-column-abs">
+    <aside id="column-left" class="bloc-column-abs open">
         <h2 class="bloc-title">Mes conversations</h2>
         {% for conversation in conversations %}
             {% if conversation.userA.id == app.user.id %}

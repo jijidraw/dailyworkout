@@ -60,6 +60,12 @@ class UserType extends AbstractType
                     'placeholder' => 'lien de votre compte tiktok'
                 )
             ])
+            ->add('sportlist', EntityType::class, [
+                'label' => false,
+                'class' => SportsList::class,
+                'multiple' => true,
+                'expanded' => true
+            ])
             // ->add('sex', ChoiceType::class, array(
             //     'choices' => array(
             //         'Male' => 'male',

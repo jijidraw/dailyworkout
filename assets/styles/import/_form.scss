@@ -3,7 +3,6 @@ form {
     width: 100%;
     height: 100%;
     padding: $mp2;
-    margin: $mp1;
 }
 
 form .btmain {
@@ -242,7 +241,12 @@ h2 {
 
     .form-base1 {
         width: 100%;
+        padding: 0;
         border-radius: 0;
         box-shadow: none;
+    }
+
+    .form-base1 label {
+        margin-top: 12px;
     }
 }

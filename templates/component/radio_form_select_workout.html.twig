@@ -1,0 +1,27 @@
+    <h3>Quelle partie du corp travaillé</h3>
+    <form action="" id="filters">
+    {% for muscle in muscles %}
+    <p>
+        <input type="radio" name="muscles[]" id="muscles{{ muscle.id}}" value="{{muscle.id}}">
+        <label for="muscles{{muscle.id}}">{{ muscle.name}}</label>
+    </p>
+    {% endfor %}
+    
+    {# muscles #}
+    <h3>Pour quel sport</h3>
+    {% for sport in sportList %}
+        <p>
+            <input type="radio" name="sports[]" id="sports{{ sport.id}}" value="{{sport.id}}">
+            <label for="sports{{sport.id}}">{{ sport.name}}</label>
+        </p>
+    {% endfor %}
+    
+    {# sports #}
+    <h3>Par difficulté</h3>
+    {% for difficulty in difficulties %}
+        <p>
+            <input type="radio" name="level[]" id="level{{ difficulty.id}}" value="{{difficulty.id}}">
+            <label for="level{{difficulty.id}}">{{ difficulty.name}}</label>
+        </p>
+    {% endfor %}
+    </form>

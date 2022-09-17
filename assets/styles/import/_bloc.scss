@@ -144,7 +144,6 @@ p svg {
     color: white;
     text-align: center;
     width: 100%;
-    margin: $mp1;
     padding: 0 $mp2;
 }
 
@@ -220,20 +219,23 @@ a {
     }
 
     .bloc-column-abs-rg {
-        right: -100px;
+        right: -100%;
         width: 0;
         transition: width 0.5s;
         z-index: 30;
     }
 
     .bloc-column-abs.open {
-        width: 70vw;
+        width: 100%;
+        max-width: 100vw;
+        padding: 0;
         left: 0;
         transition: width 1.0s;
     }
 
     .bloc-column-abs-rg.open {
-        width: 80vw;
+        width: 100%;
+        max-width: 100vw;
         right: 0;
         transform: translateX(0);
         transition: width 1.0s;
@@ -249,5 +251,9 @@ a {
 
     .bloc-column-filter {
         width: 100%;
+    }
+
+    .bloc-title {
+        padding: 0;
     }
 }

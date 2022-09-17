@@ -3,6 +3,8 @@
 {% block title %}Challenge{% endblock %}
 
 {% block body %}
+<div id="arrow-left" class="arrow" href="">{{ include('svg/arrowleft.html.twig') }}</div>
+
 <div id="help" class="help-background hidden">
     <div class="help-content">
         <div id="close-help" class="help-close">{{ include('svg/deletecross.html.twig') }}</div>
@@ -33,11 +35,7 @@
                     {% for follow in follows %}
                     <div class="bloc-user-link">
                         <a class="bloc-user-link" href="{{ path('app_challenge_invite', {id: challenge.id, user:follow.follower.id})}}" id="js-send">
-                            {% if follow.follower.imagesProfiles is null %}
-                            <img class="profil" src="{{ asset('images/login.png')}}" alt="">
-                            {% else %}
                             <img class="profil" src="{{ asset('profil/' ~ follow.follower.imagesProfiles.name)}}" alt="">
-                            {% endif %}
                             {{ follow.follower.name}}
                         </a>
                     </div>
@@ -73,7 +71,7 @@
                     {% else %}
                     {% if challenger.isInvite == true %}
                     <div class="btvalid">
-                        <a id="js-accept" href="{{ path('app_challenge_accept_invited', {id: challenger.id})}}">Accepter de relever le challenge</a>
+                        <a id="js-accept" href="{{ path('app_challenge_accept', {id: challenge.id, user: app.user.id })}}">Accepter de relever le challenge</a>
                     </div>
                     {% endif %}
                     {% if challenger.isChallenged == true %}

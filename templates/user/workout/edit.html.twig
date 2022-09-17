@@ -3,6 +3,8 @@
 {% block title %}{{workout.name}}{% endblock %}
 
 {% block body %}
+<div id="arrow-left" class="arrow" href="">{{ include('svg/arrowleft.html.twig') }}</div>
+
 
     {{ include('user/workout/_form.html.twig', {'button_label': 'Update'}) }}
 

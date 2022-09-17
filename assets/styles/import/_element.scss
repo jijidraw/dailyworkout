@@ -42,6 +42,10 @@
   display: block;
 }
 
+.dropdown:hover .dropdown-content-workout {
+  display: block;
+}
+
 .item-dropdown {
   padding: $mp1;
 }
@@ -50,6 +54,35 @@
   color: $red;
 }
 
+.dropdown-content-workout {
+  display: none;
+  position: absolute;
+  background-color: $main;
+  text-align: center;
+  position: absolute;
+  height: fit-content;
+  width: fit-content;
+  left: -100px;
+  padding: $mp1;
+  border: 1px solid $red;
+  z-index: 1000;
+}
+
+.dropdown-content-workout .btblue {
+  margin: $mp1 auto;
+}
+
+.dropdown-content-workout a {
+  color: white;
+}
+
+.dropdown-content-workout a:hover {
+  color: $red2;
+}
+
+.dropdown-content-workout a:visited {
+  color: white;
+}
 
 
 // accordéon
@@ -65,7 +98,7 @@
   color: white;
   padding: $mp1;
   border: none;
-  margin: $mp1 0;
+  margin: $mp1 0 $mp1 0;
 }
 
 .accordion.active {
@@ -111,19 +144,20 @@
 
 .checked {
   @extend %button;
+  margin: $mp1;
   color: white;
   background-color: $red;
 }
 
 .unchecked {
+  margin: $mp1;
   @extend %button;
   color: black;
   border: 1px solid $red;
   background-color: $greytrans;
 }
 
-.checked,
-.unchecked label {
+label.checked {
   color: white;
 }
 

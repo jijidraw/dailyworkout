@@ -3,18 +3,22 @@
 {% block title %} {{ user.name}} {% endblock %}
 
 {% block body %}
+<div id="arrow-left" class="arrow" href="">{{ include('svg/arrowleft.html.twig') }}</div>
+
 <section class="bloc-full">
     <aside class="bloc-column-abs" id="column-left">
         <h1 class="bloc-title">Modifier mon profil</h1>
         <div class="bloc-link-column">
-
+            <a class="btmain" href="{{ path('app_user_show', {id: user.id})}}">retour</a>
         </div>
     </aside>
     <section class="bloc-large-abs">
-        <h2 class="bloc-title">Modifier mon profil</h2>
         <div class="form-base1">
+            <h2 class="bloc-title"></h2>
             {{ include('user/user/_form.html.twig', {'button_label': 'modifier'}) }}
         </div>
+    <div class="bloc-space"></div>
+
     </section>
 </section>
 {% endblock %}

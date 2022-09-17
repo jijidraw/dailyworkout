@@ -159,8 +159,13 @@
     line-height: 100%;
     align-items: center;
     justify-content: space-around;
-    padding: 36px 8px 8px 8px;
+    padding: 4px;
     color: white;
+}
+
+.workout-bar .row {
+    width: 100%;
+    justify-content: center;
 }
 
 .workout-bar h4 {
@@ -264,7 +269,6 @@
     justify-content: space-around;
     flex-wrap: wrap;
     overflow-y: auto;
-    margin: $mp1;
     background-color: white;
 }
 
@@ -317,6 +321,7 @@
 }
 
 @media (max-width: 450px) {
+
     .workout-list {
         width: 100%;
         height: fit-content;

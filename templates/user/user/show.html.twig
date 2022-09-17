@@ -3,6 +3,8 @@
 {% block title %}profil de : {{ user.name }}{% endblock %}
 
 {% block body %}
+<div id="arrow-left" class="arrow open" href="">{{ include('svg/arrowleft.html.twig') }}</div>
+
 <div class="modal-background hidden" id="modal">
     <div class="modal-content">
         <div class="modal-list">

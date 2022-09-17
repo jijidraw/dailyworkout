@@ -14,6 +14,7 @@ use App\Repository\TeamRepository;
 use App\Repository\UserRepository;
 use App\Repository\WorkoutRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Serializer;
@@ -70,28 +71,26 @@ class SearchController extends AbstractController
         return $response;
     }
     /**
-     * @Route("/search/workout/{id}", name="app_search_workout", methods={"POST", "GET"})
+     * @Route("/search/workout/muscles/{id}", name="app_search_workout", methods={"POST", "GET"})
      */
     public function searchWorkout(WorkoutRepository $workoutRepository, MuscleGroup $muscle, SerializerInterface $serializer)
     {
-        $json = $serializer->serialize($workoutRepository->searchByMuscle(['muscleGroup' => $muscle]), 'json', ['groups' => 'workout:display']);
+        $workouts = $workoutRepository->searchByMuscle(['muscleGroup' => $muscle]);
 
-        $response = new Response($json, 200, [
-            "Content-Type" => "application/json"
+        return new JsonResponse([
+            'content' => $this->renderView('user/program/_workoutSearch.html.twig', compact('workouts'))
         ]);
-        return $response;
     }
     /**
      * @Route("/search/workout/sport/{id}", name="app_search_workout_sport", methods={"POST", "GET"})
      */
     public function searchWorkoutBySport(WorkoutRepository $workoutRepository, SportsList $sport, SerializerInterface $serializer)
     {
-        $json = $serializer->serialize($workoutRepository->searchBySport(['sport' => $sport]), 'json', ['groups' => 'workout:display']);
+        $workouts = $workoutRepository->searchByMuscle(['sport' => $sport]);
 
-        $response = new Response($json, 200, [
-            "Content-Type" => "application/json"
+        return new JsonResponse([
+            'content' => $this->renderView('user/program/_workoutSearch.html.twig', compact('workouts'))
         ]);
-        return $response;
     }
     /**
      * @Route("/search/team/{id}", name="app_search_team_sport", methods={"POST", "GET"})

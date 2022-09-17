@@ -3,14 +3,19 @@
 {% block title %}Post{% endblock %}
 
 {% block body %}
+<div id="arrow-left" class="arrow" href="">{{ include('svg/arrowleft.html.twig') }}</div>
+
 <section class="bloc-full">
     <aside class="bloc-column-abs" id="column-left">
         <h2 class="bloc-title"></h2>
         <ul class="bloc-link-column">
+            
             {% if app.user.id == post.user.id %}
-                <li>
-                    {{ include('user/post/_delete_form.html.twig') }}
-                </li>
+        </ul>
+                    <li>
+                        {{ include('user/post/_delete_form.html.twig') }}
+                    </li>
+        <ul>
             {% endif %}
         </ul>
     </aside>

@@ -3,12 +3,14 @@
 namespace App\Controller\User;
 
 use App\Entity\Day;
+use App\Entity\Difficulty;
 use App\Entity\Program;
 use App\Entity\Week;
 use App\Entity\Workout;
 use App\Form\ProgramType;
 use App\Form\WeekType;
 use App\Repository\DayRepository;
+use App\Repository\DifficultyRepository;
 use App\Repository\MuscleGroupRepository;
 use App\Repository\SportsListRepository;
 use App\Repository\WeekRepository;
@@ -16,6 +18,7 @@ use App\Repository\WorkoutRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -28,11 +31,29 @@ class ProgramController extends AbstractController
     /**
      * @Route("/", name="app_user_program", methods={"GET"})
      */
-    public function index(WeekRepository $weekRepository, MuscleGroupRepository $muscles, SportsListRepository $sportsListRepository): Response
+    public function index(Request $request, WorkoutRepository $workoutRepository, WeekRepository $weekRepository, DifficultyRepository $difficultyRepository, MuscleGroupRepository $muscleGroupRepository, SportsListRepository $sportsListRepository): Response
     {
         $user = $this->getUser();
+
+        // filtre de workout
+        $fDifficulties = $request->get("level");
+        $fMuscles = $request->get("muscles");
+        $fSports = $request->get("sports");
+
+        $workouts = $workoutRepository->workoutFilters($fMuscles, $fSports, $fDifficulties);
+        $muscles = $muscleGroupRepository->findBy([], ['name' => 'ASC']);
+        $sportList = $sportsListRepository->findBy([], ['name' => 'ASC']);
+        $difficulties = $difficultyRepository->findAll();
+
+
+        // if ($request->get('ajax')) {
+        //     return new JsonResponse([
+        //         'content' => $this->renderView('user/program/_workoutSearch.html.twig', compact('workouts', 'muscles', 'sportList', 'difficulties'))
+        //     ]);
+        // }
+
+
         return $this->render('user/program/index.html.twig', [
-            'controller_name' => 'ProgramController',
             'monday' => $weekRepository->findBy(['user' => $user, 'dayweek' => 'monday']),
             'tuesday' => $weekRepository->findBy(['user' => $user, 'dayweek' => 'tuesday']),
             'wednesday' => $weekRepository->findBy(['user' => $user, 'dayweek' => 'wednesday']),
@@ -40,11 +61,14 @@ class ProgramController extends AbstractController
             'friday' => $weekRepository->findBy(['user' => $user, 'dayweek' => 'friday']),
             'saturday' => $weekRepository->findBy(['user' => $user, 'dayweek' => 'saturday']),
             'sunday' => $weekRepository->findBy(['user' => $user, 'dayweek' => 'sunday']),
-            'muscles' => $muscles->findAll([], ['name' => 'ASC']),
-            'sportList' => $sportsListRepository->findBy([], ['name' => 'ASC'])
+            'muscles' => $muscles,
+            'sportList' => $sportList,
+            'difficulties' => $difficulties,
+            'workouts' => $workouts
 
         ]);
     }
+
     /**
      * @Route("/monday/{workout}", name="app_user_program_monday", methods={"GET"})
      */
