@@ -12,6 +12,7 @@
     </head>
     <body>
         <div class="block-body">
+            
         {% if is_granted('ROLE_USER') %}
         <header>
             <ul class="nav">
@@ -56,9 +57,15 @@
             </ul>
             
         </header>
+        {% for message in app.flashes('success') %}
+                <p class="flash-message">
+                    {{ message }}
+                </p>
+            {% endfor %}
         {% endif %}
         {% block body %}{% endblock %}
     </div>
+    
     <div class="bloc-space"></div>
         <footer class="row">
             <a href="{{ path('app_mentions')}}">Mentions légales</a>

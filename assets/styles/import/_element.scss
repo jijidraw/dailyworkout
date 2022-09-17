@@ -150,8 +150,8 @@
 }
 
 .unchecked {
-  margin: $mp1;
   @extend %button;
+  margin: $mp1;
   color: black;
   border: 1px solid $red;
   background-color: $greytrans;

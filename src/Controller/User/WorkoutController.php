@@ -205,6 +205,7 @@ class WorkoutController extends AbstractController
             $workout->addMuscleGroup($muscle);
             $workoutRepository->add($workout, true);
         }
+        $this->addFlash('success', 'Exercices ajouté');
         return $this->redirect($route);
     }
     /**
@@ -214,6 +215,8 @@ class WorkoutController extends AbstractController
     {
         $route = $request->headers->get('referer');
         $exerciceRepository->remove($exercicePerso, true);
+        $this->addFlash('success', 'Exercices retiré');
+
         return $this->redirect($route);
     }
 

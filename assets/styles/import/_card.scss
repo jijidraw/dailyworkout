@@ -2,8 +2,8 @@
     position: relative;
     @extend %shadow;
     @extend %border;
-    width: 200px;
-    height: 250px;
+    width: 30%;
+    height: fit-content;
     margin: $mp1 0;
     overflow: hidden;
     text-align: center;
@@ -16,26 +16,20 @@
     font-size: 12px;
 }
 
-.card-a a {
-    color: white;
-}
-
-.card-a a:visited {
-    color: white;
-}
-
 .card:hover a {
     color: $red;
 }
 
 .card-img {
     width: 100%;
-    height: 100%;
+    height: fit-content;
+    max-height: 230px;
     overflow: hidden;
 }
 
 .card-img img {
     width: 100%;
+    height: auto;
 }
 
 .card-challenge {
@@ -51,10 +45,8 @@
 
 .card-a {
     text-align: center;
-    position: absolute;
     @extend %gradientReverse;
     width: 100%;
-    bottom: 0px;
 }
 
 .card-a form {
@@ -104,8 +96,8 @@
 }
 
 @media (max-width: 860px) {
-    .card {
-        width: 30%;
-        height: 20vh;
+
+    .card-img {
+        height: 200px;
     }
 }

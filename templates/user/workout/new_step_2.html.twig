@@ -10,21 +10,12 @@
             <h1 class="bloc-title">Filtrer les exercices</h1>
                 <div class="bloc-link-column">
                     {{ include('component/checkbox_form_select_exercice.html.twig') }}
-                    <div class="accordion" data-id="-category">Par famille d'exercice</div>
-                        <div class="panel" id="panel-category">
-                            {{ include('component/_select_form_category.html.twig') }}
-                        </div>
-                    <div class="accordion" data-id="-muscle">Par groupe musculaire</div>
-                        <div class="panel" id="panel-muscle">
-                            {{ include('component/_select_form_muscle.html.twig') }}
-                        </div>
-                    <div class="accordion" data-id="-sports">Par sport</div>
-                        <div class="panel" id="panel-sports">
-                            {{ include('component/_select_form_sport.html.twig') }}
-                        </div>
+                    
+
                     <div class="btvalid">
                         <a href="{{ path('app_workout_edit', {workout: workout.id})}}">Étape suivante</a>
                     </div>
+                    <div class="bloc-space"></div>
                 </div>
         </aside>
         <section class="bloc-large-abs">
@@ -55,8 +46,6 @@
 {% endblock %}
 {% block javascripts %}
 <script src="{{ asset('js/workout/add_exercice.js')}}"></script>
+<script src="{{ asset('js/radio.js')}}"></script>
 <script src="{{ asset('js/workout/filter.js')}}"></script>
-<script src="{{ asset('js/workout/filter_category.js')}}"></script>
-<script src="{{ asset('js/workout/filter_muscle.js')}}"></script>
-<script src="{{ asset('js/workout/filter_sports.js')}}"></script>
 {% endblock %}

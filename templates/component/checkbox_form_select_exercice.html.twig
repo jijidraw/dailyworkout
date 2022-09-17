@@ -1,31 +1,31 @@
 {# category #}
 {# <form action="" id="filters"> #}
 
-<h3>Par categorie</h3>
+    
 <form action="" id="filters">
-    {% for categorie in category %}
-        <p>
-            <input type="radio" name="category[]" id="cat{{ categorie.id}}" value="{{categorie.id}}">
-            <label for="cat{{categorie.id}}">{{ categorie.name}}</label>
-        </p>
-    {% endfor %}
+    <div class="accordion" data-id="-category">Par famille d'exercice</div>
+        <div class="panel" id="panel-category">
+                {% for categorie in category %}
+                <input type="radio" name="category[]" id="cat{{ categorie.id}}" value="{{categorie.id}}">
+                <label class="radio-select" for="cat{{categorie.id}}">{{ categorie.name}}</label>
+                {% endfor %}
+        </div>
 
 {# muscles #}
-<h3>Par groupes musculaire</h3>
-
-    {% for muscle in muscles %}
-    <p>
-        <input type="radio" name="muscles[]" id="muscles{{ muscle.id}}" value="{{muscle.id}}">
-        <label for="muscles{{muscle.id}}">{{ muscle.name}}</label>
-    </p>
-    {% endfor %}
+    <div class="accordion" data-id="-muscle">Par groupe musculaire</div>
+        <div class="panel" id="panel-muscle">
+            {% for muscle in muscles %}
+                    <input type="radio" name="muscles[]" id="muscles{{ muscle.id}}" value="{{muscle.id}}">
+                    <label class="radio-select" for="muscles{{muscle.id}}">{{ muscle.name}}</label>
+            {% endfor %}
+        </div>
 
 {# sports #}
-<h3>Par sport</h3>
-    {% for sport in sports %}
-    <p>
-        <input type="radio" name="sports[]" id="sports{{ sport.id}}" value="{{sport.id}}">
-        <label for="sports{{sport.id}}">{{ sport.name}}</label>
-    </p>
-    {% endfor %}
+    <div class="accordion" data-id="-sports">Par sport</div>
+        <div class="panel" id="panel-sports">
+            {% for sport in sports %}
+                    <input type="radio" name="sports[]" id="sports{{ sport.id}}" value="{{sport.id}}">
+                    <label class="radio-select" for="sports{{sport.id}}">{{ sport.name}}</label>
+            {% endfor %}
+        </div>
 </form>

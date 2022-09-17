@@ -1,0 +1,22 @@
+input[type="radio"] {
+    display: none
+}
+
+.radio-select {
+    @extend %button;
+    color: white;
+    background-color: $greytrans;
+}
+
+.radio-check {
+    @extend %button;
+    color: white;
+    background-color: $red;
+}
+
+.radio-uncheck {
+    @extend %button;
+    color: black;
+    border: 1px solid $red;
+    background-color: $greytrans;
+}
