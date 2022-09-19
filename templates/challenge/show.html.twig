@@ -101,7 +101,9 @@
                 <iframe width="560" height="315" src="{{ challenge.youtubeLink | replace({'https://www.youtube.com/watch?v=' : 'https://www.youtube.com/embed/'})}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 {# espace commentaire #}
+                <div class="form-message">
                     {{ include('challenge/_form_comment.html.twig') }}
+                </div>
                     {{ include('challenge/_comment_zone.html.twig') }}
                 {# espace commentaire #}
         </div>

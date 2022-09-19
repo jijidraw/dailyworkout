@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\ChallengeComment;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,9 +17,29 @@ class CommentChallengeType extends AbstractType
         $builder
             ->add('content', TextType::class, [
                 'label' => false,
+                'required' => false,
                 'attr' => array(
-                    'placeholder' => 'laisser un commentaire'
+                    'placeholder' => 'Votre message...'
                 )
+            ])
+            ->add('link', TextType::class, [
+                'label' => false,
+                'required' => false,
+                'attr' => array(
+                    'placeholder' => 'https://...'
+                )
+            ])
+            ->add('youtubeLink', TextType::class, [
+                'label' => false,
+                'required' => false,
+                'attr' => array(
+                    'placeholder' => 'Lien Youtube...'
+                )
+            ])
+            ->add('image', FileType::class, [
+                'label' => false,
+                'mapped' => false,
+                'required' => false
             ]);
     }
 

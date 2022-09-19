@@ -51,8 +51,15 @@
     list-style-type: disc;
 }
 
+.img-message {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 .img-message img {
-    height: 250px;
+    height: 200px;
+    margin: auto;
 }
 
 .abs-message {

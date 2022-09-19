@@ -61,13 +61,13 @@
 }
 
 %gradient {
-    background: rgb(236, 163, 121);
-    background: linear-gradient(180deg, rgba(236, 163, 121, 1) 0%, rgba(176, 66, 0, 1) 100%);
+    background: #f56353;
+    background: linear-gradient(180deg, #f56353 0%, #ce210e 100%);
 }
 
 %gradientReverse {
-    background: rgb(236, 163, 121);
-    background: linear-gradient(0deg, rgba(236, 163, 121, 1) 0%, rgba(176, 66, 0, 1) 100%);
+    background: #f56353;
+    background: linear-gradient(0deg, #f56353 0%, #ce210e 100%);
 }
 
 %darkGradient {

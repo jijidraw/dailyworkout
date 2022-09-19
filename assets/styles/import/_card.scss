@@ -2,9 +2,9 @@
     position: relative;
     @extend %shadow;
     @extend %border;
-    width: 30%;
+    width: 20%;
     height: fit-content;
-    margin: $mp1 0;
+    margin: $mp1;
     overflow: hidden;
     text-align: center;
 }
@@ -12,24 +12,30 @@
 .card h3 {
     @extend %gradient;
     width: 100%;
+    height: 50px;
+    align-items: center;
     color: white;
     font-size: 12px;
 }
 
+.card a {
+    color: white;
+}
+
 .card:hover a {
-    color: $red;
+    color: $main;
 }
 
 .card-img {
     width: 100%;
-    height: fit-content;
-    max-height: 230px;
+    height: 200px;
     overflow: hidden;
+    object-fit: contain;
 }
 
 .card-img img {
     width: 100%;
-    height: auto;
+    max-height: 200px;
 }
 
 .card-challenge {
@@ -44,6 +50,9 @@
 }
 
 .card-a {
+    position: absolute;
+    bottom: 0;
+    left: 0;
     text-align: center;
     @extend %gradientReverse;
     width: 100%;
@@ -96,8 +105,35 @@
 }
 
 @media (max-width: 860px) {
+    .card {
+        width: 30%;
+        margin: 6px;
+    }
+
+    .card h3 {
+        height: 25px;
+        font-size: 10px;
+    }
 
     .card-img {
-        height: 200px;
+        height: 180px;
+    }
+}
+
+@media (min-width: 220px) and (max-width:425px) {
+    .card {
+        width: 30%;
+        margin: 4px;
+        height: 150px;
+    }
+
+    .card h3 {
+        height: 25px;
+        font-size: 10px;
+    }
+
+    .card-img {
+        height: 120px;
+        max-height: 120px;
     }
 }

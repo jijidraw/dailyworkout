@@ -21,25 +21,19 @@
     </aside>
     <section class="bloc-large-abs">
         <h2 class="bloc-title">Liste des exercices</h2>
-    <div class="gallery">
+    <div class="workout-list-exercice">
         {% for exercice in exercices %}
-        <a href="{{ path('app_admin_exercice_edit', {'id': exercice.id}) }}">
         <div class="card">
-            <h3>
-                {{ exercice.name }}
-            </h3>
-            <div class="card-img">
-                {% if exercice.imageSystem is empty %}
-                <p>Pas d'image enregistré</p>
-                {% else %}
-                <img src="{{ asset('exercice/' ~ exercice.imageSystem.name)}}" width="400px" alt="">
-                {% endif %}
-            </div>
-            <div class="card-a">
-                Modifier
-            </div>
+                <a href="{{ path('app_admin_exercice_edit', {'id': exercice.id}) }}">
+                <h3>{{ exercice.name}}</h3>
+                <div class="card-img">
+                    {% if exercice.imageSystem is empty %}
+                    <p>Pas d'image enregistré</p>
+                    {% endif %}
+                    <img src="{{ asset('exercice/' ~ exercice.imageSystem.name)}}" width="400px" alt="">
+                </div>
+            </a>
         </div>
-    </a>
         {% else %}
             <h3>Pas d'enregistrement trouvé</h3>
         {% endfor %}

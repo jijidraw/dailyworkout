@@ -4,21 +4,13 @@
     {% else %}
     <p>Les derniers messages de mes Teams</p>
     {% for team in teams %}
-    <a class="team-home" href="{{ path('app_team_show', {id: team.id})}}">
-            {% if team.imagesProfiles is empty %}
-            <img class="img-team-home" src="{{ asset('images/team.png')}}" alt="">
-            {% else %}
-            <img class="img-team-home" src="{{ asset('profil/' ~ team.imagesProfiles.name)}}" height="100px" alt="">
-            {% endif %}
-            <p class="team-home-name">{{ team.name }}</p>
+    <a class="bloc-user-link" href="{{ path('app_team_show', {id: team.id})}}">
+            <img class="profil" src="{{ asset('profil/' ~ team.imagesProfiles.name)}}" height="100px" alt="">
+            {{ team.name }}
     </a>
         {% for post in team.teamPosts | reverse | slice (0, 1) %}
         <div class="team-home-user">
-            {% if post.user.imagesProfiles == null %}
-                <img class="profil" src="{{ asset('images/login.png')}}" alt="">
-                    {% else %}
                 <img class="profil" src="{{ asset('profil/' ~ post.user.imagesProfiles.name)}}" alt="">
-            {% endif %}
             <p>{{ post.user.name }}</p>
         </div>
         {% if post.content %}

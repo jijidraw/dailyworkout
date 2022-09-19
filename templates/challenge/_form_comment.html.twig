@@ -1,13 +1,21 @@
-<div class="form-comment-light">
-{{ form_start(form) }}
-<div class="row">
-        {% if app.user.imagesProfiles. name is defined %}
-        <img class="profil" src="{{ asset('profil/' ~ app.user.imagesProfiles.name)}}" alt="">
-        {% else %}
-        <img class="profil" src="{{ asset('images/login.png')}}" alt="">
-        {% endif %}
-    {{ form_row(form.content) }}
-    <button class="btvalid">{{ button_label|default('envoyer') }}</button>
-</div>
-    {{ form_end(form) }}
-</div>
+{{ form_start(form)}}
+    <div class="row">
+        <p>Votre message</p>
+        <div class="accordion" data-id="-youtube"><img src="{{ asset('images/icon/youtube.png')}}" alt=""></div>
+        <div class="accordion" data-id="-link"><img src="{{ asset('images/icon/href.png')}}" alt=""></div>
+        <div class="input-file">
+            <label for="comment_challenge_image">{{ include('svg/jpg.html.twig') }}</label>
+        </div>
+    </div>
+    {{ form_row(form.image)}}
+    {{ form_row(form.content)}}
+    <div class="panel" id="panel-youtube">
+        {{ form_row(form.youtubeLink)}}
+    </div>
+    <div class="panel" id="panel-link">
+        {{ form_row(form.link)}}
+    </div>
+    <div class="preview"></div>
+
+        <button class="btvalid">{{ button_label|default('envoyer') }}</button>
+{{ form_end(form)}}

@@ -7,6 +7,12 @@
     overflow-y: auto;
 }
 
+a.message-link {
+    color: $red;
+    margin: 6px;
+    width: 100%;
+}
+
 @media (max-width: 860px) {
     .bloc-team-post {
         width: 100%;

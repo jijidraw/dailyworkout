@@ -7,7 +7,7 @@
 
 <section class="bloc-full">
     <h1 class="bloc-title">Espace d'administration</h1>
-        <aside class="bloc-column-abs">
+        <aside id="column-left" class="bloc-column-abs">
                 <div class="bloc-title">Espace administration</div>
                 <h3>Gérer les sports</h3>
                 <ul class="bloc-link-column">
@@ -63,6 +63,7 @@
                     <a class="main-link" href="{{ path('app_admin_goal_index')}}">Goal</a>
                     <a class="main-link" href="{{ path('app_admin_reward_index')}}">Récompense</a>
                 </ul>
+                <div class="bloc-space"></div>
         </aside>
     </section>
 {% endblock %}

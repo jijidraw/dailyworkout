@@ -86,7 +86,7 @@ class SearchController extends AbstractController
      */
     public function searchWorkoutBySport(WorkoutRepository $workoutRepository, SportsList $sport, SerializerInterface $serializer)
     {
-        $workouts = $workoutRepository->searchByMuscle(['sport' => $sport]);
+        $workouts = $workoutRepository->searchBySport(['sport' => $sport]);
 
         return new JsonResponse([
             'content' => $this->renderView('user/program/_workoutSearch.html.twig', compact('workouts'))

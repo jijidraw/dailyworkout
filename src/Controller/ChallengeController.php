@@ -145,21 +145,21 @@ class ChallengeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $comment->setUser($user)->setChallenge($challenge)->setCreatedAt(new DateTime());
             $challengeCommentRepository->add($comment, true);
-            // $empty = $form->get('image')->getData();
+            $empty = $form->get('image')->getData();
 
-            // if (!empty($empty)) {
+            if (!empty($empty)) {
 
-            //     $images = $form->get('image')->getData();
-            //     $fichier = md5(uniqid()) . '.' . $images->guessExtension();
-            //     $images->move(
-            //         $this->getParameter('post_directory'),
-            //         $fichier
-            //     );
+                $images = $form->get('image')->getData();
+                $fichier = md5(uniqid()) . '.' . $images->guessExtension();
+                $images->move(
+                    $this->getParameter('post_directory'),
+                    $fichier
+                );
 
-            //     $img = new Images();
-            //     $img->setName($fichier);
-            //     $comment->setImage($img);
-            // };
+                $img = new Images();
+                $img->setName($fichier);
+                $comment->setImage($img);
+            };
             $em->persist($comment);
             $em->flush();
             return $this->redirectToRoute('app_challenge_show', ['id' => $challenge->getId()], Response::HTTP_SEE_OTHER);

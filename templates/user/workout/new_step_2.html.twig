@@ -37,6 +37,9 @@
                 
             {% endfor %}
         </div>
+        <h2>
+            Liste des exercices
+        </h2>
         <div class="workout-list-select" id="content">
             {{ include('user/workout/_content_step2.html.twig') }}
         </div>
@@ -45,7 +48,6 @@
 
 {% endblock %}
 {% block javascripts %}
-<script src="{{ asset('js/workout/add_exercice.js')}}"></script>
 <script src="{{ asset('js/radio.js')}}"></script>
 <script src="{{ asset('js/workout/filter.js')}}"></script>
 {% endblock %}
