@@ -3,7 +3,9 @@
 namespace App\Form;
 
 use App\Entity\Difficulty;
+use App\Entity\SportsList;
 use App\Entity\Workout;
+use App\Repository\SportsListRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -20,26 +22,36 @@ class WorkoutType extends AbstractType
             ->add('name', TextType::class, [
                 'label' => false,
                 'attr' => array(
-                    'placeholder' => 'le nom de votre workout'
+                    'placeholder' => 'Le nom de ton workout'
                 )
             ])
             ->add('rounds', TextType::class, [
                 'label' => false,
                 'required' => false,
                 'attr' => array(
-                    'placeholder' => 'nombre de tours de votre entrainement'
+                    'placeholder' => 'Nombre de tours'
                 )
             ])
             ->add('content', TextareaType::class, [
                 'label' => false,
                 'required' => false,
                 'attr' => array(
-                    'placeholder' => 'détails sur comment faire votre workout'
+                    'placeholder' => 'Commentaires éventuels sur ton entraînement'
                 )
             ])
             ->add('level', EntityType::class, [
                 'class' => Difficulty::class,
                 'label' => false
+            ])
+            ->add('sport', EntityType::class, [
+                'class' => SportsList::class,
+                'query_builder' => function (SportsListRepository $er) {
+                    return $er->createQueryBuilder('s')
+                        ->orderBy('s.name', 'ASC');
+                },
+                'multiple' => true,
+                'label' => false,
+                'expanded' => true
             ]);
     }
 

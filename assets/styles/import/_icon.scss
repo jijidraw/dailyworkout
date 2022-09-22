@@ -13,6 +13,10 @@ svg:hover {
 .svg-workout svg {
     height: 36px;
     width: 36px;
+    fill: $red;
+}
+
+.svg-workout:hover svg {
     fill: white;
 }
 

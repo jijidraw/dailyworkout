@@ -3,10 +3,10 @@
 {% block title %}Mon programme{% endblock %}
 {% block body %}
 <div id="arrow-left" class="arrow open" href="">{{ include('svg/arrowleft.html.twig') }}</div>
+<div id="arrow-right" class="arrow-right hidden" href="">{{ include('svg/arrowright.html.twig') }}</div>
 
     <section class="bloc-full">
         <aside id="column-left" class="bloc-column-abs open">
-        
         <div class="bloc-title">
             <h2>Mes workout</h2>
         </div>
@@ -15,7 +15,7 @@
                         <a class="btblue" href="{{ path('app_workout_new')}}">Nouveau workout</a>
                 </li>
                 <li class="tab" data-target="#content4">
-                    Mon planning
+                    Notre sélection
                 </li>
                 <li class="active tab" data-target="#content1">
                     Mes workouts
@@ -41,14 +41,12 @@
             </ul>
 
     </aside>
-        <section class="bloc-large-abs">
+        <section class="bloc-actu">
             <div class="content" id="content4">
-                <div class="bloc-title">
-                    <h1>Mon programme</h1>
-                </div>
-                <div class="week-view">
-                    {{ include('user/program/_weekview.html.twig') }}
-                </div>
+                <h2 class="bloc-title">Notre sélection.</h2>
+                <p class="text-middle">Retrouves ici les derniers workouts que nous avons ajouté. <br> Renseignes dans ton profil les sports qui t'intéressent, nous te proposerons des entrainements adaptés.</p>
+                {{ include('user/program/_workoutSelection.html.twig') }}
+                <div class="bloc-space"></div>
             </div>
             <div class="content" id="content1">
                     <h2 class="bloc-title">La liste de mes workout</h2>
@@ -69,12 +67,17 @@
                 <div class="bloc-space"></div>
 
             </div>
-
         </section>
+        <aside id="column-right" class="bloc-column-abs-rg">
+            {{ include('user/program/_weekview.html.twig') }}
+        </aside>
     </section>
 {% endblock %}
 {% block javascripts %}
     <script src="{{ asset('js/workout/filter.js')}}"></script>
+    <script src="{{ asset('js/workoutFav.js')}}"></script>
+
+    <script src="{{ asset('js/arrowright.js')}}"></script>
     <script src="{{ asset('js/user/tabs.js')}}"></script>
     <script src="{{ asset('js/search/appearFilter.js')}}"></script>
     <script src="{{ asset('js/search/searchWorkout.js')}}"></script>

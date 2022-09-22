@@ -1,2 +1,9 @@
 
-<a class="btdelete" href="{{ path('app_user_program_delete', {'id': wod.id}) }}">retirer</a>
+<a href="{{ path('app_user_program_delete', {'id': workouts.id}) }}">
+    <div class="dropdown svg-workout">
+        {{ include('svg/deletecross.html.twig') }}
+        <div class="dropdown-content">
+            retirer
+        </div>
+    </div>
+</a>

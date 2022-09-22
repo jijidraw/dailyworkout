@@ -39,6 +39,16 @@
 
 .text-middle {
     @extend %column;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    padding: $mp2;
+    overflow-y: auto;
+}
+
+p.text-middle {
+    @extend %column;
+    text-align: center;
     width: 100%;
     height: 100%;
     padding: $mp2;

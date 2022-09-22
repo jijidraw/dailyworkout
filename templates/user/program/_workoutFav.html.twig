@@ -1,12 +1,41 @@
 <div class="workout-list">
 {% for workouts in app.user.workoutFavs %}
         <div class="workout-bloc">
-            <div class="{{ workouts.workout.level}}">difficulté : {{ workouts.workout.level }}</div>
             <div class="workout-bar">
-                <a href="{{ path('app_workout_show', {id :workouts.workout.id})}}">
-                    <h4>{{ workouts.workout.name }}</h4>
+                <div class="{{ workouts.workout.level}}">difficulté : {{ workouts.workout.level }}</div>
+
+                    <a class="row" href="{{ path('app_user_show', {id: workouts.workout.user.id })}}">
+                        <img class="profil" src="{{ asset('profil/' ~ workouts.workout.user.imagesProfiles.name)}}" alt="">
+                        {{ workouts.workout.user.name }}
+                    </a>
+                    <div class="workout-info">
+                        <a href="{{ path('app_workout_show', {id: workouts.workout.id})}}">
+                            <h4>{{ workouts.workout.name }}</h4>
+                        </a>
+                    </div>
+                <a data-id="{{ workouts.workout.id }}" id="js-workout-like" href="{{ path('app_workout_fav', {id: workouts.workout.id})}}">
+                    {% if workouts.workout.isFavsByUser(app.user) and app.user %}
+                        <span id="star{{workouts.workout.id}}" class="svg-star">{{ include('svg/star.html.twig') }}</span>
+                        {% else %}
+                        <span id="star{{workouts.workout.id}}" class="svg-empty">{{ include('svg/star.html.twig') }}</span>
+                    {% endif %}
                 </a>
                 <span class="dropdown svg-workout">{{ include('svg/gears.html.twig') }}
+                    <div class="dropdown-content-workout">
+                        <div class="dropdown-bloc">
+                        {% if app.user.id != workouts.workout.user.id %}
+                        <button class="btblue">
+                            <a href="{{ path('app_workout_duplicate', {id: workouts.workout.id})}}">Modifier pour moi</a>
+                        </button>
+                            {% else %}
+                        <button class="btblue">
+                            <a href="{{ path('app_workout_edit', {workout: workouts.workout.id})}}">Modifier</a>
+                        </button>
+                        {% endif %}
+                        </div>
+                    </div>
+                </span>
+                <span class="dropdown svg-workout">{{ include('svg/cross.html.twig') }}
                     <div class="dropdown-content">
                         <div class="dropdown-bloc">
                             <div class="item-dropdown">

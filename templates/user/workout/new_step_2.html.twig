@@ -8,18 +8,31 @@
 <div class="bloc-full">
         <aside id="column-left" class="bloc-column-abs">
             <h1 class="bloc-title">Filtrer les exercices</h1>
-                <div class="bloc-link-column">
-                    {{ include('component/checkbox_form_select_exercice.html.twig') }}
-                    
-
-                    <div class="btvalid">
-                        <a href="{{ path('app_workout_edit', {workout: workout.id})}}">Étape suivante</a>
+                    <ul class="bloc-link-column">
+                        <li class="active tab" data-target="#content1">
+                            Notre sélection d'exercices
+                        </li>
+                        <li id="search" class="tab" data-target="#content2">
+                            Trouver d'autres exercices
+                        </li>
+                    </ul>
+                    <div id="bloc-column-filter" class="hidden">
+                        {{ include('component/checkbox_form_select_exercice.html.twig') }}
                     </div>
+                        <button class="btvalid" href="{{ path('app_workout_edit', {workout: workout.id})}}">
+                            <a href="{{ path('app_workout_edit', {workout: workout.id})}}">
+                                Étape suivante {{ include('svg/checkmark.html.twig') }}
+                            </a>
+                        </button>
+                        
                     <div class="bloc-space"></div>
-                </div>
         </aside>
         <section class="bloc-large-abs">
-        <h2 class="bloc-title">Exercices selectionnés</h2>
+            <div class="bloc-title"></div>
+            <p class="text-middle">
+                Maintenant, ajoutes des exercices parmis ceux que nous t'avons sélectionné. Si tu ne trouves pas ce qu'il te faut, cliques dans la colonne de gauche sur trouver d'autres exercices et accèdes à la bibliothèque.
+            </p>
+            <h2>Exercices ajoutés</h2>
         <div class="workout-list-exercice">
             {% for exercices in workout.exercicePersos %}
             <div class="card">
@@ -37,17 +50,28 @@
                 
             {% endfor %}
         </div>
-        <h2>
-            Liste des exercices
-        </h2>
-        <div class="workout-list-select" id="content">
-            {{ include('user/workout/_content_step2.html.twig') }}
+        <div class="content" id="content1">
+            <h2>Nos exercices sélectionnés pour toi</h2>
+            <div class="workout-list-select">
+                {{ include('user/workout/_selections.html.twig') }}
+            </div>
         </div>
+        <div class="content" id="content2">
+            <h2>
+                Liste des exercices
+            </h2>
+            <div class="workout-list-select" id="content">
+                {{ include('user/workout/_content_step2.html.twig') }}
+            </div>
+        </div>
+
         </section>
 </div>
 
 {% endblock %}
 {% block javascripts %}
 <script src="{{ asset('js/radio.js')}}"></script>
+<script src="{{ asset('js/user/tabs.js')}}"></script>
+<script src="{{ asset('js/search/appearFilter.js')}}"></script>
 <script src="{{ asset('js/workout/filter.js')}}"></script>
 {% endblock %}

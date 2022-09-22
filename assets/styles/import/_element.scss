@@ -36,7 +36,9 @@
 .dropdown-bloc {
   @extend %column;
   width: fit-content;
+  min-width: 180px;
 }
+
 
 .dropdown:hover .dropdown-content {
   display: block;
@@ -117,6 +119,7 @@
   overflow: hidden;
   text-align: center;
 }
+
 
 .panel ul {
   @extend %flex-row;

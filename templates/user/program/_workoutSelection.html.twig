@@ -1,16 +1,13 @@
-
 <div class="workout-list">
-    {% for workout in workouts %}
+    {% for workout in app.user.workouts %}
             <div class="workout-bloc">
                 <div class="workout-bar">
-                    <div class="{{ workout.level}}">difficulté : {{ workout.level }}</div>
-                    <a class="row" href="{{ path('app_user_show', {id: workout.user.id })}}">
-                        <img class="profil" src="{{ asset('profil/' ~ workout.user.imagesProfiles.name)}}" alt="">
-                        {{ workout.user.name }}
-                    </a>
+                    <div class="{{workout.level}}">difficulté : {{ workout.level }}</div>
                     <div class="workout-info">
-                        <a href="{{ path('app_workout_show', {id: workout.id})}}">
-                            <h4>{{ workout.name }}</h4>
+                        <a href="{{ path('app_workout_show', {id :workout.id})}}">
+                            <div class="workout-title">
+                                <h4>{{ workout.name }}</h4>
+                            </div>
                         </a>
                     </div>
                     <a data-id="{{ workout.id }}" id="js-workout-like" href="{{ path('app_workout_fav', {id: workout.id})}}">
@@ -36,6 +33,7 @@
                             </div>
                         </div>
                     </span>
+                    
                     <span class="dropdown svg-workout">{{ include('svg/cross.html.twig') }}
                         <div class="dropdown-content">
                             <div class="dropdown-bloc">
@@ -60,13 +58,13 @@
                                 <div class="item-dropdown">
                                     <a href="{{ path('app_user_program_sunday', {workout: workout.id})}}">Dimanche</a>
                                 </div>
+                            </div>
                         </div>
-                     </div>
                     </span>
                 </div>
     
-            {% for exercice in workout.exercicePersos %}
-            <div class="exercice-bloc">
+                {% for exercice in workout.exercicePersos %}
+                <div class="exercice-bloc">
                         <div class="exercice-img">
                                 <img src="{{ asset('exercice/' ~ exercice.exercice.imageSystem.name)}}" width="100px" alt="">
                         </div>
@@ -91,9 +89,9 @@
                                 </div>
                             </div>
                             {% endif %}
-                        </div>
-                    </div>
+                                </div>
+                            </div>
                 {% endfor %}
-        </div>
+            </div>
             {% endfor %}
     </div>

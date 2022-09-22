@@ -176,6 +176,14 @@ select {
     color: $red2;
 }
 
+button.btblue,
+button.btvalid,
+button.btmain {
+    @extend %button;
+    width: 100%;
+    min-width: 100%;
+}
+
 .btvalid {
     @extend %button;
     background-color: #1ead5a;

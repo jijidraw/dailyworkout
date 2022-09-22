@@ -3,9 +3,12 @@
     {{ form_widget(form._token)}}
 
     <aside id="column-left" class="bloc-column-abs">
-    <h1 class="bloc-title">Modifier workout</h1>
+    <h1 class="bloc-title">Modifier ton workout</h1>
     
     <div class="bloc-link-column">
+        <button class="btmain">
+            <a href="{{ path('app_workout_new_step_2', {id: workout.id })}}">Ajouter/supprimer des exercices</a>
+        </button>
         <div class="item-list">
             <div class="item-form">
                 <label for="">Nom</label>
@@ -24,10 +27,7 @@
                 {{ form_row(form.level) }}
             </div>
         </div>
-        <div class="btblue">
 
-            <a href="{{ path('app_workout_new_step_2', {id: workout.id })}}">Ajouter/supprimer des exercices</a>
-        </div>
         <div class="item-list">
             <div data-id="-sport" class="accordion">Pour quel sport ce workout est recommandé</div>
                 <div id="panel-sport" class="panel">
@@ -35,11 +35,12 @@
                 </div>
         </div>
         <input class="btvalid" type="submit" value="valider">
+        <div class="bloc-space"></div>
         </div>
-
     </aside>
     <section class="bloc-large-abs">
         <h2 class="bloc-title">Mes exercices</h2>
+        <p class="text-middle">Remplis les caractéristiques de chaque exercice. Et après validation, attribue ton entrainement un jour de la semaine.</p>
     <div class="gallery">
     {% for exercice in form.exercicePersos %}
         <div class="form-experso">
@@ -64,7 +65,7 @@
                     {{ form_widget(exercice.Rest)}}
                 </div>
                 <div class="item-form">
-                    <label for="">Détails éxécution</label>
+                    <label for="">Commentaires</label>
                     {{ form_widget(exercice.content)}}
                 </div>
             </div>

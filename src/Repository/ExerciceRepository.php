@@ -95,6 +95,17 @@ class ExerciceRepository extends ServiceEntityRepository
             ->setParameter('id', $sport);
         return $query->getQuery()->getResult();
     }
+    public function searchBySportWorkout($workoutSports = null)
+    {
+        $query = $this->createQueryBuilder('e');
+        if ($workoutSports != null) {
+            $query->leftJoin('e.sports', 's');
+            $query->Where('s.id = :id')
+                ->setParameter(':id', array_values($workoutSports));
+        }
+        $query->orderBy('e.name', 'ASC');
+        return $query->getQuery()->getResult();
+    }
 
 
 

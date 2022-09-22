@@ -7,13 +7,14 @@
 
     <div class="workout-bloc">
         <div class="workout-bar">
+            <div class="{{workouts.workout.level}}">difficulté : {{ workouts.workout.level }}</div>
+
             <div class="workout-title">
                 <h4>{{ workouts.workout.name}}</h4>
             </div>
             <div class="workout-detail">
                 <p> description : {{ workouts.workout.content}}</p>
                 <p> rounds : {{ workouts.workout.rounds}}</p>
-                <p> difficulté : {{ workouts.workout.difficulty}}</p>
             </div>
         </div>
         {% for exercices in workouts.workout.exercicePersos %}

@@ -13,6 +13,7 @@ use App\Repository\DayRepository;
 use App\Repository\DifficultyRepository;
 use App\Repository\MuscleGroupRepository;
 use App\Repository\SportsListRepository;
+use App\Repository\UserRepository;
 use App\Repository\WeekRepository;
 use App\Repository\WorkoutRepository;
 use DateTime;
@@ -31,10 +32,22 @@ class ProgramController extends AbstractController
     /**
      * @Route("/", name="app_user_program", methods={"GET"})
      */
-    public function index(Request $request, WorkoutRepository $workoutRepository, WeekRepository $weekRepository, DifficultyRepository $difficultyRepository, MuscleGroupRepository $muscleGroupRepository, SportsListRepository $sportsListRepository): Response
+    public function index(Request $request, WorkoutRepository $workoutRepository, WeekRepository $weekRepository, DifficultyRepository $difficultyRepository, MuscleGroupRepository $muscleGroupRepository, SportsListRepository $sportsListRepository, UserRepository $userRepository): Response
     {
         $user = $this->getUser();
-
+        $userIdentifier = $this->getUser()->getUserIdentifier();
+        $thisUser = $userRepository->findOneBy(['email' => $userIdentifier]);
+        $userSports =  $thisUser->getSportlist();
+        $selections = $workoutRepository->findBy([], ['created_at' => 'DESC'], 20);
+        if (!empty($userSports)) {
+            foreach ($userSports as $userSport) {
+                $workoutSports = $workoutRepository->searchBySport($userSport);
+                foreach ($workoutSports as $workoutSport) {
+                    $selections[] = $workoutSport;
+                }
+            }
+            $selections = array_map("unserialize", array_unique(array_map("serialize", $selections)));
+        }
         // filtre de workout
         $fDifficulties = $request->get("level");
         $fMuscles = $request->get("muscles");
@@ -44,14 +57,6 @@ class ProgramController extends AbstractController
         $muscles = $muscleGroupRepository->findBy([], ['name' => 'ASC']);
         $sportList = $sportsListRepository->findBy([], ['name' => 'ASC']);
         $difficulties = $difficultyRepository->findAll();
-
-
-        // if ($request->get('ajax')) {
-        //     return new JsonResponse([
-        //         'content' => $this->renderView('user/program/_workoutSearch.html.twig', compact('workouts', 'muscles', 'sportList', 'difficulties'))
-        //     ]);
-        // }
-
 
         return $this->render('user/program/index.html.twig', [
             'monday' => $weekRepository->findBy(['user' => $user, 'dayweek' => 'monday']),
@@ -64,8 +69,8 @@ class ProgramController extends AbstractController
             'muscles' => $muscles,
             'sportList' => $sportList,
             'difficulties' => $difficulties,
-            'workouts' => $workouts
-
+            'workouts' => $workouts,
+            'selections' => $selections
         ]);
     }
 

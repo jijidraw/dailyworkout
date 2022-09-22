@@ -3,7 +3,7 @@
 
     
 <form action="" id="filters">
-    <div class="accordion" data-id="-category">Par famille d'exercice</div>
+    <div class="accordion" data-id="-category">Famille d'exercices</div>
         <div class="panel" id="panel-category">
                 {% for categorie in category %}
                 <input type="radio" name="category[]" id="cat{{ categorie.id}}" value="{{categorie.id}}">
@@ -12,7 +12,7 @@
         </div>
 
 {# muscles #}
-    <div class="accordion" data-id="-muscle">Par groupe musculaire</div>
+    <div class="accordion" data-id="-muscle">Groupe musculaire</div>
         <div class="panel" id="panel-muscle">
             {% for muscle in muscles %}
                     <input type="radio" name="muscles[]" id="muscles{{ muscle.id}}" value="{{muscle.id}}">
@@ -21,7 +21,7 @@
         </div>
 
 {# sports #}
-    <div class="accordion" data-id="-sports">Par sport</div>
+    <div class="accordion" data-id="-sports">Sport</div>
         <div class="panel" id="panel-sports">
             {% for sport in sports %}
                     <input type="radio" name="sports[]" id="sports{{ sport.id}}" value="{{sport.id}}">

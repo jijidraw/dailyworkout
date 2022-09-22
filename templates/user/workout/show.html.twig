@@ -3,11 +3,16 @@
 {% block title %}Workout{% endblock %}
 
 {% block body %}
+<div id="arrow-left" class="arrow" href="">{{ include('svg/arrowleft.html.twig') }}</div>
+
 <section class="bloc-full">
     <aside id="column-left" class="bloc-column-abs">
         <h1 class="bloc-title">{{workout.name}}</h1>
         <div class="bloc-link-column">
             <ul>
+                <li>
+                    <a href="{{ path('app_user_show', {id: workout.user.id})}}">Créer par : <br><div class="row"><img class="profil" src="{{ asset('profil/' ~ workout.user.imagesProfiles.name)}}" alt=""> {{ workout.user.name}}</div></a>
+                </li>
                 <li>
                     <a data-id="{{ workout.id }}" id="js-workout-like" href="{{ path('app_workout_fav', {id: workout.id})}}">
                         {% if workout.isFavsByUser(app.user) and app.user %}
@@ -17,9 +22,7 @@
                         {% endif %}
                     </a>
                 </li>
-                <li>
-                    <a href="{{ path('app_user_show', {id: workout.user.id})}}">Créer par : <br><div class="row"><img class="profil" src="{{ asset('profil/' ~ workout.user.imagesProfiles.name)}}" alt=""> {{ workout.user.name}}</div></a>
-                </li>
+                
                 <h3 class="bloc-title">Noter ce workout</h3>
                 {% if userNote is null %}
                     Vous n'avez pas noté ce workout.

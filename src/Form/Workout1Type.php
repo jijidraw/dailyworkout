@@ -7,6 +7,7 @@ use App\Entity\ExercicePerso;
 use App\Entity\MuscleGroup;
 use App\Entity\SportsList;
 use App\Entity\Workout;
+use App\Repository\SportsListRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -39,6 +40,10 @@ class Workout1Type extends AbstractType
             ])
             ->add('sport', EntityType::class, [
                 'class' => SportsList::class,
+                'query_builder' => function (SportsListRepository $er) {
+                    return $er->createQueryBuilder('s')
+                        ->orderBy('s.name', 'ASC');
+                },
                 'multiple' => true,
                 'label' => false,
                 'expanded' => true

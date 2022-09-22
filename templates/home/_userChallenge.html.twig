@@ -1,5 +1,5 @@
 <div class="bloc-inner">
-<p>Vos Challenges en cours</p>
+<p>Mes Challenges en cours</p>
 {% for challenge in userChallenge %}
     <div class="bloc-user-link">
         <a href="{{ path('app_challenge_show', {id: challenge.challenge.id})}}">

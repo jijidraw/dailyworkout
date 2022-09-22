@@ -1,8 +1,8 @@
 <div class="bloc-inner">
     {% if teams is empty %}
-    <p class="message-info">Vous ne faites pas encore partie d'une équipe</p>
+    <p class="message-info">Tu ne fais pas partie d'une team</p>
     {% else %}
-    <p>Les derniers messages de mes Teams</p>
+    <p>Mes Teams</p>
     {% for team in teams %}
     <a class="bloc-user-link" href="{{ path('app_team_show', {id: team.id})}}">
             <img class="profil" src="{{ asset('profil/' ~ team.imagesProfiles.name)}}" height="100px" alt="">

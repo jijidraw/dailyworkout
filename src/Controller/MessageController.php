@@ -47,8 +47,8 @@ class MessageController extends AbstractController
         $convB = $conversationRepository->findBy(['userB' => $user], ['updated_at' => 'DESC']);
         $conversations = array_merge($convA, $convB);
         $messages = $messageRepository->findBy(['conversation' => $conversation], ['created_at' => 'DESC']);
+        $lastmessage = $messages[0]->getUser();
         if (!empty($lastmessage)) {
-            $lastmessage = $messages[0]->getUser();
             if ($lastmessage != $user) {
                 foreach ($messages as $message) {
                     $message->setIsRead(true);

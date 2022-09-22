@@ -1,112 +1,391 @@
-    <div class="day-view">
-        <div class="day-title">Lundi</div>
-        <div class="day-workout">
-            {% if monday is empty %}
-            <p>
+<div class="bloc-title"></div>
+    <div data-id="-monday" class="accordion">Lundi</div>
+    <div class="panel" id="panel-monday">
+        {% if monday is empty %}
+            <p class="white">
                 Repos
             </p>
             {% endif %}
-            {% for wod in monday %}
-            <a href="{{ path('app_workout_show', {id: wod.workout.id})}}">
-                        <h4>{{wod.workout.name}}</h4>
-            </a>
+    {% for workouts in monday %}
+
+        <div class="workout-bloc">
+            <div class="workout-bar">
+                <div class="workout-title">
+                    <h4>{{ workouts.workout.name}}</h4>
+                </div>
+                <div class="workout-detail">
+                    <p> description : {{ workouts.workout.content}}</p>
+                    <p> rounds : {{ workouts.workout.rounds}}</p>
+                </div>
                 {{ include('user/program/_delete.html.twig') }}
+            
+            </div>
+            {% for exercice in workouts.workout.exercicePersos %}
+                <div class="exercice-bloc">
+                        <div class="exercice-img">
+                                <img src="{{ asset('exercice/' ~ exercice.exercice.imageSystem.name)}}" width="100px" alt="">
+                        </div>
+                            <div class="exercice-detail">
+                                <p>{{ exercice.exercice.name }}</p>
+                            {% if exercice.quantity is empty %}
+                            {% else %}
+                                <p>
+                                    {{ exercice.quantity }}
+                                    {{ exercice.effortType }}
+                                </p>
+                            {% endif %}
+                            {% if exercice.Rest is empty %}
+                            {% else %}
+                                <p>Repos : {{ exercice.Rest }}</p>
+                            {% endif %}
+                            {% if exercice.content is empty %}
+                            {% else %}
+                                <div class="exercice-hover">détails
+                                    <div class="exercice-content">
+                                        <p>{{ exercice.content }}</p>
+                                        {# <a href="#">lien vers une video</a> #}
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                </div>
+                {% endfor %}
+                        
+            </div>
             {% endfor %}
-        </div>
     </div>
-    <div class="day-view">
-        <div class="day-title">Mardi</div>
-        <div class="day-workout">
-            {% if tuesday is empty %}
-            <p>
+    <div data-id="-tuesday" class="accordion">Mardi</div>
+    <div class="panel" id="panel-tuesday">
+        {% if tuesday is empty %}
+            <p class="white">
                 Repos
             </p>
             {% endif %}
-            {% for wod in tuesday %}
-            <a href="{{ path('app_workout_show', {id: wod.workout.id})}}">
-                        <h4>{{wod.workout.name}}</h4>
-            </a>
+    {% for workouts in tuesday %}
+
+        <div class="workout-bloc">
+            <div class="workout-bar">
+                <div class="workout-title">
+                    <h4>{{ workouts.workout.name}}</h4>
+                </div>
+                <div class="workout-detail">
+                    <p> description : {{ workouts.workout.content}}</p>
+                    <p> rounds : {{ workouts.workout.rounds}}</p>
+                </div>
                 {{ include('user/program/_delete.html.twig') }}
+            
+            </div>
+            {% for exercice in workouts.workout.exercicePersos %}
+                <div class="exercice-bloc">
+                        <div class="exercice-img">
+                                <img src="{{ asset('exercice/' ~ exercice.exercice.imageSystem.name)}}" width="100px" alt="">
+                        </div>
+                            <div class="exercice-detail">
+                                <p>{{ exercice.exercice.name }}</p>
+                            {% if exercice.quantity is empty %}
+                            {% else %}
+                                <p>
+                                    {{ exercice.quantity }}
+                                    {{ exercice.effortType }}
+                                </p>
+                            {% endif %}
+                            {% if exercice.Rest is empty %}
+                            {% else %}
+                                <p>Repos : {{ exercice.Rest }}</p>
+                            {% endif %}
+                            {% if exercice.content is empty %}
+                            {% else %}
+                                <div class="exercice-hover">détails
+                                    <div class="exercice-content">
+                                        <p>{{ exercice.content }}</p>
+                                        {# <a href="#">lien vers une video</a> #}
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                </div>
+                {% endfor %}
+                        
+            </div>
             {% endfor %}
-        </div>
     </div>
-    <div class="day-view">
-        <div class="day-title">Mercredi</div>
-        <div class="day-workout">
-            {% if wednesday is empty %}
-            <p>
+    <div data-id="-wednesday" class="accordion">Mercredi</div>
+    <div class="panel" id="panel-wednesday">
+        {% if wednesday is empty %}
+            <p class="white">
                 Repos
             </p>
-            {% endif %}
-            {% for wod in wednesday %}
-            <a href="{{ path('app_workout_show', {id: wod.workout.id})}}">
-                        <h4>{{wod.workout.name}}</h4>
-            </a>
+        {% endif %}
+    {% for workouts in wednesday %}
+
+        <div class="workout-bloc">
+            <div class="workout-bar">
+                <div class="workout-title">
+                    <h4>{{ workouts.workout.name}}</h4>
+                </div>
+                <div class="workout-detail">
+                    <p> description : {{ workouts.workout.content}}</p>
+                    <p> rounds : {{ workouts.workout.rounds}}</p>
+                </div>
                 {{ include('user/program/_delete.html.twig') }}
+            
+            </div>
+            {% for exercice in workouts.workout.exercicePersos %}
+                <div class="exercice-bloc">
+                        <div class="exercice-img">
+                                <img src="{{ asset('exercice/' ~ exercice.exercice.imageSystem.name)}}" width="100px" alt="">
+                        </div>
+                            <div class="exercice-detail">
+                                <p>{{ exercice.exercice.name }}</p>
+                            {% if exercice.quantity is empty %}
+                            {% else %}
+                                <p>
+                                    {{ exercice.quantity }}
+                                    {{ exercice.effortType }}
+                                </p>
+                            {% endif %}
+                            {% if exercice.Rest is empty %}
+                            {% else %}
+                                <p>Repos : {{ exercice.Rest }}</p>
+                            {% endif %}
+                            {% if exercice.content is empty %}
+                            {% else %}
+                                <div class="exercice-hover">détails
+                                    <div class="exercice-content">
+                                        <p>{{ exercice.content }}</p>
+                                        {# <a href="#">lien vers une video</a> #}
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                </div>
+                {% endfor %}
+                        
+            </div>
             {% endfor %}
-        </div>
     </div>
-    <div class="day-view">
-        <div class="day-title">Jeudi</div>
-        <div class="day-workout">
-            {% if thursday is empty %}
-            <p>
+    <div data-id="-thursday" class="accordion">Jeudi</div>
+    <div class="panel" id="panel-thursday">
+        {% if thursday is empty %}
+            <p class="white">
                 Repos
             </p>
             {% endif %}
-            {% for wod in thursday %}
-            <a href="{{ path('app_workout_show', {id: wod.workout.id})}}">
-                        <h4>{{wod.workout.name}}</h4>
-            </a>
-        {{ include('user/program/_delete.html.twig') }}
-            {% endfor %}
-        </div>
-    </div>
-    <div class="day-view">
-        <div class="day-title">Vendredi</div>
-        <div class="day-workout">
-            {% if friday is empty %}
-            <p>
-                Repos
-            </p>
-            {% endif %}
-            {% for wod in friday %}
-            <a href="{{ path('app_workout_show', {id: wod.workout.id})}}">
-                        <h4>{{wod.workout.name}}</h4>
-            </a>
-        {{ include('user/program/_delete.html.twig') }}
-            {% endfor %}
-        </div>
-    </div>
-    <div class="day-view">
-        <div class="day-title">Samedi</div>
-        <div class="day-workout">
-            {% if saturday is empty %}
-            <p>
-                Repos
-            </p>
-            {% endif %}
-            {% for wod in saturday %}
-            <a href="{{ path('app_workout_show', {id: wod.workout.id})}}">
-                        <h4>{{wod.workout.name}}</h4>
-            </a>
+    {% for workouts in thursday %}
+
+        <div class="workout-bloc">
+            <div class="workout-bar">
+                <div class="workout-title">
+                    <h4>{{ workouts.workout.name}}</h4>
+                </div>
+                <div class="workout-detail">
+                    <p> description : {{ workouts.workout.content}}</p>
+                    <p> rounds : {{ workouts.workout.rounds}}</p>
+                </div>
                 {{ include('user/program/_delete.html.twig') }}
+            
+            </div>
+            {% for exercice in workouts.workout.exercicePersos %}
+                <div class="exercice-bloc">
+                        <div class="exercice-img">
+                                <img src="{{ asset('exercice/' ~ exercice.exercice.imageSystem.name)}}" width="100px" alt="">
+                        </div>
+                            <div class="exercice-detail">
+                                <p>{{ exercice.exercice.name }}</p>
+                            {% if exercice.quantity is empty %}
+                            {% else %}
+                                <p>
+                                    {{ exercice.quantity }}
+                                    {{ exercice.effortType }}
+                                </p>
+                            {% endif %}
+                            {% if exercice.Rest is empty %}
+                            {% else %}
+                                <p>Repos : {{ exercice.Rest }}</p>
+                            {% endif %}
+                            {% if exercice.content is empty %}
+                            {% else %}
+                                <div class="exercice-hover">détails
+                                    <div class="exercice-content">
+                                        <p>{{ exercice.content }}</p>
+                                        {# <a href="#">lien vers une video</a> #}
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                </div>
+                {% endfor %}
+                        
+            </div>
             {% endfor %}
-        </div>
     </div>
-    <div class="day-view">
-        <div class="day-title">Dimanche</div>
-        <div class="day-workout">
-            {% if sunday is empty %}
-            <p>
+    <div data-id="-friday" class="accordion">Vendredi</div>
+    <div class="panel" id="panel-friday">
+        {% if friday is empty %}
+            <p class="white">
                 Repos
             </p>
             {% endif %}
-            {% for wod in sunday %}
-            <a href="{{ path('app_workout_show', {id: wod.workout.id})}}">
-                        <h4>{{wod.workout.name}}</h4>
-            </a>
-                    {{ include('user/program/_delete.html.twig') }}
+    {% for workouts in friday %}
+
+        <div class="workout-bloc">
+            <div class="workout-bar">
+                <div class="workout-title">
+                    <h4>{{ workouts.workout.name}}</h4>
+                </div>
+                <div class="workout-detail">
+                    <p> description : {{ workouts.workout.content}}</p>
+                    <p> rounds : {{ workouts.workout.rounds}}</p>
+                </div>
+                {{ include('user/program/_delete.html.twig') }}
+            
+            </div>
+            {% for exercice in workouts.workout.exercicePersos %}
+                <div class="exercice-bloc">
+                        <div class="exercice-img">
+                                <img src="{{ asset('exercice/' ~ exercice.exercice.imageSystem.name)}}" width="100px" alt="">
+                        </div>
+                            <div class="exercice-detail">
+                                <p>{{ exercice.exercice.name }}</p>
+                            {% if exercice.quantity is empty %}
+                            {% else %}
+                                <p>
+                                    {{ exercice.quantity }}
+                                    {{ exercice.effortType }}
+                                </p>
+                            {% endif %}
+                            {% if exercice.Rest is empty %}
+                            {% else %}
+                                <p>Repos : {{ exercice.Rest }}</p>
+                            {% endif %}
+                            {% if exercice.content is empty %}
+                            {% else %}
+                                <div class="exercice-hover">détails
+                                    <div class="exercice-content">
+                                        <p>{{ exercice.content }}</p>
+                                        {# <a href="#">lien vers une video</a> #}
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                </div>
+                {% endfor %}
+                        
+            </div>
             {% endfor %}
-        </div>
     </div>
+    <div data-id="-saturday" class="accordion">Samedi</div>
+    <div class="panel" id="panel-saturday">
+        {% if saturday is empty %}
+            <p class="white">
+                Repos
+            </p>
+            {% endif %}
+    {% for workouts in saturday %}
+
+        <div class="workout-bloc">
+            <div class="workout-bar">
+                <div class="workout-title">
+                    <h4>{{ workouts.workout.name}}</h4>
+                </div>
+                <div class="workout-detail">
+                    <p> description : {{ workouts.workout.content}}</p>
+                    <p> rounds : {{ workouts.workout.rounds}}</p>
+                </div>
+                {{ include('user/program/_delete.html.twig') }}
+            
+            </div>
+            {% for exercice in workouts.workout.exercicePersos %}
+                <div class="exercice-bloc">
+                        <div class="exercice-img">
+                                <img src="{{ asset('exercice/' ~ exercice.exercice.imageSystem.name)}}" width="100px" alt="">
+                        </div>
+                            <div class="exercice-detail">
+                                <p>{{ exercice.exercice.name }}</p>
+                            {% if exercice.quantity is empty %}
+                            {% else %}
+                                <p>
+                                    {{ exercice.quantity }}
+                                    {{ exercice.effortType }}
+                                </p>
+                            {% endif %}
+                            {% if exercice.Rest is empty %}
+                            {% else %}
+                                <p>Repos : {{ exercice.Rest }}</p>
+                            {% endif %}
+                            {% if exercice.content is empty %}
+                            {% else %}
+                                <div class="exercice-hover">détails
+                                    <div class="exercice-content">
+                                        <p>{{ exercice.content }}</p>
+                                        {# <a href="#">lien vers une video</a> #}
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                </div>
+                {% endfor %}
+                        
+            </div>
+            {% endfor %}
+    </div>
+    <div data-id="-sunday" class="accordion">Dimanche</div>
+    <div class="panel" id="panel-sunday">
+        {% if sunday is empty %}
+            <p class="white">
+                Repos
+            </p>
+            {% endif %}
+    {% for workouts in sunday %}
+
+        <div class="workout-bloc">
+            <div class="workout-bar">
+                <div class="workout-title">
+                    <h4>{{ workouts.workout.name}}</h4>
+                </div>
+                <div class="workout-detail">
+                    <p> description : {{ workouts.workout.content}}</p>
+                    <p> rounds : {{ workouts.workout.rounds}}</p>
+                </div>
+                {{ include('user/program/_delete.html.twig') }}
+            
+            </div>
+            {% for exercice in workouts.workout.exercicePersos %}
+                <div class="exercice-bloc">
+                        <div class="exercice-img">
+                                <img src="{{ asset('exercice/' ~ exercice.exercice.imageSystem.name)}}" width="100px" alt="">
+                        </div>
+                            <div class="exercice-detail">
+                                <p>{{ exercice.exercice.name }}</p>
+                            {% if exercice.quantity is empty %}
+                            {% else %}
+                                <p>
+                                    {{ exercice.quantity }}
+                                    {{ exercice.effortType }}
+                                </p>
+                            {% endif %}
+                            {% if exercice.Rest is empty %}
+                            {% else %}
+                                <p>Repos : {{ exercice.Rest }}</p>
+                            {% endif %}
+                            {% if exercice.content is empty %}
+                            {% else %}
+                                <div class="exercice-hover">détails
+                                    <div class="exercice-content">
+                                        <p>{{ exercice.content }}</p>
+                                        {# <a href="#">lien vers une video</a> #}
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                </div>
+                {% endfor %}
+                        
+            </div>
+            {% endfor %}
+    </div>
+    
+    
+
+    
+<div class="bloc-space"></div>

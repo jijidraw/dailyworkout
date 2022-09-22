@@ -29,7 +29,17 @@ class ExercicePersoType extends AbstractType
                     'M' => 'm'
                 )
             ))
-            ->add('Rest')
+            ->add('Rest', ChoiceType::class, array(
+                'choices' => array(
+                    '30 secs' => '30 secs',
+                    '1 min' => '1 min',
+                    '2 min' => '2 min',
+                    '3 min' => '3 min',
+                    '4 min' => '4 min',
+                    '5 min' => '5 min',
+                    'Repos minimum' => 'repos minimum',
+                )
+            ))
             ->add('content');
     }
 

@@ -22,6 +22,7 @@ use App\Repository\SportsListRepository;
 use App\Repository\UserStatRepository;
 use App\Repository\WorkoutNotationRepository;
 use App\Repository\WorkoutRepository;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -84,15 +85,23 @@ class WorkoutController extends AbstractController
         if ($user != $creator) {
             return $this->redirectToRoute('app_workout_show', ['id' => $workout->getId()], Response::HTTP_SEE_OTHER);
         };
+        $selections =  $exerciceRepository->findBy([], ['id' => 'DESC'], 20);
 
-        // filtres d'exercice
-
+        $Lists = $workout->getSport();
+        if (!empty($Lists)) {
+            foreach ($Lists as $list) {
+                $selecs = $exerciceRepository->searchBySport($list);
+                foreach ($selecs as $selec) {
+                    $selections[] = $selec;
+                }
+            }
+            $selections = array_map("unserialize", array_unique(array_map("serialize", $selections)));
+        }
         $fCategory = $request->get("category");
         $fMuscles = $request->get("muscles");
         $fSports = $request->get("sports");
 
         // variable envoyé à la vue
-
         $exercices = $exerciceRepository->exercicesFilters($fCategory, $fMuscles, $fSports);
         $category = $categoryRepository->findBy([], ['name' => 'ASC']);
         $sports = $sportsListRepository->findBy([], ['name' => 'ASC']);
@@ -105,7 +114,7 @@ class WorkoutController extends AbstractController
             ]);
         }
 
-        return $this->render('user/workout/new_step_2.html.twig', compact('workout', 'exercices', 'category', 'sports', 'muscles'));
+        return $this->render('user/workout/new_step_2.html.twig', compact('workout', 'exercices', 'category', 'sports', 'muscles', 'selections'));
     }
 
     /**
@@ -159,6 +168,79 @@ class WorkoutController extends AbstractController
         ]);
     }
     /**
+     * @Route("/{id}/duplicate", name="app_workout_duplicate", methods={"GET"})
+     */
+    public function modifierForUser(Workout $workout, WorkoutRepository $workoutRepository, EntityManagerInterface $em): Response
+    {
+        $user = $this->getUser();
+
+        // on copie les données du workout à dupliquer
+        $wName = $workout->getName();
+        $wContent = $workout->getContent();
+        $wLevel = $workout->getLevel();
+        $wRound = $workout->getRounds();
+
+        $wMuscles = $workout->getMuscleGroup();
+        $wSports = $workout->getSport();
+        $wExercices = $workout->getExercicePersos();
+        // le nouveau workout
+        $workoutDuplicate = new Workout();
+        $workoutDuplicate->setUser($user)->setCreatedAt(new DateTime());
+        if ($wContent != null) {
+            $workoutDuplicate->setContent($wContent);
+        }
+        if ($wLevel != null) {
+            $workoutDuplicate->setLevel($wLevel);
+        }
+        if ($wRound != null) {
+            $workoutDuplicate->setRounds($wRound);
+        }
+        if ($wName != null) {
+            $workoutDuplicate->setName($wName);
+        }
+        $em->persist($workoutDuplicate);
+        $em->flush();
+        if ($wMuscles != null) {
+            foreach ($wMuscles as $wMuscle) {
+                $workoutDuplicate->addMuscleGroup($wMuscle);
+                $workoutRepository->add($workoutDuplicate, true);
+            }
+        }
+        if ($wSports != null) {
+            foreach ($wSports as $wSport) {
+                $workoutDuplicate->addSport($wSport);
+                $workoutRepository->add($workoutDuplicate, true);
+            }
+        }
+        if ($wExercices != null) {
+            foreach ($wExercices as $wExercice) {
+                $experso = new ExercicePerso();
+                $exercice = $wExercice->getExercice();
+                $effort = $wExercice->getEffortType();
+                $quantity = $wExercice->getQuantity();
+                $content = $wExercice->getContent();
+                $rest = $wExercice->getRest();
+                if ($effort != null) {
+                    $experso->setEffortType($effort);
+                }
+                if ($quantity != null) {
+                    $experso->setQuantity($quantity);
+                }
+                if ($content != null) {
+                    $experso->setContent($content);
+                }
+                if ($rest != null) {
+                    $experso->setRest($rest);
+                }
+                $experso->setExercice($exercice)->setWorkout($workoutDuplicate);
+                $em->persist($experso);
+                $em->flush();
+            }
+        }
+
+        return $this->redirectToRoute('app_workout_edit', ['workout' => $workoutDuplicate->getId()], Response::HTTP_SEE_OTHER);
+    }
+    /**
      * @Route("/add/{id}/{workout}", name="app_workout_perso", methods={"POST", "GET"})
      * @ParamConverter("workout", options={"mapping"={"workout"="id"}})
      */
@@ -174,8 +256,6 @@ class WorkoutController extends AbstractController
             $workout->addMuscleGroup($muscle);
             $workoutRepository->add($workout, true);
         }
-        $exerciceId = $exercice->getId();
-        $exPersoId = $ExPerso->getId();
         $json = $serializerInterface->serialize($ExPerso, 'json', ['groups' => 'workout:display']);
         // $json = $serializerInterface->serialize($exerciceRepository->findOneBy(['id' => $exerciceId]), 'json', ['groups' => 'exercice:detail', 'exoId' => $exPersoId]);
 

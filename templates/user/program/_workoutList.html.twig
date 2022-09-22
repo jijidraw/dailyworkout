@@ -10,34 +10,53 @@
                         </div>
                     </a>
                 </div>
+                <a data-id="{{ workout.id }}" id="js-workout-like" href="{{ path('app_workout_fav', {id: workout.id})}}">
+                    {% if workout.isFavsByUser(app.user) and app.user %}
+                        <span id="star{{workout.id}}" class="svg-star">{{ include('svg/star.html.twig') }}</span>
+                        {% else %}
+                        <span id="star{{workout.id}}" class="svg-empty">{{ include('svg/star.html.twig') }}</span>
+                    {% endif %}
+                </a>
                 <span class="dropdown svg-workout">{{ include('svg/gears.html.twig') }}
                     <div class="dropdown-content-workout">
                         <div class="dropdown-bloc">
-                        <div class="btblue">
+                        {% if app.user.id != workout.user.id %}
+                        <button class="btblue">
+                            <a href="{{ path('app_workout_duplicate', {id: workout.id})}}">Modifier pour moi</a>
+                        </button>
+                            {% else %}
+                        <button class="btblue">
                             <a href="{{ path('app_workout_edit', {workout: workout.id})}}">Modifier</a>
-                        </div>
-                        <div class="item-dropdown">
-                            <a href="{{ path('app_user_program_monday', {workout: workout.id})}}">Lundi</a>
-                        </div>
-                        <div class="item-dropdown">
-                            <a href="{{ path('app_user_program_tuesday', {workout: workout.id})}}">Mardi</a>
-                        </div>
-                        <div class="item-dropdown">
-                            <a href="{{ path('app_user_program_wednesday', {workout: workout.id})}}">Mercredi</a>
-                        </div>
-                        <div class="item-dropdown">
-                            <a href="{{ path('app_user_program_thursday', {workout: workout.id})}}">Jeudi</a>
-                        </div>
-                        <div class="item-dropdown">
-                            <a href="{{ path('app_user_program_friday', {workout: workout.id})}}">Vendredi</a>
-                        </div>
-                        <div class="item-dropdown">
-                            <a href="{{ path('app_user_program_saturday', {workout: workout.id})}}">Samedi</a>
-                        </div>
-                        <div class="item-dropdown">
-                            <a href="{{ path('app_user_program_sunday', {workout: workout.id})}}">Dimanche</a>
-                        </div>
+                        </button>
                         {{ include('user/workout/_delete_form.html.twig') }}
+                        {% endif %}
+                        </div>
+                    </div>
+                </span>
+                <span class="dropdown svg-workout">{{ include('svg/cross.html.twig') }}
+                    <div class="dropdown-content">
+                        <div class="dropdown-bloc">
+                            <div class="item-dropdown">
+                                <a href="{{ path('app_user_program_monday', {workout: workout.id})}}">Lundi</a>
+                            </div>
+                            <div class="item-dropdown">
+                                <a href="{{ path('app_user_program_tuesday', {workout: workout.id})}}">Mardi</a>
+                            </div>
+                            <div class="item-dropdown">
+                                <a href="{{ path('app_user_program_wednesday', {workout: workout.id})}}">Mercredi</a>
+                            </div>
+                            <div class="item-dropdown">
+                                <a href="{{ path('app_user_program_thursday', {workout: workout.id})}}">Jeudi</a>
+                            </div>
+                            <div class="item-dropdown">
+                                <a href="{{ path('app_user_program_friday', {workout: workout.id})}}">Vendredi</a>
+                            </div>
+                            <div class="item-dropdown">
+                                <a href="{{ path('app_user_program_saturday', {workout: workout.id})}}">Samedi</a>
+                            </div>
+                            <div class="item-dropdown">
+                                <a href="{{ path('app_user_program_sunday', {workout: workout.id})}}">Dimanche</a>
+                            </div>
                         </div>
                     </div>
                 </span>
@@ -49,27 +68,28 @@
                             <img src="{{ asset('exercice/' ~ exercice.exercice.imageSystem.name)}}" width="100px" alt="">
                     </div>
                     <div class="exercice-detail">
-                        <p class="exercice-name">{{ exercice.exercice.name }}</p>
+                        <p>{{ exercice.exercice.name }}</p>
                         {% if exercice.quantity is empty %}
                         {% else %}
-                        <p class="exercice-reps">
+                        <p>
                             {{ exercice.quantity }}
                             {{ exercice.effortType }}<br>
+                        </p>
                         {% endif %}
                         {% if exercice.Rest is empty %}
                         {% else %}
-                        Repos : {{ exercice.Rest }}</p>
+                        <p>Repos : {{ exercice.Rest }}</p>
                         {% endif %}
                         {% if exercice.content is empty %}
                         {% else %}
                         <div class="exercice-hover">détails
                             <div class="exercice-content">
                                 <p>{{ exercice.content }}</p>
-                                <a href="#">lien vers une video</a>
+                                {# <a href="#">lien vers une video</a> #}
                             </div>
                         </div>
                         {% endif %}
-                            </div>
+                    </div>
                         </div>
             {% endfor %}
         </div>
