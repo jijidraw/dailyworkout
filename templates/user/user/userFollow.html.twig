@@ -1,20 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mes abonnements{% endblock %}
+{% block title %}{{ user.name}} est suivie par {% endblock %}
 
 {% block body %}
-    <section class="follow-list">
-        <h2>{{ user.name }}  est suivie par :</h2>
-        {% for follower in followers %}
-        {{ dump(follower) }}
-        <div class="follow-user">
-            <a href="{{ path('app_user_show', {id: follower.follower.id})}}">
-                <img class="profil" src="{{ asset('profil/' ~ follower.follower.imgName )}}" width="400px" alt="">
-                <p>{{ follower.follower.name }}</p>
-            </a>
-        </div>
-        {% endfor %}
+<div id="arrow-left" class="arrow" href="">{{ include('svg/arrowleft.html.twig') }}</div>
+
+<section class="bloc-full">
+        <aside id="column-left" class="bloc-column-abs">
+                <div class="bloc-title"></div>
+                <ul class="bloc-link-column">
+                    <li class="tab">
+                        <a href="{{ path('app_user_showFollows', {id: user.id})}}">Les abonnements de {{ user.name }}</a>
+                    </li>
+                </ul>
+                <div class="bloc-space"></div>
+        </aside>
+        <section class="bloc-large-abs">
+            <h1 class="bloc-title">
+                    {{ user.name }} est suivie par
+            </h1>
+                {% for follower in followers %}
+                    <a class="bloc-user-link" href="{{ path('app_user_show', {id: follower.follower.id})}}">
+                        <img class="profil" src="{{ asset('profil/' ~ follower.follower.imagesProfiles.name )}}" width="400px" alt="">
+                        {{ follower.follower.name }}
+                    </a>
+                {% endfor %}
+        </section>
     </section>
-
-
 {% endblock %}

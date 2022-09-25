@@ -1,0 +1,11 @@
+.social-share {
+    @extend %row;
+    width: 100%;
+    justify-content: space-around;
+    padding: 12px;
+}
+
+.social-share,
+iframe {
+    margin: 0;
+}

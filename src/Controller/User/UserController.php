@@ -103,33 +103,44 @@ class UserController extends AbstractController
     /**
      * @Route("/follower/{id}", name="app_user_showFollowers", methods={"GET"})
      */
-    public function showFollowers(User $user, FollowRepository $followRepository, SerializerInterface $serializer): Response
+    public function showFollowers(User $user, FollowRepository $followRepository): Response
     {
-        $json = $serializer->serialize($followRepository->findBy(['following' => $user]), 'json', ['groups' => 'user:link']);
+        // $json = $serializer->serialize($followRepository->findBy(['following' => $user]), 'json', ['groups' => 'user:link']);
+        $followers = $followRepository->findBy(['following' => $user]);
+        // $response = new Response(
+        //     $json,
+        //     200,
+        //     [
+        //         "Content-Type" => "application/json"
+        //     ]
+        // );
+        // return $response;
+        return $this->render('user/user/userFollow.html.twig', [
+            'user' => $user,
+            'followers' => $followers,
 
-        $response = new Response(
-            $json,
-            200,
-            [
-                "Content-Type" => "application/json"
-            ]
-        );
-        return $response;
+        ]);
     }
     /**
      * @Route("/following/{id}", name="app_user_showFollows", methods={"GET"})
      */
     public function showFollows(User $user, FollowRepository $followRepository, SerializerInterface $serializer): Response
     {
-        $json = $serializer->serialize($followRepository->findBy(['follower' => $user]), 'json', ['groups' => 'user:link']);
-        $response = new Response(
-            $json,
-            200,
-            [
-                "Content-Type" => "application/json"
-            ]
-        );
-        return $response;
+        // $json = $serializer->serialize($followRepository->findBy(['follower' => $user]), 'json', ['groups' => 'user:link']);
+        // $response = new Response(
+        //     $json,
+        //     200,
+        //     [
+        //         "Content-Type" => "application/json"
+        //     ]
+        // );
+        // return $response;
+        $followings = $followRepository->findBy(['follower' => $user]);
+        return $this->render('user/user/userFollower.html.twig', [
+            'user' => $user,
+            'followings' => $followings,
+
+        ]);
     }
 
     /**

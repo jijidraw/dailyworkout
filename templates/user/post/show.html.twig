@@ -11,11 +11,7 @@
         <ul class="bloc-link-column">
             
             {% if app.user.id == post.user.id %}
-        </ul>
-                    <li>
                         {{ include('user/post/_delete_form.html.twig') }}
-                    </li>
-        <ul>
             {% endif %}
         </ul>
     </aside>

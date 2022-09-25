@@ -13,6 +13,7 @@ header {
     top: 0;
     left: 0;
     width: 100vw;
+    max-width: 100vw;
     background-color: $maintrans;
     padding: 8px;
     line-height: 100%;
@@ -46,10 +47,12 @@ footer {
     background-color: $maintrans;
     padding: $mp1;
     width: 100%;
+    max-width: 100vw;
+    overflow: hidden;
     bottom: 0;
 }
 
 footer a {
     margin: 0 $mp1;
-    font-size: 10px;
+    font-size: 8px;
 }

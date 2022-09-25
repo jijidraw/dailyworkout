@@ -6,6 +6,7 @@
 <div id="arrow-left" class="arrow" href="">{{ include('svg/arrowleft.html.twig') }}</div>
 
 <div class="bloc-full">
+
     <div id="arrow-right" class="arrow-right" href="">{{ include('svg/arrowright.html.twig') }}</div>
         {# <div id="help" class="help-background hidden">
             <div class="help-content">
@@ -27,8 +28,11 @@
         {{ include('home/_userChallenge.html.twig') }}
     </aside>
     <section class="bloc-actu">
+        
+        
         <div class="bloc-top">
-                {{ include('form/post.html.twig') }}
+            {{ include('form/post.html.twig') }}
+            
         </div>
         {% for publi in post %}
         {% if publi.user is defined %}
@@ -42,6 +46,7 @@
     </section>
     <aside id="column-right" class="bloc-column-abs-rg">
         <div class="bloc-title"></div>
+
         {{ include('home/notifications.html.twig') }}
         {{ include('home/workoutOfTheDay.html.twig') }}
         <div class="bloc-space"></div>

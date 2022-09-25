@@ -5,6 +5,7 @@
     position: relative;
     background-color: $maintrans;
     width: 100%;
+    max-width: 100%;
     border: 1px solid $grey2;
     margin: $mp1 auto;
     height: 46px;
@@ -38,4 +39,15 @@
 .bloc-user-link-group .bloc-user-link {
     width: 80%;
     margin: $mp1;
+}
+
+.bloc-large-abs .bloc-user-link {
+    max-width: 640px;
+}
+
+@media (max-width: 860px) {
+    .bloc-user-link {
+        width: 100%;
+        border-radius: 0;
+    }
 }

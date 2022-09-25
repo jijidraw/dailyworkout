@@ -9,7 +9,6 @@
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
-        <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=632a9d51a6e5460012468a9f&product=inline-share-buttons" async="async"></script>
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-4YCG14Z8QL"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -89,6 +88,8 @@
     {{ encore_entry_script_tags('app') }}
     {% endblock %}
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-4YCG14Z8QL"></script>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v15.0" nonce="2LkppFcN"></script>
 
             <script src="{{ asset('js/imgPreview.js')}}"></script>
             <script src="{{ asset('js/help.js')}}"></script>

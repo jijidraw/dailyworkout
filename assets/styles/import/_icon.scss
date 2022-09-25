@@ -6,6 +6,10 @@ svg {
     z-index: 0;
 }
 
+svg:visited {
+    fill: $red;
+}
+
 svg:hover {
     fill: white;
 }
@@ -43,11 +47,18 @@ svg:hover {
 .arrow {
     display: none;
     z-index: 50;
+    fill: $red;
 }
 
 .arrow-right {
     display: none;
     z-index: 50;
+    fill: $red;
+
+}
+
+.open svg {
+    fill: $red;
 }
 
 @media (max-width: 860px) {
@@ -59,11 +70,13 @@ svg:hover {
     .arrow svg {
         height: 36px;
         width: 36px;
+        fill: $red;
     }
 
     .arrow-right svg {
         height: 36px;
         width: 36px;
+        fill: $red;
     }
 
     .arrow {
@@ -71,6 +84,7 @@ svg:hover {
         position: fixed;
         transition: 0.4s;
         top: 60px;
+        fill: $red;
         left: 5px;
         border-radius: 50%;
     }
@@ -81,6 +95,7 @@ svg:hover {
         transition: 0.4s;
         top: 60px;
         right: 5px;
+        fill: $red;
         border-radius: 50%;
     }
 
