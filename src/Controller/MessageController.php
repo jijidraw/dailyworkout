@@ -22,15 +22,17 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class MessageController extends AbstractController
 {
+
     /**
      * @Route("/", name="app_message")
      */
     public function index(ConversationRepository $conversationRepository, UserRepository $userRepository): Response
     {
         $user = $this->getUser();
-        $convA = $conversationRepository->findBy(['userA' => $user]);
-        $convB = $conversationRepository->findBy(['userB' => $user]);
-        $conversations = array_merge($convA, $convB);
+        // $convA = $conversationRepository->findBy(['userA' => $user]);
+        // $convB = $conversationRepository->findBy(['userB' => $user]);
+        // $conversations = array_merge($convA, $convB);
+        $conversations = $conversationRepository->userConversation($user);
 
         return $this->render('message/index.html.twig', [
             'controller_name' => 'MessageController',
@@ -43,9 +45,10 @@ class MessageController extends AbstractController
     public function showConv(Conversation $conversation, MessageRepository $messageRepository, EntityManagerInterface $em, ConversationRepository $conversationRepository, Request $request): Response
     {
         $user = $this->getUser();
-        $convA = $conversationRepository->findBy(['userA' => $user], ['updated_at' => 'DESC']);
-        $convB = $conversationRepository->findBy(['userB' => $user], ['updated_at' => 'DESC']);
-        $conversations = array_merge($convA, $convB);
+        // $convA = $conversationRepository->findBy(['userA' => $user], ['updated_at' => 'DESC']);
+        // $convB = $conversationRepository->findBy(['userB' => $user], ['updated_at' => 'DESC']);
+        // $conversations = array_merge($convA, $convB);
+        $conversations = $conversationRepository->userConversation($user);
         $messages = $messageRepository->findBy(['conversation' => $conversation], ['created_at' => 'DESC']);
         $lastmessage = $messages[0]->getUser();
         if (!empty($lastmessage)) {
@@ -124,5 +127,12 @@ class MessageController extends AbstractController
         return $this->json([
             'messages' => $messageRepository->findBy(['conversation' => $conv], ['created_at' => 'DESC'])
         ], 200);
+    }
+    /**
+     * @Route("/nextstep", name="app_next_step", methods={"GET", "POST"})
+     */
+    public function nextstep()
+    {
+        return $this->render('user/user/nextstep.html.twig', []);
     }
 }

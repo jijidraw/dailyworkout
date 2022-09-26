@@ -79,7 +79,7 @@
     <div class="accordion" data-id="-objectifs">Objectifs</div>
     <div class="panel" id="panel-objectifs">
         <div class="list-sport">
-            
+            <a href="{{ path('app_user_goal', {id: app.user.id})}}">{{ include('svg/cross.html.twig') }}</a>
             {% if user.goal is empty %}
             Pas d'objectifs renseigné.
             {% else %}

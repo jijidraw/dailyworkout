@@ -29,11 +29,15 @@
 .bloc-user-link-group {
     @extend %row;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .bloc-user-link-group .btvalid {
     margin: auto 0;
+}
+
+.bloc-user-link-group .btvalid svg {
+    margin: 0;
 }
 
 .bloc-user-link-group .bloc-user-link {

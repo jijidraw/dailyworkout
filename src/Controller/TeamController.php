@@ -40,7 +40,7 @@ class TeamController extends AbstractController
     {
         $user = $this->getUser();
         return $this->renderForm('team/index.html.twig', [
-            'teams' => $teamRepository->findAll(),
+            'teams' => $teamRepository->findBy(['is_private' => false], ['name' => 'ASC']),
             'teamsrepo' => $teamMemberRepository->findBy(['user' => $user])
         ]);
     }

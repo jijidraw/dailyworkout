@@ -93,12 +93,25 @@ class UserController extends AbstractController
         $formUser->handleRequest($request);
         if ($formUser->isSubmitted() && $formUser->isValid()) {
         };
+        $goals = $goalRepository->findBy([], ['name' => 'ASC']);
         $userRepository->add($user, true);
         return $this->render('user/user/_clouds_goals.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
-            'formUser' => $formUser->createView()
+            'formUser' => $formUser->createView(),
+            'goals' => $goals
         ]);
+    }
+    /**
+     * @Route("/add/goals/{id}/{goals}", name="app_add_goal", methods={"GET", "POST"})
+     */
+    public function addGoal(User $user, Goal $goal, Request $request, UserRepository $userRepository): Response
+    {
+        $route = $request->headers->get('referer');
+        $user->addGoal($goal);
+        $userRepository->add($user, true);
+        $this->addFlash('success', 'Objectif ajouté');
+        return $this->redirect($route);
     }
     /**
      * @Route("/follower/{id}", name="app_user_showFollowers", methods={"GET"})
@@ -190,7 +203,7 @@ class UserController extends AbstractController
                 $user->setIsWelcome(false);
                 $userRepository->add($user, true);
 
-                return $this->redirectToRoute('home');
+                return $this->redirectToRoute('app_next_step');
             }
             return $this->redirectToRoute('app_user_show', ['id' => $user->getId()]);
         }
@@ -200,6 +213,7 @@ class UserController extends AbstractController
             'form' => $form,
         ]);
     }
+
 
     /**
      * @Route("/{id}", name="app_user_user_delete", methods={"POST"})

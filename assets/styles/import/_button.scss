@@ -56,6 +56,10 @@ select {
     font-size: 16px;
 }
 
+.btmain svg {
+    fill: white;
+}
+
 .btmain a {
     color: white;
 }
@@ -180,8 +184,6 @@ button.btblue,
 button.btvalid,
 button.btmain {
     @extend %button;
-    width: 100%;
-    min-width: 100%;
     font-size: 16px;
     margin: 8px auto;
 }

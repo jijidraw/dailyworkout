@@ -31,7 +31,9 @@
         </h1>
         
         <ul class="bloc-link-column">
-                <a class="btblue" href="{{ path('app_team_new')}}">Créer un nouveau groupe</a>
+            <button class="btmain">
+                <a href="{{ path('app_team_new')}}">Créer un nouveau groupe</a>
+            </button>
             <li class="main-link tab" data-target="#content4"="">Présentation du groupe</li>
             <li class="main-link active tab" data-target="#content1"="">Posts</li>
             {% if isMember == null %}
@@ -56,11 +58,15 @@
             {% if app.user.id == admin.user.id %}
             <li class="bloc-title">Espace Administrateur</li>
             <li class="main-link tab" data-target="#content3">Gérer les membres</li>
-                <a class="btblue" href="{{ path('app_team_edit', {'id': team.id}) }}">Modifier les informations</a>
+            <button class="btmain">
+                <a href="{{ path('app_team_edit', {'id': team.id}) }}">Modifier les informations</a>
+            </button>
             {% endif %}
         {% endfor %}
         
+        <div class="bloc-space"></div>
         </ul>
+
     </aside>
     <section class="bloc-large-abs">
 
@@ -88,7 +94,9 @@
                     <article class="message-middle">
                         <h3>les posts</h3>
                         Vous ne faites pas partie du groupe. <br><br>
-                        <a href="{{ path('app_team_add_member', {id: team.id})}}">Demander à rejoindre le groupe</a>
+                        <button class="btvalid">
+                            <a href="{{ path('app_team_add_member', {id: team.id})}}">Demander à rejoindre le groupe</a>
+                        </button>
                     </article>
                         {% elseif isMember.isWaiting == true %}
                     <article class="message-middle">

@@ -1,5 +1,10 @@
+{% if app.user.isIsWelcome == true %}
+<p>Parles nous de toi et des sports qui t'intéressent</p>
+{% endif %}
 {{ form_start(form) }}
 {{ form_row(form.name) }}
+<label class="input-file" for="user_image">Photo de profil</label>
+
 {{ form_row(form.description) }}
 <label for="">Mon instagram</label>
 {{ form_row(form.urlInstagram) }}
@@ -14,11 +19,10 @@
         {{ form_row(form.sportlist) }}
 </div>
 {{ form_row(form.image) }}
-<label class="input-file" for="user_image">image</label>
 <button class="btvalid">{{ button_label|default('Save') }}</button>
 <div class="preview"></div>
 {% if app.user.isIsWelcome == true %}
-<button class="btmain">Je ferais ça plus tard</button>
+<button class="btmain">Remettre à plus tard</button>
 {% endif %}
 {{ form_end(form) }}
     

@@ -3,22 +3,31 @@
 {% block title %}profil de : {{ user.name }}{% endblock %}
 
 {% block body %}
+<div id="arrow-left" class="arrow" href="">{{ include('svg/arrowleft.html.twig') }}</div>
+
 <div class="modal-background hidden" id="modal">
 
     <div class="modal-content">
         {{ form_start(form) }}
         {{ form_widget(form) }}
-        <button class="btblue">{{ button_label|default('Enregistrer') }}</button>
+        <button class="btvalid">{{ button_label|default('Ajouter') }}</button>
+        <div id="close" class="help-close">{{ include('svg/deletecross.html.twig') }}</div>
+
     </div>
 {{ form_end(form) }}
 </div>
     <section class="bloc-full ">
         <aside id="column-left" class="bloc-column-abs">
             <div class="bloc-link-column">
-                <h1 class="bloc-title">Mes goals</h1>
-                {% for goals in app.user.goal %}
-                    {{ goals.name }}
-                {% endfor %}
+                <div class="bloc-title"></div>
+                <ul>
+                    <li>
+                        <a href="{{path('app_user_show', {id: user.id})}}" class="btmain">Retour</a>
+                    </li>
+                    <li>
+                        <div class="btvalid" id="BtnModal">Tu ne trouves pas ton but ? Ajoutes le !</div>
+                    </li>
+                </ul>
             </div>
         </aside>           
     <section class="bloc-large-abs">
@@ -26,9 +35,9 @@
         {{ form_start(formUser) }}
         {{ form_widget(formUser) }}
         <div class="bloc-title">
-            <div class="btmain" id="BtnModal">Vous ne trouvez pas votre objectifs ? Ajouter le !</div>
-            <button class="btblue">{{ button_label|default('Enregistrer') }}</button>
         </div>
+        <button class="btvalid">{{ button_label|default('Enregistrer mes choix') }}</button>
+
         {{ form_end(formUser) }}
     </section>
     </section>

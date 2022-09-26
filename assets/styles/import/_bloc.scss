@@ -49,6 +49,11 @@
     padding: $mp1;
 }
 
+.bloc-column-abs::-webkit-scrollbar,
+.bloc-column-abs-rg::-webkit-scrollbar {
+    display: none;
+}
+
 .bloc-column-abs .btmain,
 .btblue,
 .btvalid,

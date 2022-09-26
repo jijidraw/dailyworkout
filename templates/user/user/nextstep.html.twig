@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Et maintenant{% endblock %}
+
+{% block body %}
+    <section class="body-log">
+        <div class="form-base1">
+            <p class="message-middle">
+                Maintenant, diriges toi vers ta section programme. <br>
+                Créés tes premiers workouts, recherches parmis les workouts des autres sportifs et places les dans ton planning à la semaine. <br>
+                Bon sport ! <a href="{{ path('app_user_program')}}" class="btmain">Mon programme</a>
+            </p>
+        </div>
+    </section>
+{% endblock %}
