@@ -85,12 +85,15 @@ class WorkoutController extends AbstractController
         if ($user != $creator) {
             return $this->redirectToRoute('app_workout_show', ['id' => $workout->getId()], Response::HTTP_SEE_OTHER);
         };
-        $selections =  $exerciceRepository->findBy([], ['id' => 'DESC'], 20);
-
         $Lists = $workout->getSport();
+        if (empty($Lists)) {
+            $selections =  $exerciceRepository->findBy([], ['id' => 'DESC'], 20);
+        }
+
         if (!empty($Lists)) {
             foreach ($Lists as $list) {
                 $selecs = $exerciceRepository->searchBySport($list);
+                dump($selecs);
                 foreach ($selecs as $selec) {
                     $selections[] = $selec;
                 }
@@ -114,7 +117,7 @@ class WorkoutController extends AbstractController
             ]);
         }
 
-        return $this->render('user/workout/new_step_2.html.twig', compact('workout', 'exercices', 'category', 'sports', 'muscles', 'selections'));
+        return $this->render('user/workout/new_step_2.html.twig', compact('workout', 'exercices', 'category', 'sports', 'muscles', 'selections', 'Lists'));
     }
 
     /**

@@ -16,6 +16,9 @@
                             Trouver d'autres exercices
                         </li>
                     </ul>
+                    {% for list in Lists %}
+                        {{ dump(list) }}
+                    {% endfor %}
                     <div id="bloc-column-filter" class="hidden">
                         {{ include('component/checkbox_form_select_exercice.html.twig') }}
                     </div>
