@@ -34,7 +34,14 @@ class HomeController extends AbstractController
     public function index(Request $request, UserStatRepository $userStatRepository, RewardRepository $rewardRepository, EntityManagerInterface $em, PostRepository $postrepo, ChallengePlayerRepository $challengePlayerRepository, WeekRepository $weekRepository, ChallengeRepository $challengeRepository, FollowRepository $followRepository, NotificationRepository $notificationRepository, TeamMemberRepository $teamMemberRepository, TeamRepository $teamRepository, UserRepository $userRepository): Response
     {
         $user = $this->getUser();
+        $userIdentifier = $user->getUserIdentifier();
+        $currentUser = $userRepository->findOneBy(['email' => $userIdentifier]);
 
+        // check si c'est la première venue de l'utilisateur
+
+        if ($currentUser->isIsWelcome(true)) {
+            return $this->redirectToRoute('app_user_edit', ['id' => $currentUser->getId()]);
+        }
         $userStat = $userStatRepository->findOneBy(['user' => $user]);
         $follows = $followRepository->findBy(['follower' => $user]);
         $challenges = $challengeRepository->findBy(['is_public' => true], ['created_at' => 'DESC'], 20);
@@ -104,8 +111,7 @@ class HomeController extends AbstractController
             // commentaire
             // ajout des trophées
             if ($countPost == 1) {
-                $userIdentifier = $user->getUserIdentifier();
-                $currentUser = $userRepository->findOneBy(['email' => $userIdentifier]);
+
                 $reward = $rewardRepository->findOneBy(['id' => 10]);
                 $currentUser->addReward($reward);
                 $userRepository->add($currentUser, true);

@@ -21,7 +21,7 @@
     <body>
         <div class="block-body">
             
-        {% if is_granted('ROLE_USER') %}
+        {% if is_granted('ROLE_USER') and app.user.isIsWelcome == false %}
         <header>
             <ul class="nav">
                 <li><a href="{{ path('home')}}"><img src="{{ asset('/images/logo.png')}}" alt=""></a></li>

@@ -186,7 +186,12 @@ class UserController extends AbstractController
                 $user->setImagesProfiles($img);
             };
             $userRepository->add($user, true);
+            if ($user->isIsWelcome(true)) {
+                $user->setIsWelcome(false);
+                $userRepository->add($user, true);
 
+                return $this->redirectToRoute('home');
+            }
             return $this->redirectToRoute('app_user_show', ['id' => $user->getId()]);
         }
 
