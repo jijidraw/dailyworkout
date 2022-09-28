@@ -69,7 +69,7 @@ class Workout
     private $program;
 
     /**
-     * @ORM\OneToMany(targetEntity=Week::class, mappedBy="workout", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=Week::class, mappedBy="workout", cascade={"persist", "remove"})
      */
     private $weeks;
 
@@ -81,7 +81,7 @@ class Workout
 
     /**
      * @Groups({"workout:display"})
-     * @ORM\OneToMany(targetEntity=WorkoutFav::class, mappedBy="workout")
+     * @ORM\OneToMany(targetEntity=WorkoutFav::class, mappedBy="workout", cascade={"persist", "remove"})
      */
     private $workoutFavs;
 
@@ -97,7 +97,7 @@ class Workout
     private $sport;
 
     /**
-     * @ORM\OneToMany(targetEntity=Challenge::class, mappedBy="workout")
+     * @ORM\OneToMany(targetEntity=Challenge::class, mappedBy="workout", cascade={"persist", "remove"})
      */
     private $challenges;
 

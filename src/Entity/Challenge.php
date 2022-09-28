@@ -53,7 +53,7 @@ class Challenge
     private $creatorChallenge;
 
     /**
-     * @ORM\OneToMany(targetEntity=Notification::class, mappedBy="challenge")
+     * @ORM\OneToMany(targetEntity=Notification::class, mappedBy="challenge", cascade={"persist", "remove"})
      */
     private $notifications;
 
@@ -68,12 +68,12 @@ class Challenge
     private $images;
 
     /**
-     * @ORM\OneToMany(targetEntity=ChallengePlayer::class, mappedBy="challenge")
+     * @ORM\OneToMany(targetEntity=ChallengePlayer::class, mappedBy="challenge", cascade={"persist", "remove"})
      */
     private $challengePlayers;
 
     /**
-     * @ORM\OneToMany(targetEntity=ChallengeComment::class, mappedBy="challenge", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=ChallengeComment::class, mappedBy="challenge", orphanRemoval=true, cascade={"persist", "remove"})
      */
     private $challengeComments;
 

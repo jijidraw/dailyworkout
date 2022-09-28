@@ -86,17 +86,14 @@ class WorkoutController extends AbstractController
             return $this->redirectToRoute('app_workout_show', ['id' => $workout->getId()], Response::HTTP_SEE_OTHER);
         };
         $Lists = $workout->getSport();
-        if (!empty($Lists)) {
-            foreach ($Lists as $list) {
-                $selecs = $exerciceRepository->searchBySport($list);
-                foreach ($selecs as $selec) {
-                    $selections[] = $selec;
-                }
+        foreach ($Lists as $list) {
+            $selecs = $exerciceRepository->searchBySport($list);
+            foreach ($selecs as $selec) {
+                $selection[] = $selec;
+                $selections = array_map("unserialize", array_unique(array_map("serialize", $selection)));
             }
-            $selections = array_map("unserialize", array_unique(array_map("serialize", $selections)));
-        }else{
-            $selections =  $exerciceRepository->findBy([], ['id' => 'DESC'], 20);
         }
+
         $fCategory = $request->get("category");
         $fMuscles = $request->get("muscles");
         $fSports = $request->get("sports");
