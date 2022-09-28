@@ -93,6 +93,9 @@ class WorkoutController extends AbstractController
                 $selections = array_map("unserialize", array_unique(array_map("serialize", $selection)));
             }
         }
+        if (!isset($selections)) {
+            $selections = $exerciceRepository->findBy([], ['id' => 'DESC']);
+        }
 
         $fCategory = $request->get("category");
         $fMuscles = $request->get("muscles");

@@ -13,6 +13,9 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Choice;
+use Symfony\Component\Validator\Constraints\Length;
+use Webmozart\Assert\Assert;
 
 class WorkoutType extends AbstractType
 {
@@ -51,7 +54,9 @@ class WorkoutType extends AbstractType
                 },
                 'multiple' => true,
                 'label' => false,
-                'expanded' => true
+                'required' => true,
+                'expanded' => true,
+                'constraints' => [new Length(['min' => 1])],
             ]);
     }
 
