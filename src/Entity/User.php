@@ -275,6 +275,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $is_welcome;
 
+    /**
+     * @ORM\OneToOne(targetEntity=UserMedals::class, mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $userMedals;
+
+    /**
+     * @ORM\OneToMany(targetEntity=DiaryNote::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $diaryNotes;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $is_diary;
+
+    /**
+     * @ORM\OneToOne(targetEntity=UserPreference::class, mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $userPreference;
+
     public function __toString()
     {
         return $this->name;
@@ -309,6 +329,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->workoutNotations = new ArrayCollection();
         $this->rewards = new ArrayCollection();
         $this->notifications = new ArrayCollection();
+        $this->diaryNotes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -1398,6 +1419,92 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsWelcome(bool $is_welcome): self
     {
         $this->is_welcome = $is_welcome;
+
+        return $this;
+    }
+
+    public function getUserMedals(): ?UserMedals
+    {
+        return $this->userMedals;
+    }
+
+    public function setUserMedals(?UserMedals $userMedals): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($userMedals === null && $this->userMedals !== null) {
+            $this->userMedals->setUser(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($userMedals !== null && $userMedals->getUser() !== $this) {
+            $userMedals->setUser($this);
+        }
+
+        $this->userMedals = $userMedals;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, DiaryNote>
+     */
+    public function getDiaryNotes(): Collection
+    {
+        return $this->diaryNotes;
+    }
+
+    public function addDiaryNote(DiaryNote $diaryNote): self
+    {
+        if (!$this->diaryNotes->contains($diaryNote)) {
+            $this->diaryNotes[] = $diaryNote;
+            $diaryNote->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDiaryNote(DiaryNote $diaryNote): self
+    {
+        if ($this->diaryNotes->removeElement($diaryNote)) {
+            // set the owning side to null (unless already changed)
+            if ($diaryNote->getUser() === $this) {
+                $diaryNote->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function isIsDiary(): ?bool
+    {
+        return $this->is_diary;
+    }
+
+    public function setIsDiary(?bool $is_diary): self
+    {
+        $this->is_diary = $is_diary;
+
+        return $this;
+    }
+
+    public function getUserPreference(): ?UserPreference
+    {
+        return $this->userPreference;
+    }
+
+    public function setUserPreference(?UserPreference $userPreference): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($userPreference === null && $this->userPreference !== null) {
+            $this->userPreference->setUser(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($userPreference !== null && $userPreference->getUser() !== $this) {
+            $userPreference->setUser($this);
+        }
+
+        $this->userPreference = $userPreference;
 
         return $this;
     }

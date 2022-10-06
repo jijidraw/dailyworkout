@@ -35,13 +35,13 @@
             <h2>Exercices ajoutés</h2>
         <div class="workout-list-exercice">
             {% for exercices in workout.exercicePersos %}
-            <div class="card">
+            <div class="card delete-exercice" data-exercice="{{ exercices.id }}">
                 <h3>{{ exercices.exercice.name}}</h3>
                 <div class="card-img">
                     {% if exercices.exercice.imageSystem is empty %}
                     <p>Pas d'image enregistré</p>
                     {% endif %}
-                    <img src="{{ asset('exercice/' ~ exercices.exercice.imageSystem.name)}}" width="400px" alt="">
+                    <img src="{{ asset('exercice/' ~ exercices.exercice.imageSystem.name)}}" width="400px" alt=" image de {{exercices.exercice.name}}">
                 </div>
                 <div class="card-a">
                     {{ include('user/workout/_delete_exercice.html.twig') }}
@@ -70,6 +70,8 @@
 
 {% endblock %}
 {% block javascripts %}
+<script src="{{ asset('js/workout/remove_exercice.js')}}"></script>
+<script src="{{ asset('js/workout/add_exercice.js')}}"></script>
 <script src="{{ asset('js/radio.js')}}"></script>
 <script src="{{ asset('js/user/tabs.js')}}"></script>
 <script src="{{ asset('js/search/appearFilter.js')}}"></script>

@@ -1,4 +1,30 @@
-    <h3>Partager sur :</h3>
+    <h3>Mon score</h3>
+
+    <p>{{ stats.points }} points</p><br>
+    <p>Pour augmenter ton score publie des post qui impressionent les autres. Tu as 3 trophées par jours à donner. <br>
+            <div class="row center">
+                <div class="svg-bronze">
+                    <div class="row">
+                        {{ include('svg/trophy.html.twig') }}
+                        <p>5 pts</p>
+                    </div>
+                </div>
+                <div class="svg-silver">
+                    <div class="row">
+                        {{ include('svg/trophy.html.twig') }}
+                        <p>10 pts</p>
+                    </div>
+                </div>
+                <div class="svg-gold">
+                    <div class="row">
+                        {{ include('svg/trophy.html.twig') }}
+                        <p>20 pts</p>
+                    </div>
+                </div>
+            </div>
+    </p>
+
+<h3>Partager sur :</h3><br>
     <div class="social-share">
         <div class="fb-share-button" data-href="https://the-daily-workout.com/" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fthe-daily-workout.com%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore"></a></div>
         <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>

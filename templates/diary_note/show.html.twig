@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DiaryNote{% endblock %}
+
+{% block body %}
+    <h1>DiaryNote</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ diary_note.id }}</td>
+            </tr>
+            <tr>
+                <th>Created_at</th>
+                <td>{{ diary_note.createdAt ? diary_note.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Weight</th>
+                <td>{{ diary_note.weight }}</td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>{{ diary_note.content }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_diary_note_index') }}">back to list</a>
+
+    <a href="{{ path('app_diary_note_edit', {'id': diary_note.id}) }}">edit</a>
+
+    {{ include('diary_note/_delete_form.html.twig') }}
+{% endblock %}

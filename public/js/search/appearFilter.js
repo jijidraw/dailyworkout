@@ -1,6 +1,5 @@
 let filterBtn = document.getElementById("search");
 let filters = document.getElementById("bloc-column-filter")
-console.log(filters)
 
 filterBtn.addEventListener("click", function(){
     if(filterBtn.classList.value === "tab active"){

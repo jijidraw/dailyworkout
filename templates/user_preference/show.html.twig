@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}UserPreference{% endblock %}
+
+{% block body %}
+    <h1>UserPreference</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ user_preference.id }}</td>
+            </tr>
+            <tr>
+                <th>Is_alcool</th>
+                <td>{{ user_preference.isAlcool ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Is_meditation</th>
+                <td>{{ user_preference.isMeditation ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Is_tabac</th>
+                <td>{{ user_preference.isTabac ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Is_healthy</th>
+                <td>{{ user_preference.isHealthy ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Is_training</th>
+                <td>{{ user_preference.isTraining ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Is_weight</th>
+                <td>{{ user_preference.isWeight ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Is_water</th>
+                <td>{{ user_preference.isWater ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_user_preference_index') }}">back to list</a>
+
+    <a href="{{ path('app_user_preference_edit', {'id': user_preference.id}) }}">edit</a>
+
+    {{ include('user_preference/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,50 @@
+<div class="form-base1">
+    <div class="text-middle">
+        <p>Pour commencer choisis les domaines que tu souhaites suivre.</p>
+    </div>
+    {{ form_start(form) }}
+    <div class="space-between">
+        <p>Veux tu suivre ta consommation d'alcool ?
+            {{ form_widget(form.is_alcool) }}
+            {{ form_label(form.is_alcool) }}
+        </p>
+    </div>
+    <div class="space-between">
+        <p>Veux tu suivre le nombre de tes méditations ?
+            {{ form_widget(form.is_meditation) }}
+            {{ form_label(form.is_meditation) }}
+        </p>
+    </div>
+    <div class="space-between">
+        <p>Veux tu suivre ta consommation de tabac ?
+            {{ form_widget(form.is_tabac) }}
+            {{ form_label(form.is_tabac) }}
+        </p>
+    </div>
+    <div class="space-between">
+        <p>Veux tu suivre la régularité de tes repas
+            {{ form_widget(form.is_healthy) }}
+            {{ form_label(form.is_healthy) }}
+        </p>
+    </div>
+    <div class="space-between">
+        <p>Veux tu suivre la régularité de tes entrainements
+            {{ form_widget(form.is_training) }}
+            {{ form_label(form.is_training) }}
+        </p>
+    </div>
+    <div class="space-between">
+        <p>Veux tu suivre ton évolution de poids ?
+            {{ form_widget(form.is_weight) }}
+            {{ form_label(form.is_weight) }}
+        </p>
+    </div>
+    <div class="space-between">
+        <p>Veux tu noter si tu as consommer assez d'eau ?
+            {{ form_widget(form.is_water) }}
+            {{ form_label(form.is_water) }}
+        </p>
+    </div>
+    <button class="btvalid">{{ button_label|default('Valider mes choix') }}</button>
+    {{ form_end(form) }}
+</div>

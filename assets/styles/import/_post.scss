@@ -22,6 +22,12 @@
     margin: $mp1 0 0 $mp1;
 }
 
+.post-medals {
+    width: 40%;
+    @extend %row;
+    justify-content: space-around;
+}
+
 .post-title img {
     margin-right: $mp1;
 }
@@ -47,7 +53,6 @@
     height: fit-content;
     margin: $mp3 auto;
     padding: $mp1;
-    overflow: hidden;
 }
 
 .post-view h3,

@@ -14,7 +14,7 @@
   width: fit-content;
   padding: $mp1;
   border: 1px solid $red;
-  z-index: 1000;
+  z-index: 20;
 }
 
 .dropdown-content .btblue {
@@ -37,6 +37,7 @@
   @extend %column;
   width: fit-content;
   min-width: 180px;
+  color: white;
 }
 
 
@@ -86,6 +87,9 @@
   color: white;
 }
 
+.row-trophy p {
+  color: white;
+}
 
 // accordéon
 .accordion {

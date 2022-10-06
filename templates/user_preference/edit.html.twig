@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes préférences de suivie{% endblock %}
+
+{% block body %}
+    <h1 class="bloc-title">Choisir mes préférences de suivie</h1>
+
+    {{ include('user_preference/_form.html.twig', {'button_label': 'Update'}) }}
+{% endblock %}

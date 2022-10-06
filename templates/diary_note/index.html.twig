@@ -1,0 +1,142 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon suivie{% endblock %}
+
+{% block body %}
+<div id="arrow-left" class="arrow" href="">{{ include('svg/arrowleft.html.twig') }}</div>
+
+<section class="bloc-full">
+<aside id="column-left" class="bloc-column-abs">
+    <h1 class="bloc-title">Espace de suivie</h1>
+    <p>Dans cette colonne retrouve le nombre de fois ou tu t'es entrainé, ou ton alimentation à été bonne ou non, ton poids actuel. <br>
+    À toi de jouer pour faire monter ton score dans le bon sens. <br><br></p>
+    <ul>
+        {% if preference.isWeight == true %}
+        <p>Poids</p>
+        <li class="notes-li row">
+            <img class="diary-icons" src="{{ asset('/images/icon/weightcontroll.png')}}" alt="">
+            <p>
+                Aujourd'hui mon poids est de :{{ notes[0].weight }} kg.
+            </p>
+        </li>
+        {% endif %}
+        {% if preference.isHealthy == true %}
+        <p>Alimentation</p>
+        <li class="notes-li row">
+            <img class="diary-icons" src="{{ asset('/images/icon/cheatmeal.png')}}" alt="">
+            <p>
+                J'ai triché {{ cheatmeal }} fois sur mon alimentation.
+            </p>
+        </li>
+        <li class="notes-li row">
+            <img class="diary-icons" src="{{ asset('/images/icon/nopizza.png')}}" alt="">
+            <p>J'ai eu une bonne alimentation {{ healthy }} fois.</p>
+        </li>
+        {% endif %}
+        {% if preference.isWater == true %}
+        <p>Eau</p>
+        <li class="notes-li row">
+            <img class="diary-icons" src="{{ asset('/images/icon/water.png')}}" alt="">
+            <p>J'ai bu {{ water }} fois assez d'eau.</p>
+        </li>
+        {% endif %}
+        {% if preference.isAlcool == true %}
+        <p>Alcool</p>
+        <li class="notes-li row">
+            <img class="diary-icons" src="{{ asset('/images/icon/beer.png')}}" alt="">
+            <p>J'ai bu {{ alcool }} fois de l'alcool.</p>
+        </li>
+        {% endif %}
+        {% if preference.isTraining == true %}
+        <p>Entrainements et repos</p>
+            
+        <li class="notes-li row">
+            <img class="diary-icons" src="{{ asset('/images/icon/hand.png')}}" alt="">
+            <p>Je me suis entrainé {{ training }} fois.</p>
+        </li>
+        <li class="notes-li row">
+            <img class="diary-icons" src="{{ asset('/images/icon/rest.png')}}" alt="">
+            <p>Jour de repos {{ rest }}</p>
+        </li>
+        {% endif %}
+        {% if preference.isMeditation == true %}
+        <p>Méditation</p>
+        <li class="notes-li row">
+            <img class="diary-icons" src="{{ asset('/images/icon/meditation.png')}}" alt="">
+            <p>J'ai médité {{ meditation }} fois.</p>
+        </li>
+        {% endif %}
+        <a href="{{ path('app_user_preference_edit', {id: preference.id})}}" class="btmain">Modifier mes suivies</a>
+
+        <div class="bloc-space"></div>
+    </ul>
+</aside>
+<section class="bloc-large-abs">
+
+    <h1 class="bloc-title">Mes notes</h1>
+    <ul class="diary-list">
+    {% if app.user.isDiary == false %}
+        {% else %}
+        <a class="btvalid" href="{{ path('app_diary_note_new') }}">Nouveau suivie</a>
+    {% endif %}
+        {% for note in notes %}
+            <a href="{{ path('app_diary_note_edit', {'id': note.id}) }}">
+                <div class="diary-bloc">
+                    <p class="diary-date">Le : {{ note.createdAt ? note.createdAt|date('d-m-Y ') : '' }}</p>
+                    {% if note.images is empty %}
+                    {% else %}
+                    <img class="diary-image" src="{{ asset('post/' ~ note.images.name)}}" alt="image de la note">
+                    {% endif %}
+                    {% if preference.isWeight == true %}
+                        {% if note.weight is defined %}
+                         Mon poids est de : {{ note.weight }} kg.
+                        {% endif %}
+                    {% endif %}
+                    <p class="diary-content">{{ note.content | nl2br}}</p>
+                    {% if preference.isHealthy == true %}
+                        {% if note.cheatmeal == true %}
+                            <img class="diary-icons" src="{{ asset('/images/icon/nopizza.png')}}" alt="">
+                            {% else %}
+                            <img class="diary-icons" src="{{ asset('/images/icon/cheatmeal.png')}}" alt="">
+                        {% endif %}
+                    {% endif %}
+                    {% if preference.isWater == true %}
+                        {% if note.isWater == true %}
+                            <img class="diary-icons" src="{{ asset('/images/icon/water.png')}}" alt="">
+                        {% endif %}
+                    {% endif %}
+                    {% if preference.isAlcool == true %}
+                        {% if note.alcool == true %}
+                            <img class="diary-icons" src="{{ asset('/images/icon/beer.png')}}" alt="">
+                            {% else %}
+                        {% endif %}
+                    {% endif %}
+                    {% if preference.isTraining == true %}
+                        {% if note.training == true %}
+                            <img class="diary-icons" src="{{ asset('/images/icon/hand.png')}}" alt="">
+                            {% else %}
+                            <img class="diary-icons" src="{{ asset('/images/icon/rest.png')}}" alt="">
+                        {% endif %}
+                    {% endif %}
+                    {% if preference.isMeditation == true %}
+                        {% if note.isMeditation == true %}
+                            <img class="diary-icons" src="{{ asset('/images/icon/meditation.png')}}" alt="">
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </a>
+
+        {% else %}
+        <article class="text-middle">
+            <p>Tu n'as pas encores commencé à noter ton suivie.</p> <br>
+            <p>Pourquoi ne pas commencer dès maintenant ?
+                <a href="{{ path('app_diary_note_new')}}" class="btvalid">Je commence</a>
+            </p>
+        </article>
+        {% endfor %}
+        <div class="bloc-space"></div>
+    </ul>
+</section>    
+</section>    
+
+{% endblock %}

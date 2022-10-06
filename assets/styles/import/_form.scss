@@ -103,7 +103,7 @@ textarea {
 
 .item-form {
     @extend %column;
-    margin: $mp1;
+    margin: $mp1 0;
     width: 90%;
     height: fit-content;
     overflow: hidden;
@@ -112,13 +112,17 @@ textarea {
 .form-experso {
     @extend %row;
     background-color: white;
-    width: 50%;
+    width: 40%;
     margin-bottom: $mp1;
     overflow: hidden;
 }
 
 .form-experso .column {
-    width: 60%;
+    width: 50%;
+}
+
+.bloc-link-column .item-list .item-form {
+    width: 100%;
 }
 
 .item-form label {
@@ -236,8 +240,9 @@ h2 {
     }
 
     .form-base1 {
-        width: 100%;
-        padding: 0;
+        width: 100vw;
+        max-width: 100%;
+        padding: 25px;
         border-radius: 0;
         box-shadow: none;
     }

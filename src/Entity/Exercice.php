@@ -57,7 +57,7 @@ class Exercice
     private $muscleGroup;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="exercice")
+     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="exercice", fetch="EAGER")
      * @Groups("exercice:category", "workout:display")
      * @Groups({"exercice:detail"})
      * 

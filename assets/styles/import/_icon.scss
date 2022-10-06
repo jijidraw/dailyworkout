@@ -61,6 +61,24 @@ svg:hover {
     fill: $red;
 }
 
+.svg-bronze svg path {
+    fill: #614e1a;
+    stroke: #614e1a;
+    z-index: 500;
+}
+
+.svg-silver svg path {
+    fill: silver;
+    stroke: silver;
+    z-index: 500;
+}
+
+.svg-gold svg path {
+    fill: gold;
+    stroke: gold;
+    z-index: 500;
+}
+
 @media (max-width: 860px) {
     svg {
         height: 24px;

@@ -1,6 +1,5 @@
 let radios = document.querySelectorAll('input[type="radio"]')
 let RadiosLabel = document.querySelectorAll('.radio-select')
-console.log(RadiosLabel)
 for(let checkbox of radios){
     checkbox.addEventListener("click", function() {
         for(let RadioLabel of RadiosLabel){

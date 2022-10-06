@@ -8,27 +8,12 @@
 <div class="bloc-full">
 
     <div id="arrow-right" class="arrow-right" href="">{{ include('svg/arrowright.html.twig') }}</div>
-        {# <div id="help" class="help-background hidden">
-            <div class="help-content">
-                <div id="close-help" class="help-close">{{ include('svg/deletecross.html.twig') }}</div>
-                <h1 class="help-title">Bienvenue sur Daily Workout</h1>
-                <p>Pour commencer nous vous conseillons d'aller sur l'onglet de votre profil</p>
-                <p>Dans le menu déroulant sous votre profil vous trouverez les accès à différentes partie.</p>
-                <ul>
-                    <li>L'accés à votre profil</li>
-                    <li>Votre espace programme</li>
-                    <li>L'accés à l'espace Challenge ainsi que l'espace Team</li>
-                    <li>Le portail des sports</li>
-                </ul>
-            </div>
-        </div> #}
     <aside id="column-left" class="bloc-column-abs">
         <div class="bloc-title"></div>
         {{ include('home/team.html.twig') }}
         {{ include('home/_userChallenge.html.twig') }}
     </aside>
     <section class="bloc-actu">
-        
         
         <div class="bloc-top">
             {{ include('form/post.html.twig') }}
@@ -57,6 +42,7 @@
 {% block javascripts %}
 <script src="{{ asset('js/user/tabs.js')}}"></script>
 <script src="{{ asset('js/arrowright.js')}}"></script>
+<script src="{{ asset('js/medals.js')}}"></script>
 <script src="{{ asset('js/follow.js')}}"></script>
 <script src="{{ asset('js/loadcomment.js')}}"></script>
 <script src="{{ asset('js/deletecomment.js')}}"></script>

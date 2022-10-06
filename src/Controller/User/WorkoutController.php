@@ -94,7 +94,7 @@ class WorkoutController extends AbstractController
             }
         }
         if (!isset($selections)) {
-            $selections = $exerciceRepository->findBy([], ['id' => 'DESC']);
+            $selections = $exerciceRepository->findBy([], ['id' => 'DESC'], 20);
         }
 
         $fCategory = $request->get("category");
@@ -106,7 +106,6 @@ class WorkoutController extends AbstractController
         $category = $categoryRepository->findBy([], ['name' => 'ASC']);
         $sports = $sportsListRepository->findBy([], ['name' => 'ASC']);
         $muscles = $muscleGroupRepository->findBy([], ['name' => 'ASC']);
-
 
         if ($request->get('ajax')) {
             return new JsonResponse([
@@ -295,9 +294,13 @@ class WorkoutController extends AbstractController
     {
         $route = $request->headers->get('referer');
         $exerciceRepository->remove($exercicePerso, true);
-        $this->addFlash('success', 'Exercices retiré');
+        // $this->addFlash('success', 'Exercices retiré');
 
         return $this->redirect($route);
+        // return $this->json([
+        //     'code' => 200,
+        //     'message' => 'Vote pris en compte'
+        // ], 200);
     }
 
     /**

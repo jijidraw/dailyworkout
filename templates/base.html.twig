@@ -4,6 +4,7 @@
         
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="The daily workout, un réseau social pour les sportifs tous niveaux. Gratuit. Créer des entraînements de sport. Trouver des exemples et idées d'autres membres qui partagent la même passion.">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="{{ asset('/images/logo.png')}}">
         {% block stylesheets %}
@@ -19,7 +20,7 @@
 </script>
     </head>
     <body>
-        <div class="block-body">
+        <div id="body" class="block-body">
             
         {% if is_granted('ROLE_USER') and app.user.isIsWelcome == false %}
         <header>
@@ -41,6 +42,9 @@
                         </div>
                         <div class="item-dropdown">
                             <a href="{{ path('app_team_index')}}">Teams</a>
+                        </div>
+                        <div class="item-dropdown">
+                            <a href="{{ path('app_diary_note_index')}}">Carnet</a>
                         </div>
                     </div>
                 </li>

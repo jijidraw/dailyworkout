@@ -84,6 +84,11 @@ class UserStat
      */
     private $teamMember;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $points;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -241,6 +246,18 @@ class UserStat
     public function setTeamMember(?int $teamMember): self
     {
         $this->teamMember = $teamMember;
+
+        return $this;
+    }
+
+    public function getPoints(): ?int
+    {
+        return $this->points;
+    }
+
+    public function setPoints(?int $points): self
+    {
+        $this->points = $points;
 
         return $this;
     }

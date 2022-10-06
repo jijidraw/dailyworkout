@@ -1,5 +1,4 @@
 const FiltersForm = document.querySelector("#filters");
-
     // On boucle sur les input
     document.querySelectorAll("#filters input").forEach(input => {
         input.addEventListener("change", () => {
@@ -16,7 +15,6 @@ const FiltersForm = document.querySelector("#filters");
 
             // On récupère l'url active
             const Url = new URL(window.location.href);
-            console.log(Url.pathname)
     
             // On lance la requête ajax
             fetch(Url.pathname + "?" + Params.toString() + "&ajax=1", {
@@ -27,14 +25,16 @@ const FiltersForm = document.querySelector("#filters");
                 response.json()
             ).then(data => {
                 // On va chercher la zone de contenu
+                
                 const content = document.querySelector("#content");
-
+                
                 // On remplace le contenu
                 content.innerHTML = data.content;
-
+                
+                addExercice();
                 // On met à jour l'url
                 history.pushState({}, null, Url.pathname + "?" + Params.toString());
             }).catch(e => alert(e));
-
         });
-    });
+        
+    })

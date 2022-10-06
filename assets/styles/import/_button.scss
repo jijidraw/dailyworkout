@@ -33,7 +33,6 @@ select {
 
 .input-file {
     @extend %button;
-    background-color: $red;
     color: white;
     margin: $mp2 auto;
     cursor: pointer;

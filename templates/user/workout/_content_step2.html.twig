@@ -13,7 +13,5 @@
         <a data-exercice="{{exercice.id}}" data-workout="{{workout.id}}" class="js-exercice-link" href="{{ path('app_workout_perso_adding', {id: exercice.id, workout: workout.id})}}">Ajouter</a>
     </div>
 </div>
-{% else %}
-    <h3>Pas d'enregistrement trouvé</h3>
 {% endfor %}
 <div class="bloc-space"></div>

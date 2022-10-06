@@ -13,6 +13,26 @@
                 </div> 
             </div>
         </a>
+        <div class="post-medals">
+                <div class="svg-bronze">
+                    <div class="row">
+                    <p>{{ publi.bronze }}</p>
+                    {{ include('svg/trophy.html.twig') }}
+                </div>
+            </div>
+            <div class="svg-silver">
+                <div class="row">
+                    <p>{{ publi.silver }}</p>
+                    {{ include('svg/trophy.html.twig') }}
+                </div>
+            </div>
+            <div class="svg-gold">
+                <div class="row">
+                    <p>{{ publi.gold }}</p>
+                    {{ include('svg/trophy.html.twig') }}
+                </div>
+            </div>
+        </div>
     </div>
     <div class="column post-main">
         <p>{{ publi.content | nl2br }}</p>
@@ -37,6 +57,42 @@
                 <span class="svg-post">{{ include('svg/thumb.html.twig') }}</span>
             </p>
         </a>
+        <div class="dropdown" data-id="{{ publi.id }}">
+            <span class="svg-post">
+                {{ include('svg/trophy.html.twig') }}
+            </span>
+                <div class="dropdown-content row-trophy">
+                    {% if medals.bronze == true %}
+                    <a href="{{ path('app_medal_bronze', {id: publi.id})}}" class="js-medals bronze" id="bronze">
+                        <div class="svg-bronze">
+                            {{ include('svg/trophy.html.twig') }}
+                        </div>
+                    </a>
+                        {% else %}
+                    {% endif %}
+                    {% if medals.silver == true %}
+                    <a href="{{ path('app_medal_silver', {id: publi.id})}}" class="js-medals silver" id="silver">
+                        <div class="svg-silver">
+                            {{ include('svg/trophy.html.twig') }}
+                        </div>
+                    </a>
+                        {% else %}
+                    {% endif %}
+                    {% if medals.gold == true %}
+                    <a href="{{ path('app_medal_gold', {id: publi.id})}}" class="js-medals gold" id="gold">
+                        <div class="svg-gold">
+                            {{ include('svg/trophy.html.twig') }}
+                        </div>
+                    </a>
+                    {% else %}
+                    {% endif %}
+                    {% if medals.gold == false and medals.silver == false and medals.bronze == false %}
+                    <div class="dropdown-bloc">
+                        Tu n'as plus de trophé à distribuer. Reviens demain pour en avoir de nouveaux.
+                    </div>
+                    {% endif %}
+                </div>
+        </div>
         <a href="{{ path('getComment', {id: publi.id})}}" data-id="{{ publi.id }}" id="delete-link{{ publi.id }}" class="delete-comment hidden svg-post">
             <p>
                 {{ publi.comments | length }} {{ include('svg/message.html.twig') }}

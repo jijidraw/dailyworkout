@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau{% endblock %}
+
+{% block body %}
+    <h1 class="bloc-title">Mon suivie du jour</h1>
+    <div class="form-base1">
+        {{ include('diary_note/_form.html.twig') }}
+        <a class="btmain" href="{{ path('app_diary_note_index') }}">Retour</a>
+    </div>
+{% endblock %}

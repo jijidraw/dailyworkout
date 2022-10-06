@@ -74,6 +74,21 @@ class Post
      */
     private $notifications;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $bronze;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $silver;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $gold;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
@@ -283,6 +298,42 @@ class Post
                 $notification->setPost(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getBronze(): ?int
+    {
+        return $this->bronze;
+    }
+
+    public function setBronze(?int $bronze): self
+    {
+        $this->bronze = $bronze;
+
+        return $this;
+    }
+
+    public function getSilver(): ?int
+    {
+        return $this->silver;
+    }
+
+    public function setSilver(?int $silver): self
+    {
+        $this->silver = $silver;
+
+        return $this;
+    }
+
+    public function getGold(): ?int
+    {
+        return $this->gold;
+    }
+
+    public function setGold(?int $gold): self
+    {
+        $this->gold = $gold;
 
         return $this;
     }

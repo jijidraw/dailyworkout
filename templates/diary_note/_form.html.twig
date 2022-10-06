@@ -1,0 +1,41 @@
+
+    {{ form_start(form) }}
+    <label for="">Ma journée</label>
+    {{ form_row(form.content) }}
+    <p>
+        Ton poids ?
+        {{ form_row(form.weight) }}
+    </p>
+    <p>As tu eu une alimentation correct aujourd'hui ?
+        {{ form_widget(form.cheatmeal) }}
+        {{ form_label(form.cheatmeal) }}
+    </p>
+        <p>As tu consommé de l'alcool ?
+            {{ form_widget(form.alcool) }}
+            {{ form_label(form.alcool) }}
+        </p>
+        <p>As tu fais ton entrainement ?
+            {{ form_widget(form.training) }}
+            {{ form_label(form.training) }}
+        </p>
+        <p>As tu fais ta méditation ?
+            {{ form_widget(form.is_meditation) }}
+            {{ form_label(form.is_meditation) }}
+        </p>
+        <p>As tu bu suffisament d'eau ?
+            {{ form_widget(form.is_water) }}
+            {{ form_label(form.is_water) }}
+        </p>
+        {# <p>Combien de cigarette à tu fumer aujourd'hui ?
+            {{ form_widget(form.tabac) }}
+            {{ form_label(form.tabac) }}
+        </p> #}
+    
+        <p>Ajoutes une image</p>
+        <div class="input-file">
+            <label for="diary_note_images">{{ include('svg/jpg.html.twig') }}</label>
+        </div>
+        <div class="preview"></div>
+        <button class="btvalid">{{ button_label|default('Enregistrer') }}</button>
+    
+    {{ form_end(form) }}

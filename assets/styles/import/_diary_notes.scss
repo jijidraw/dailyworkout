@@ -1,0 +1,39 @@
+li.notes-li {
+    @extend %row;
+    justify-content: space-between;
+    margin: 8px auto 12px;
+    border-bottom: 1px solid $grey;
+}
+
+ul.diary-list {
+    width: 100%;
+    @extend %row;
+    flex-wrap: wrap;
+}
+
+.diary-bloc {
+    @extend %shadow;
+    @extend %border;
+    width: 200px;
+    height: fit-content;
+    margin: 12px;
+    padding: 12px;
+    background-color: white;
+}
+
+.diary-bloc img.diary-image {
+    width: 100%;
+}
+
+img.diary-icons {
+    height: 28px;
+    margin: 12px;
+}
+
+@media (max-width: 860px) {
+    .diary-bloc {
+        border-radius: 0;
+        width: 100%;
+        margin: 12px 0px;
+    }
+}

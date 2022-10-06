@@ -59,6 +59,11 @@ class Images
      */
     private $challenge;
 
+    /**
+     * @ORM\OneToOne(targetEntity=DiaryNote::class, inversedBy="images", cascade={"persist", "remove"})
+     */
+    private $diary;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -142,6 +147,18 @@ class Images
     public function setChallenge(?Challenge $challenge): self
     {
         $this->challenge = $challenge;
+
+        return $this;
+    }
+
+    public function getDiary(): ?DiaryNote
+    {
+        return $this->diary;
+    }
+
+    public function setDiary(?DiaryNote $diary): self
+    {
+        $this->diary = $diary;
 
         return $this;
     }

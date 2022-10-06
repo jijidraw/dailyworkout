@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier ma note{% endblock %}
+
+{% block body %}
+    <h1 class="bloc-title">Modifier mon suivie</h1>
+<div class="form-base1">
+    {{ include('diary_note/_form.html.twig', {'button_label': 'Modifier'}) }}
+    <div class="space-around">
+        <a class="btmain" href="{{ path('app_diary_note_index') }}">Retour</a>
+        {{ include('diary_note/_delete_form.html.twig') }}
+    </div>
+</div>
+{% endblock %}

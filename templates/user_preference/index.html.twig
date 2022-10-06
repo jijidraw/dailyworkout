@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}UserPreference index{% endblock %}
+
+{% block body %}
+    <h1>UserPreference index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Is_alcool</th>
+                <th>Is_meditation</th>
+                <th>Is_tabac</th>
+                <th>Is_healthy</th>
+                <th>Is_training</th>
+                <th>Is_weight</th>
+                <th>Is_water</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user_preference in user_preferences %}
+            <tr>
+                <td>{{ user_preference.id }}</td>
+                <td>{{ user_preference.isAlcool ? 'Yes' : 'No' }}</td>
+                <td>{{ user_preference.isMeditation ? 'Yes' : 'No' }}</td>
+                <td>{{ user_preference.isTabac ? 'Yes' : 'No' }}</td>
+                <td>{{ user_preference.isHealthy ? 'Yes' : 'No' }}</td>
+                <td>{{ user_preference.isTraining ? 'Yes' : 'No' }}</td>
+                <td>{{ user_preference.isWeight ? 'Yes' : 'No' }}</td>
+                <td>{{ user_preference.isWater ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('app_user_preference_show', {'id': user_preference.id}) }}">show</a>
+                    <a href="{{ path('app_user_preference_edit', {'id': user_preference.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_user_preference_new') }}">Create new</a>
+{% endblock %}

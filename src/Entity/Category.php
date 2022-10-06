@@ -29,7 +29,7 @@ class Category
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Exercice::class, mappedBy="categories")
+     * @ORM\ManyToMany(targetEntity=Exercice::class, mappedBy="categories", fetch="EAGER")
      */
     private $exercice;
 

@@ -1,4 +1,3 @@
-
 const likesLink = document.querySelectorAll("#js-like");
 for(let likeLink of likesLink){
     likeLink.addEventListener("click", function(e){

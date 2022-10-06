@@ -94,8 +94,22 @@
 }
 
 .space-around {
-    display: flex;
-    flex-direction: row;
+    @extend %row;
     justify-content: space-around;
     width: 100%;
+}
+
+.space-between {
+    @extend %row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.space-around form {
+    @extend %flex-center;
+    margin: 1rem 0;
+    line-height: 100%;
+    font-size: 16px;
+    padding: 0;
+    width: fit-content;
 }

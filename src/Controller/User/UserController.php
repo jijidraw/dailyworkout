@@ -3,6 +3,7 @@
 namespace App\Controller\User;
 
 use App\Entity\Conversation;
+use App\Entity\Diary;
 use App\Entity\Goal;
 use App\Entity\ImagesProfiles;
 use App\Entity\SportsList;
