@@ -7,6 +7,7 @@ use App\Entity\ImagesProfiles;
 use App\Entity\Notification;
 use App\Entity\Reward;
 use App\Entity\User;
+use App\Entity\UserMedals;
 use App\Entity\UserStat;
 use App\Form\RegistrationFormType;
 use App\Repository\RewardRepository;
@@ -58,6 +59,10 @@ class RegistrationController extends AbstractController
             $img = new ImagesProfiles;
             $img->setUser($user)->setName('login.png');
             $entityManager->persist($img);
+            $entityManager->flush();
+            $medals = new UserMedals;
+            $medals->setGold(true)->setBronze(true)->setSilver(true);
+            $entityManager->persist($medals);
             $entityManager->flush();
             $rewardId = $rewardRepository->findOneBy(['id' => '1']);
             $user->addReward($rewardId)->setImagesProfiles($img);

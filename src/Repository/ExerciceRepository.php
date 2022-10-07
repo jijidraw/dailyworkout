@@ -65,6 +65,7 @@ class ExerciceRepository extends ServiceEntityRepository
             // $query->andWhere('e.sports IN(:sports)')
             //     ->setParameter(':sports', array_values($fSports));
         }
+        $query->setMaxResults(20);
         $query->orderBy('e.name', 'ASC');
         return $query->getQuery()->getResult();
     }
@@ -93,6 +94,7 @@ class ExerciceRepository extends ServiceEntityRepository
         $query->leftJoin('e.sports', 's');
         $query->where('s.id = :id')
             ->setParameter('id', $sport);
+        $query->setMaxResults(20);
         return $query->getQuery()->getResult();
     }
     public function searchBySportWorkout($workoutSports = null)
