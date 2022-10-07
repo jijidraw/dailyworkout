@@ -56,14 +56,14 @@ class SportsList
     private $description;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Workout::class, mappedBy="sport")
-     */
-    private $workouts;
-
-    /**
      * @ORM\ManyToMany(targetEntity=Exercice::class, mappedBy="sports")
      */
     private $exercices;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Workout::class, mappedBy="sport")
+     */
+    private $workouts;
 
     public function __toString()
     {
@@ -75,8 +75,8 @@ class SportsList
         $this->equipment = new ArrayCollection();
         $this->users = new ArrayCollection();
         $this->teams = new ArrayCollection();
-        $this->workouts = new ArrayCollection();
         $this->exercices = new ArrayCollection();
+        $this->workouts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -215,33 +215,6 @@ class SportsList
     }
 
     /**
-     * @return Collection<int, Workout>
-     */
-    public function getWorkouts(): Collection
-    {
-        return $this->workouts;
-    }
-
-    public function addWorkout(Workout $workout): self
-    {
-        if (!$this->workouts->contains($workout)) {
-            $this->workouts[] = $workout;
-            $workout->addSport($this);
-        }
-
-        return $this;
-    }
-
-    public function removeWorkout(Workout $workout): self
-    {
-        if ($this->workouts->removeElement($workout)) {
-            $workout->removeSport($this);
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection<int, Exercice>
      */
     public function getExercices(): Collection
@@ -263,6 +236,36 @@ class SportsList
     {
         if ($this->exercices->removeElement($exercice)) {
             $exercice->removeSport($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Workout>
+     */
+    public function getWorkouts(): Collection
+    {
+        return $this->workouts;
+    }
+
+    public function addWorkout(Workout $workout): self
+    {
+        if (!$this->workouts->contains($workout)) {
+            $this->workouts[] = $workout;
+            $workout->setSport($this);
+        }
+
+        return $this;
+    }
+
+    public function removeWorkout(Workout $workout): self
+    {
+        if ($this->workouts->removeElement($workout)) {
+            // set the owning side to null (unless already changed)
+            if ($workout->getSport() === $this) {
+                $workout->setSport(null);
+            }
         }
 
         return $this;

@@ -26,14 +26,9 @@
                 <label for="">Difficulté</label>
                 {{ form_row(form.level) }}
             </div>
+            {{ form_row(form.sport) }}
         </div>
 
-        <div class="item-list">
-            <div data-id="-sport" class="accordion">Pour quel sport ce workout est recommandé</div>
-                <div id="panel-sport" class="panel">
-                    {{ form_row(form.sport) }}
-                </div>
-        </div>
         <input class="btvalid" type="submit" value="valider">
         <div class="bloc-space"></div>
         </div>

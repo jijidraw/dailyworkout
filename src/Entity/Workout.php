@@ -92,11 +92,6 @@ class Workout
     private $muscleGroup;
 
     /**
-     * @ORM\ManyToMany(targetEntity=SportsList::class, inversedBy="workouts")
-     */
-    private $sport;
-
-    /**
      * @ORM\OneToMany(targetEntity=Challenge::class, mappedBy="workout", cascade={"persist", "remove"})
      */
     private $challenges;
@@ -112,6 +107,11 @@ class Workout
      */
     private $level;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=SportsList::class, inversedBy="workouts")
+     */
+    private $sport;
+
     public function __toString()
     {
         return $this->name;
@@ -124,7 +124,6 @@ class Workout
         $this->weeks = new ArrayCollection();
         $this->workoutFavs = new ArrayCollection();
         $this->muscleGroup = new ArrayCollection();
-        $this->sport = new ArrayCollection();
         $this->challenges = new ArrayCollection();
         $this->workoutNotations = new ArrayCollection();
     }
@@ -340,30 +339,6 @@ class Workout
     }
 
     /**
-     * @return Collection<int, SportsList>
-     */
-    public function getSport(): Collection
-    {
-        return $this->sport;
-    }
-
-    public function addSport(SportsList $sport): self
-    {
-        if (!$this->sport->contains($sport)) {
-            $this->sport[] = $sport;
-        }
-
-        return $this;
-    }
-
-    public function removeSport(SportsList $sport): self
-    {
-        $this->sport->removeElement($sport);
-
-        return $this;
-    }
-
-    /**
      * @return Collection<int, Challenge>
      */
     public function getChallenges(): Collection
@@ -431,6 +406,18 @@ class Workout
     public function setLevel(?Difficulty $level): self
     {
         $this->level = $level;
+
+        return $this;
+    }
+
+    public function getSport(): ?SportsList
+    {
+        return $this->sport;
+    }
+
+    public function setSport(?SportsList $sport): self
+    {
+        $this->sport = $sport;
 
         return $this;
     }

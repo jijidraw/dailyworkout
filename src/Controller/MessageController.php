@@ -50,12 +50,14 @@ class MessageController extends AbstractController
         // $conversations = array_merge($convA, $convB);
         $conversations = $conversationRepository->userConversation($user);
         $messages = $messageRepository->findBy(['conversation' => $conversation], ['created_at' => 'DESC']);
-        $lastmessage = $messages[0]->getUser();
-        if (!empty($lastmessage)) {
-            if ($lastmessage != $user) {
-                foreach ($messages as $message) {
-                    $message->setIsRead(true);
-                    $messageRepository->add($message, true);
+        if (isset($messages)) {
+            $lastmessage = $messages[0]->getUser();
+            if (!empty($lastmessage)) {
+                if ($lastmessage != $user) {
+                    foreach ($messages as $message) {
+                        $message->setIsRead(true);
+                        $messageRepository->add($message, true);
+                    }
                 }
             }
         }
@@ -126,6 +128,27 @@ class MessageController extends AbstractController
     {
         return $this->json([
             'messages' => $messageRepository->findBy(['conversation' => $conv], ['created_at' => 'DESC'])
+        ], 200);
+    }
+    /**
+     * @Route("/checkConversation", name="app_conversation_check", methods={"GET"})
+     */
+    public function checkConversation(MessageRepository $messageRepository, ConversationRepository $conversationRepository)
+    {
+        $user = $this->getUser();
+        $conversations = $conversationRepository->userConversation($user);
+        $messages = $messageRepository->findBy(array('conversation' => $conversations), ['created_at' => 'DESC']);
+        foreach ($messages as $message) {
+            $isRead = $message->isIsRead();
+            $userMessage = $message->getUser();
+            if ($userMessage != $user && $isRead == false) {
+                return $this->json([
+                    'response' => true
+                ], 200);
+            }
+        }
+        return $this->json([
+            'response' => false
         ], 200);
     }
     /**

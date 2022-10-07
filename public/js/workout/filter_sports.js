@@ -25,6 +25,7 @@ for(let linkSport of linkSports){
                         </div>
                             ` + galery.innerHTML
 
+                            removeExercice();
                     }
                 }
                 addExercice();

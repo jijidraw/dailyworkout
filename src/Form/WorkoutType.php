@@ -52,11 +52,8 @@ class WorkoutType extends AbstractType
                     return $er->createQueryBuilder('s')
                         ->orderBy('s.name', 'ASC');
                 },
-                'multiple' => true,
                 'label' => false,
-                'required' => true,
-                'expanded' => true,
-                'constraints' => [new Length(['min' => 1])],
+                'required' => false,
             ]);
     }
 

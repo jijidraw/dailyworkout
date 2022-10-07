@@ -32,10 +32,10 @@ for(let linkExercice of linksExercices) {
                     let message = document.createElement('message');
                         message.innerHTML = '<p class="flash-message">Exercice ajouté</p>'
                         document.body.appendChild(message);
-                removeExercice();
-
+                        
+                    }
                 }
-            }
+                removeExercice();
         }
         xhr.open("get", url, true)
         xhr.send();
@@ -75,12 +75,12 @@ for(let linkExercice of linksExercices) {
                         let message = document.createElement('message');
                             message.innerHTML = '<p class="flash-message">Exercice ajouté</p>'
                             document.body.appendChild(message);
-                    removeExercice();
-    
+                            
+                        }
                     }
                 }
-            }
-            xhr.open("get", url, true)
-            xhr.send();
+                xhr.open("get", url, true)
+                xhr.send();
+                removeExercice();
         })
     }

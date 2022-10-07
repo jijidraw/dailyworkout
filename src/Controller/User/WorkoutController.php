@@ -85,17 +85,12 @@ class WorkoutController extends AbstractController
         if ($user != $creator) {
             return $this->redirectToRoute('app_workout_show', ['id' => $workout->getId()], Response::HTTP_SEE_OTHER);
         };
-        // $Lists = $workout->getSport();
-        // foreach ($Lists as $list) {
-        //     $selecs = $exerciceRepository->searchBySport($list);
-        //     foreach ($selecs as $selec) {
-        //         $selection[] = $selec;
-        //         $selections = array_map("unserialize", array_unique(array_map("serialize", $selection)));
-        //     }
-        // }
-        // if (!isset($selections)) {
-        //     $selections = $exerciceRepository->findBy([], ['id' => 'DESC'], 20);
-        // }
+        $workoutSport = $workout->getSport();
+        if (!isset($workoutSport)) {
+            $selections = $exerciceRepository->findBy([], ['id' => 'DESC'], 20);
+        } else {
+            $selections = $exerciceRepository->searchBySport($workoutSport);
+        }
 
         $fCategory = $request->get("category");
         $fMuscles = $request->get("muscles");
@@ -113,7 +108,7 @@ class WorkoutController extends AbstractController
             ]);
         }
 
-        return $this->render('user/workout/new_step_2.html.twig', compact('workout', 'exercices', 'category', 'sports', 'muscles'));
+        return $this->render('user/workout/new_step_2.html.twig', compact('workout', 'selections', 'exercices', 'category', 'sports', 'muscles'));
     }
 
     /**
@@ -207,7 +202,7 @@ class WorkoutController extends AbstractController
         }
         if ($wSports != null) {
             foreach ($wSports as $wSport) {
-                $workoutDuplicate->addSport($wSport);
+                $workoutDuplicate->setSport($wSport);
                 $workoutRepository->add($workoutDuplicate, true);
             }
         }

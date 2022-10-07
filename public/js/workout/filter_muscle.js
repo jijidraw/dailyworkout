@@ -28,9 +28,11 @@ for(let linkMuscle of linkMuscles){
                         </div>
                             ` + galery.innerHTML
 
+                            removeExercice();
                     }
                 }
                 addExercice();
+                
             }
         }
         xhr.open("get", url, true)

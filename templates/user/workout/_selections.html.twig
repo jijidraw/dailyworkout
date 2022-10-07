@@ -10,7 +10,7 @@
         <img src="{{ asset('exercice/' ~ exercice.imageSystem.name)}}" width="400px" alt="">
     </div>
     <div class="card-a">
-        <a data-exercice="{{exercice.id}}" data-workout="{{workout.id}}" class="js-exercice-link" href="{{ path('app_workout_perso_adding', {id: exercice.id, workout: workout.id})}}">Ajouter</a>
+        <a data-exercice="{{exercice.id}}" data-workout="{{workout.id}}" class="" href="{{ path('app_workout_perso_adding', {id: exercice.id, workout: workout.id})}}">Ajouter</a>
     </div>
 </div>
 {% else %}

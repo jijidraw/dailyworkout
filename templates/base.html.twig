@@ -27,7 +27,7 @@
             <ul class="nav">
                 <li><a href="{{ path('home')}}"><img src="{{ asset('/images/logo.png')}}" alt=""></a></li>
                 <li class="svg-menu"><a href="{{ path('app_search')}}">{{ include('svg/wen.html.twig') }}</a></li>
-                <li class="svg-menu"><a href="{{ path('app_message')}}">{{ include('svg/message.html.twig') }}</a></li>
+                <li class="svg-menu message-icon"><a href="{{ path('app_message')}}">{{ include('svg/message.html.twig') }}</a></li>
                 <li class="dropdown">
                     <img class="profil dropdown" src="{{ asset('profil/' ~ app.user.imagesProfiles.name)}}" alt="">
                     <div class="dropdown-content">
@@ -101,4 +101,5 @@
             <script src="{{ asset('js/modal.js')}}"></script>
             <script src="{{ asset('js/checkbox.js')}}"></script>
             <script src="{{ asset('js/accordion.js')}}"></script>
+            <script src="{{ asset('js/check_message.js')}}"></script>
 </html>

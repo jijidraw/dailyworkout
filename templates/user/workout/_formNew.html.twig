@@ -8,7 +8,8 @@
         <label for="">Difficulté du workout</label>
         {{ form_row(form.level) }}
         <p class="text-middle">Choisis un ou plusieurs sports pour que nous puissions présélectionner des exercices adaptés à ce que tu veux.</p>
-        {{ form_row(form.sport) }}
+        {{ form_widget(form.sport) }}
+        {{ form_label(form.sport) }}
 
     <p class="text-middle">Ensuite, tu n'auras plus qu'à choisir les exercices que tu souhaites ajouter à ton entrainement</p>
     <button class="btvalid">{{ button_label|default('Étape suivant') }}{{ include('svg/checkmark.html.twig') }}</button>

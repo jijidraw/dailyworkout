@@ -44,9 +44,7 @@ class Workout1Type extends AbstractType
                     return $er->createQueryBuilder('s')
                         ->orderBy('s.name', 'ASC');
                 },
-                'multiple' => true,
-                'label' => false,
-                'expanded' => true
+                'label' => 'Pour quel sport ce workout est recommandé ?',
             ])
             ->add('exercicePersos', CollectionType::class, [
                 'entry_type' => ExercicePersoType::class,

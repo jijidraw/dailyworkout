@@ -79,6 +79,10 @@ svg:hover {
     z-index: 500;
 }
 
+.unread svg {
+    fill: rgb(34, 151, 34);
+}
+
 @media (max-width: 860px) {
     svg {
         height: 24px;

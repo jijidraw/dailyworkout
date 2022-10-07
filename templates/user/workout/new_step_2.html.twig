@@ -9,58 +9,60 @@
         <aside id="column-left" class="bloc-column-abs">
             <h1 class="bloc-title">Filtrer les exercices</h1>
                     <ul class="bloc-link-column">
-                        {# <li class="active tab" data-target="#content1">
+                        <li class="active tab" data-target="#content1">
                             Notre sélection d'exercices
-                        </li> #}
-                        <li id="search" class="active tab" data-target="#content2">
+                        </li>
+                        <li id="search" class="tab" data-target="#content2">
                             Exercices
                         </li>
-                        <ul>
-                            <h3>Catégories d'exercices</h3>
-                            {% for categories in category %}
-                            <li>
-                                <div class="btmain">
-                                    <a class="js-category" href="{{ path('app_workout_category', {id: categories.id})}}">{{ categories.name }}</a>
-                                </div>
-                            </li>
-                            {% endfor %}
-                            <h3>Groupes musculaire</h3>
-                            {% for categories in category %}
-                                {% for muscle in muscles %}
-                                    <li>
-                                        <div class="btmain">
-                                            <a class="js-muscle" href="{{ path('app_workout_muscle', {id: muscle.id})}}" data-id="{{ muscle.id }}">{{ muscle.name }}</a>
-                                        </div>
-                                    </li>
+                        <ul id="bloc-column-filter" class="hidden">
+                            <div class="accordion" data-id="-category">Catégorie d'exercice</div>
+                            <div class="panel" id="panel-category">
+                                
+                                {% for categories in category %}
+                                <li class="btmain">
+                                        <a class="js-category" href="{{ path('app_workout_category', {id: categories.id})}}">{{ categories.name }}</a>
+                                </li>
                                 {% endfor %}
-                            {% endfor %}
-                            <h3>Liste des sports</h3>
-                            {% for sport in sports %}
-        <li>
-            <div class="btmain">
-                <a class="js-sports" href="{{ path('app_workout_sport', {id: sport.id})}}" data-id="{{ sport.id }}">{{ sport.name }}</a>
-            </div>
-        </li>
-    {% endfor %}
+                            </div>
+                            <div class="accordion" data-id="-muscles">Groupe musculaire</div>
+                            <div class="panel" id="panel-muscles">
+                                {% for muscle in muscles %}
+                                <li class="btmain">
+                                        <a class="js-muscle" href="{{ path('app_workout_muscle', {id: muscle.id})}}" data-id="{{ muscle.id }}">{{ muscle.name }}</a>
+                                </li>
+                                {% endfor %}
+                            </div>
+                            <div class="accordion" data-id="-sports">Liste des sports</div>
+                            <div class="panel" id="panel-sports">
+
+                                {% for sport in sports %}
+                                <li class="btmain">
+                                    <a class="js-sports" href="{{ path('app_workout_sport', {id: sport.id})}}" data-id="{{ sport.id }}">{{ sport.name }}</a>
+                                </li>
+                                {% endfor %}
+                            </div>
                         </ul>
+                        {# <div id="bloc-column-filter" class="">
+                            {{ include('component/checkbox_form_select_exercice.html.twig') }}
+                        </div> #}
+                        <div class="bloc-space"></div>
                     </ul>
-                    {# <div id="bloc-column-filter" class="">
-                        {{ include('component/checkbox_form_select_exercice.html.twig') }}
-                    </div> #}
-                        <button class="btvalid" href="{{ path('app_workout_edit', {workout: workout.id})}}">
-                            <a href="{{ path('app_workout_edit', {workout: workout.id})}}">
-                                Étape suivante {{ include('svg/checkmark.html.twig') }}
-                            </a>
-                        </button>
                         
-                    <div class="bloc-space"></div>
         </aside>
         <section class="bloc-large-abs">
             <div class="bloc-title"></div>
             <p class="text-middle">
                 Maintenant, ajoutes des exercices parmis ceux que nous t'avons sélectionné. Si tu ne trouves pas ce qu'il te faut, cliques dans la colonne de gauche sur trouver d'autres exercices et accèdes à la bibliothèque.
             </p>
-            <h2>Exercices ajoutés</h2>
+            <h2>Exercices ajoutés  <button class="btvalid" href="{{ path('app_workout_edit', {workout: workout.id})}}">
+                <a href="{{ path('app_workout_edit', {workout: workout.id})}}">
+                    <div class="row">
+                        Étape suivante {{ include('svg/checkmark.html.twig') }}
+                    </div>
+                </a>
+            </button></h2>
+            
         <div class="workout-list-exercice">
             {% for exercices in workout.exercicePersos %}
             <div class="card delete-exercice" data-exercice="{{ exercices.id }}">
@@ -78,12 +80,12 @@
                 
             {% endfor %}
         </div>
-        {# <div class="content" id="content1">
+        <div class="content" id="content1">
             <h2>Nos exercices sélectionnés pour toi</h2>
             <div class="workout-list-select">
                 {{ include('user/workout/_selections.html.twig') }}
             </div>
-        </div> #}
+        </div>
         <div class="content" id="content2">
             <h2>
                 Liste des exercices
@@ -105,7 +107,7 @@
 <script src="{{ asset('js/workout/add_exercice.js')}}"></script>
 <script src="{{ asset('js/radio.js')}}"></script>
 <script src="{{ asset('js/user/tabs.js')}}"></script>
-{# <script src="{{ asset('js/search/appearFilter.js')}}"></script> #}
+<script src="{{ asset('js/search/appearFilter.js')}}"></script>
 <script src="{{ asset('js/workout/filter_category.js')}}"></script>
 <script src="{{ asset('js/workout/filter_muscle.js')}}"></script>
 <script src="{{ asset('js/workout/filter_sports.js')}}"></script>
