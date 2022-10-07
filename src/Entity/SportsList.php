@@ -60,11 +60,6 @@ class SportsList
      */
     private $exercices;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Workout::class, mappedBy="sport")
-     */
-    private $workouts;
-
     public function __toString()
     {
         return $this->name;
@@ -76,7 +71,6 @@ class SportsList
         $this->users = new ArrayCollection();
         $this->teams = new ArrayCollection();
         $this->exercices = new ArrayCollection();
-        $this->workouts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -236,36 +230,6 @@ class SportsList
     {
         if ($this->exercices->removeElement($exercice)) {
             $exercice->removeSport($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Workout>
-     */
-    public function getWorkouts(): Collection
-    {
-        return $this->workouts;
-    }
-
-    public function addWorkout(Workout $workout): self
-    {
-        if (!$this->workouts->contains($workout)) {
-            $this->workouts[] = $workout;
-            $workout->setSport($this);
-        }
-
-        return $this;
-    }
-
-    public function removeWorkout(Workout $workout): self
-    {
-        if ($this->workouts->removeElement($workout)) {
-            // set the owning side to null (unless already changed)
-            if ($workout->getSport() === $this) {
-                $workout->setSport(null);
-            }
         }
 
         return $this;
