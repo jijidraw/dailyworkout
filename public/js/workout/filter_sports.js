@@ -27,9 +27,11 @@ for(let linkSport of linkSports){
 
                     }
                 }
+                addExercice();
             }
         }
         xhr.open("get", url, true)
         xhr.send();
+
     })
 }

@@ -33,7 +33,7 @@ const FiltersForm = document.querySelector("#filters");
                 
                 addExercice();
                 // On met à jour l'url
-                history.pushState({}, null, Url.pathname + "?" + Params.toString());
+                // history.pushState({}, null, Url.pathname + "?" + Params.toString());
             }).catch(e => alert(e));
         });
         

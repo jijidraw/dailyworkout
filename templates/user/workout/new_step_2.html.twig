@@ -9,16 +9,44 @@
         <aside id="column-left" class="bloc-column-abs">
             <h1 class="bloc-title">Filtrer les exercices</h1>
                     <ul class="bloc-link-column">
-                        <li class="active tab" data-target="#content1">
+                        {# <li class="active tab" data-target="#content1">
                             Notre sélection d'exercices
+                        </li> #}
+                        <li id="search" class="active tab" data-target="#content2">
+                            Exercices
                         </li>
-                        <li id="search" class="tab" data-target="#content2">
-                            Trouver d'autres exercices
-                        </li>
+                        <ul>
+                            <h3>Catégories d'exercices</h3>
+                            {% for categories in category %}
+                            <li>
+                                <div class="btmain">
+                                    <a class="js-category" href="{{ path('app_workout_category', {id: categories.id})}}">{{ categories.name }}</a>
+                                </div>
+                            </li>
+                            {% endfor %}
+                            <h3>Groupes musculaire</h3>
+                            {% for categories in category %}
+                                {% for muscle in muscles %}
+                                    <li>
+                                        <div class="btmain">
+                                            <a class="js-muscle" href="{{ path('app_workout_muscle', {id: muscle.id})}}" data-id="{{ muscle.id }}">{{ muscle.name }}</a>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            {% endfor %}
+                            <h3>Liste des sports</h3>
+                            {% for sport in sports %}
+        <li>
+            <div class="btmain">
+                <a class="js-sports" href="{{ path('app_workout_sport', {id: sport.id})}}" data-id="{{ sport.id }}">{{ sport.name }}</a>
+            </div>
+        </li>
+    {% endfor %}
+                        </ul>
                     </ul>
-                    <div id="bloc-column-filter" class="hidden">
+                    {# <div id="bloc-column-filter" class="">
                         {{ include('component/checkbox_form_select_exercice.html.twig') }}
-                    </div>
+                    </div> #}
                         <button class="btvalid" href="{{ path('app_workout_edit', {workout: workout.id})}}">
                             <a href="{{ path('app_workout_edit', {workout: workout.id})}}">
                                 Étape suivante {{ include('svg/checkmark.html.twig') }}
@@ -50,19 +78,22 @@
                 
             {% endfor %}
         </div>
-        <div class="content" id="content1">
+        {# <div class="content" id="content1">
             <h2>Nos exercices sélectionnés pour toi</h2>
             <div class="workout-list-select">
                 {{ include('user/workout/_selections.html.twig') }}
             </div>
-        </div>
+        </div> #}
         <div class="content" id="content2">
             <h2>
                 Liste des exercices
             </h2>
-            <div class="workout-list-select" id="content">
-                {{ include('user/workout/_content_step2.html.twig') }}
+            <div class="gallery" id="{{workout.id}}">
+
             </div>
+            {# <div class="workout-list-select" id="content">
+                {{ include('user/workout/_content_step2.html.twig') }}
+            </div> #}
         </div>
 
         </section>
@@ -74,6 +105,9 @@
 <script src="{{ asset('js/workout/add_exercice.js')}}"></script>
 <script src="{{ asset('js/radio.js')}}"></script>
 <script src="{{ asset('js/user/tabs.js')}}"></script>
-<script src="{{ asset('js/search/appearFilter.js')}}"></script>
+{# <script src="{{ asset('js/search/appearFilter.js')}}"></script> #}
+<script src="{{ asset('js/workout/filter_category.js')}}"></script>
+<script src="{{ asset('js/workout/filter_muscle.js')}}"></script>
+<script src="{{ asset('js/workout/filter_sports.js')}}"></script>
 <script src="{{ asset('js/workout/filter.js')}}"></script>
 {% endblock %}

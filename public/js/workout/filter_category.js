@@ -29,11 +29,13 @@ for(let linkCat of linkCats){
                         </div>
                             ` + gallery.innerHTML
 
+                        }
                     }
-                }
+                    addExercice();
             }
         }
         xhr.open("get", url, true)
         xhr.send();
+
     })
 }

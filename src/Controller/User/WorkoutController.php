@@ -85,17 +85,17 @@ class WorkoutController extends AbstractController
         if ($user != $creator) {
             return $this->redirectToRoute('app_workout_show', ['id' => $workout->getId()], Response::HTTP_SEE_OTHER);
         };
-        $Lists = $workout->getSport();
-        foreach ($Lists as $list) {
-            $selecs = $exerciceRepository->searchBySport($list);
-            foreach ($selecs as $selec) {
-                $selection[] = $selec;
-                $selections = array_map("unserialize", array_unique(array_map("serialize", $selection)));
-            }
-        }
-        if (!isset($selections)) {
-            $selections = $exerciceRepository->findBy([], ['id' => 'DESC'], 20);
-        }
+        // $Lists = $workout->getSport();
+        // foreach ($Lists as $list) {
+        //     $selecs = $exerciceRepository->searchBySport($list);
+        //     foreach ($selecs as $selec) {
+        //         $selection[] = $selec;
+        //         $selections = array_map("unserialize", array_unique(array_map("serialize", $selection)));
+        //     }
+        // }
+        // if (!isset($selections)) {
+        //     $selections = $exerciceRepository->findBy([], ['id' => 'DESC'], 20);
+        // }
 
         $fCategory = $request->get("category");
         $fMuscles = $request->get("muscles");
@@ -113,7 +113,7 @@ class WorkoutController extends AbstractController
             ]);
         }
 
-        return $this->render('user/workout/new_step_2.html.twig', compact('workout', 'exercices', 'category', 'sports', 'muscles', 'selections', 'Lists'));
+        return $this->render('user/workout/new_step_2.html.twig', compact('workout', 'exercices', 'category', 'sports', 'muscles'));
     }
 
     /**

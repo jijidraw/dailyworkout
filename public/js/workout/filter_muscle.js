@@ -30,9 +30,11 @@ for(let linkMuscle of linkMuscles){
 
                     }
                 }
+                addExercice();
             }
         }
         xhr.open("get", url, true)
         xhr.send();
+
     })
 }
