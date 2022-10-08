@@ -1,5 +1,4 @@
 const reportsChallenge = document.querySelectorAll(".js-challenge");
-console.log(reportsChallenge)
 for(let report of reportsChallenge){
     report.addEventListener("click", function(e){
         e.preventDefault();

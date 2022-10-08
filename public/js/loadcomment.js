@@ -7,7 +7,6 @@ for(let commentLink of commentLinks){
         var commentZone = document.getElementById('comment-zone' + idPost)
         let deleteLink = document.getElementById('delete-link' + idPost)
 
-        console.log(deleteLink)
         
         const url = this.href;
         const xhr = new XMLHttpRequest();

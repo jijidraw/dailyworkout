@@ -12,7 +12,6 @@ for(let linkExercice of linksExercices) {
             if(this.readyState == 4 ){
                 if(this.status == 200){
                     let exercice = JSON.parse(this.response)
-                    console.log(exercice)
                     var card = 
                     `
                     <div class="card">

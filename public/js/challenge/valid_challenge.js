@@ -3,8 +3,6 @@ for(let validLink of validLinks){
     validLink.addEventListener("click", function(e){
         e.preventDefault();
         const url = this.href;
-        console.log(url)
-
         const xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function(){
             if(this.readyState == 4){

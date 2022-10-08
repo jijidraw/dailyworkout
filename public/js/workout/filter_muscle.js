@@ -1,7 +1,6 @@
 const linkMuscles = document.querySelectorAll('a.js-muscle')
 let galery = document.querySelector('.gallery')
 let workoutID = gallery.id
-console.log(linkMuscles)
 
 
 for(let linkMuscle of linkMuscles){

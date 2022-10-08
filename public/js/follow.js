@@ -1,5 +1,4 @@
 const followLinks = document.querySelectorAll("#js-follow");
-console.log(followLinks)
 for(let followLink of followLinks){
     followLink.addEventListener("click", function(e){
         e.preventDefault();

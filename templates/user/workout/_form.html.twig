@@ -26,10 +26,12 @@
                 <label for="">Difficulté</label>
                 {{ form_row(form.level) }}
             </div>
-            {{ form_row(form.sport) }}
+            <div class="item-form">
+                <label for="">Pour quel sport ce workout est recommandé ?</label>
+                {{ form_row(form.sport) }}
+            </div>
         </div>
 
-        <input class="btvalid" type="submit" value="valider">
         <div class="bloc-space"></div>
         </div>
     </aside>
@@ -67,7 +69,10 @@
         </div>
         {% endfor %}
     </div>
-    
+    <div class="half">
+        <input class="btvalid" type="submit" value="valider">
+    </div>
+    <div class="bloc-space"></div>
     {{ form_end(form) }}
 </section>
 </section>

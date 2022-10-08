@@ -107,6 +107,11 @@ class Workout
      */
     private $level;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=SportsList::class, inversedBy="workout")
+     */
+    private $sport;
+
     public function __toString()
     {
         return $this->name;
@@ -401,6 +406,18 @@ class Workout
     public function setLevel(?Difficulty $level): self
     {
         $this->level = $level;
+
+        return $this;
+    }
+
+    public function getSport(): ?SportsList
+    {
+        return $this->sport;
+    }
+
+    public function setSport(?SportsList $sport): self
+    {
+        $this->sport = $sport;
 
         return $this;
     }

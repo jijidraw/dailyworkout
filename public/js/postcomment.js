@@ -15,7 +15,6 @@ for(let form of commentForm){
             if(this.status == 200){
                 data = JSON.parse(this.response)
                 let dateComment = new Date(data.created_at).toLocaleDateString()
-                console.log(data)
                 var comment =
                 `
                 <div class="comment-post">

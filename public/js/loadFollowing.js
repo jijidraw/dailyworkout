@@ -5,7 +5,6 @@ linkFollowing.addEventListener("click", function(event){
     event.preventDefault();
 
     let url = this.href;
-    console.log(url)
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function(){
         if(this.readyState == 4){
@@ -19,7 +18,6 @@ linkFollowing.addEventListener("click", function(event){
                 <h4 class="bloc-title-abs">${users[0].follower.name} suis :</h4>
                 `
                 for(let user of users){
-                    console.log(user)
                     modal.classList.remove("hidden")
                     modalContent.innerHTML = 
                     `

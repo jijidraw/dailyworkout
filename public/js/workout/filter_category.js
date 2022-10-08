@@ -1,7 +1,6 @@
 const linkCats = document.querySelectorAll('a.js-category')
 let gallery = document.querySelector('.gallery')
 let workoutId = gallery.id
-console.log(workoutId)
 
 
 for(let linkCat of linkCats){
@@ -15,7 +14,6 @@ for(let linkCat of linkCats){
             if(this.readyState == 4){
                 if(this.status == 200){
                     let exercices = JSON.parse(this.response)
-                    console.log(exercices)
                     for(const exercice of exercices){
                         gallery.innerHTML = `
                         <div class="card">

@@ -1,5 +1,4 @@
 const addWorkouts = document.querySelectorAll("a.js-link");
-console.log(sendLinks)
 for(let sendLink of addWorkouts){
     sendLink.addEventListener("click", function(e){
         e.preventDefault();

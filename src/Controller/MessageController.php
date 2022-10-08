@@ -50,7 +50,8 @@ class MessageController extends AbstractController
         // $conversations = array_merge($convA, $convB);
         $conversations = $conversationRepository->userConversation($user);
         $messages = $messageRepository->findBy(['conversation' => $conversation], ['created_at' => 'DESC']);
-        if (isset($messages)) {
+        dump($messages);
+        if (!empty($messages)) {
             $lastmessage = $messages[0]->getUser();
             if (!empty($lastmessage)) {
                 if ($lastmessage != $user) {

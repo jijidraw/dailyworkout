@@ -27,9 +27,6 @@ searchInput.addEventListener('keyup', function(){
 
                         + gallery.innerHTML
                 }
-                console.log(valueSearch)
-                console.log(result)
-
             }
         }
     }

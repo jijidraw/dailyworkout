@@ -79,6 +79,13 @@ svg:hover {
     z-index: 500;
 }
 
+
+.medals-center {
+    @extend %row;
+    width: 100%;
+    justify-content: space-around;
+}
+
 .unread svg {
     fill: rgb(34, 151, 34);
 }

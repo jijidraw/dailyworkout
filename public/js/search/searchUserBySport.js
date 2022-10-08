@@ -9,11 +9,8 @@ for(let linksport of linkSportsUser){
             if(this.readyState == 4){
                 if(this.status == 200){
                     let groups = JSON.parse(this.response)
-                    console.log(groups)
                     
-
                     for(const group of groups){
-                        console.log(group)
                         gallery.innerHTML =
                             `
                             <a class="bloc-user-link" href="/user/${group.id}">

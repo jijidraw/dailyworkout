@@ -17,7 +17,6 @@ for(let contactList of contactLists){
                     let messages = JSON.parse(this.response)
                     for(const message of messages.messages){
                         // const userId = contactList.dataset.id
-                        console.log(message)
                         let dateMessage = new Date(message.created_at)
                         messagesZone.innerHTML = 
                             `

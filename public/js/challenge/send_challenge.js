@@ -1,5 +1,4 @@
 const sendLinks = document.querySelectorAll("#js-send");
-console.log(sendLinks)
 for(let sendLink of sendLinks){
     sendLink.addEventListener("click", function(e){
         e.preventDefault();

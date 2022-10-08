@@ -1,7 +1,6 @@
 let linkFollowers = document.getElementById('js-follower')
 var closeBtn = document.getElementsByClassName("close")
 
-console.log(linkFollowers)
 linkFollowers.addEventListener("click", function(event){
     event.preventDefault();
 
@@ -19,7 +18,6 @@ linkFollowers.addEventListener("click", function(event){
 
                 
                 for(let user of users){
-                    console.log(user)
                     modal.classList.remove("hidden")
                     modalContent.innerHTML = 
                     `

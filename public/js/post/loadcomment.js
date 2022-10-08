@@ -7,8 +7,6 @@ for(let commentLink of commentLinks){
         var commentZone = document.getElementById('comment-zone' + idPost)
         let deleteLink = document.getElementById('delete-link' + idPost)
 
-        console.log(deleteLink)
-        
         const url = this.href;
         const xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function(){
@@ -20,7 +18,6 @@ for(let commentLink of commentLinks){
                     commentForm.classList.remove("hidden");
 
                     for(const comment of comments){
-                    console.log(comment)
 
                         let dateComment = new Date(comment.created_at).toLocaleDateString()
                         commentZone.innerHTML = `

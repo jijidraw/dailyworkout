@@ -75,6 +75,9 @@
     background: linear-gradient(270deg, rgba(1, 0, 0, 1) 0%, rgb(53, 53, 53) 100%);
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
 
 .center {
     text-align: center;

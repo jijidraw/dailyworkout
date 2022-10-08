@@ -1,6 +1,5 @@
 const form = document.querySelector("form.message-form");
 let inputText = document.getElementById('text')
-console.log(inputText)
 
 
 form.addEventListener("submit", function(event){

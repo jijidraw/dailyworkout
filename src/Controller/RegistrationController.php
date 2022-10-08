@@ -61,7 +61,7 @@ class RegistrationController extends AbstractController
             $entityManager->persist($img);
             $entityManager->flush();
             $medals = new UserMedals;
-            $medals->setGold(true)->setBronze(true)->setSilver(true);
+            $medals->setGold(true)->setBronze(true)->setSilver(true)->setUser($user);
             $entityManager->persist($medals);
             $entityManager->flush();
             $rewardId = $rewardRepository->findOneBy(['id' => '1']);

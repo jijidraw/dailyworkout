@@ -6,7 +6,6 @@ for(let medalLink of MedalsLink){
         e.preventDefault();
         let medalType = medalLink.id
         let SuppressMedal = document.querySelectorAll("." + medalType)
-        console.log(SuppressMedal)
         const url = this.href;
         const xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function(){

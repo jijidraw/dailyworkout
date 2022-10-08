@@ -4,7 +4,6 @@ for(let likeLink of likesLink){
         e.preventDefault();
         const url = this.href;
         const spancount = this.querySelector('span.js-likes');
-        console.log(spancount)
         const xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function(){
             if(this.readyState == 4){

@@ -31,6 +31,12 @@ select {
     padding: $mp1;
 }
 
+.half input {
+    width: 50%;
+    max-width: 320px;
+    margin: auto;
+}
+
 .input-file {
     @extend %button;
     color: white;
